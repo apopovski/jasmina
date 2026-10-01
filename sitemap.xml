@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://apopovski.github.io/jasmina/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://apopovski.github.io/jasmina/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://apopovski.github.io/jasmina/de/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apopovski.github.io/jasmina/"/>
+  </url>
+  <url>
+    <loc>https://apopovski.github.io/jasmina/de/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://apopovski.github.io/jasmina/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://apopovski.github.io/jasmina/de/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apopovski.github.io/jasmina/"/>
+  </url>
+  <url>
+    <loc>https://apopovski.github.io/jasmina/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://apopovski.github.io/jasmina/about.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://apopovski.github.io/jasmina/de/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apopovski.github.io/jasmina/about.html"/>
+  </url>
+  <url>
+    <loc>https://apopovski.github.io/jasmina/de/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://apopovski.github.io/jasmina/about.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://apopovski.github.io/jasmina/de/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apopovski.github.io/jasmina/about.html"/>
+  </url>
+  <url>
+    <loc>https://apopovski.github.io/jasmina/meal-plan.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://apopovski.github.io/jasmina/meal-plan.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://apopovski.github.io/jasmina/de/meal-plan.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apopovski.github.io/jasmina/meal-plan.html"/>
+  </url>
+  <url>
+    <loc>https://apopovski.github.io/jasmina/de/meal-plan.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://apopovski.github.io/jasmina/meal-plan.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://apopovski.github.io/jasmina/de/meal-plan.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://apopovski.github.io/jasmina/meal-plan.html"/>
+  </url>
+</urlset>
