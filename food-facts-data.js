@@ -6,27 +6,27 @@ const foodFacts = [
   // ---------- PRODUCE ----------
   {
     id: 'red-pepper-vitamin-c', category: 'produce',
-    source: 'https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/',
-    en: { label: 'RED PEPPER', title: 'Serve with a dip or tuck into a sandwich for a crisp bite', detail: 'NIH U.S. table avg.: 95 mg vitamin C per ½ cup raw sweet red pepper.' },
-    de: { label: 'ROTE PAPRIKA', title: 'Mit Dip servieren oder für einen knackigen Biss ins Sandwich legen', detail: 'NIH-US-Tabellenmittel: 95 mg Vitamin C je ½ Tasse rohe rote Paprika.' }
+    source: 'https://blsdb.de/download',
+    en: { label: 'RED PEPPER', title: 'Serve with a dip or tuck into a sandwich for a crisp bite', detail: 'MRI BLS 4.0 (G543100): 159.8 mg vitamin C per 100 g raw red pepper (rounded).' },
+    de: { label: 'ROTE PAPRIKA', title: 'Mit Dip servieren oder für einen knackigen Biss ins Sandwich legen', detail: 'MRI BLS 4.0 (G543100): 159,8 mg Vitamin C je 100 g rohe rote Paprika (gerundet).' }
   },
   {
     id: 'orange-vitamin-c', category: 'produce',
-    source: 'https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/',
-    en: { label: 'ORANGE', title: 'Peel at the table or add segments to a simple fruit bowl', detail: 'NIH U.S. table avg.: 70 mg vitamin C per 1 medium orange.' },
-    de: { label: 'ORANGE', title: 'Am Tisch schälen oder die Stücke in eine einfache Obstschale geben', detail: 'NIH-US-Tabellenmittel: 70 mg Vitamin C je 1 mittelgroße Orange.' }
+    source: 'https://blsdb.de/download',
+    en: { label: 'ORANGE', title: 'Peel at the table or add segments to a simple fruit bowl', detail: 'MRI BLS 4.0 (F603100): 62.4 mg vitamin C per 100 g raw orange (rounded).' },
+    de: { label: 'ORANGE', title: 'Am Tisch schälen oder die Stücke in eine einfache Obstschale geben', detail: 'MRI BLS 4.0 (F603100): 62,4 mg Vitamin C je 100 g rohe Orange (gerundet).' }
   },
   {
     id: 'kiwifruit-vitamin-c', category: 'produce',
-    source: 'https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/',
-    en: { label: 'KIWIFRUIT', title: 'Spoon out a kiwi for a quick snack.', detail: 'NIH U.S. table avg.: 64 mg vitamin C per 1 medium kiwifruit.' },
-    de: { label: 'KIWI', title: 'Kiwi halbieren und auslöffeln oder fürs Frühstück schneiden.', detail: 'NIH-US-Tabellenmittel: 64 mg Vitamin C je 1 mittelgroße Kiwi.' }
+    source: 'https://blsdb.de/download',
+    en: { label: 'KIWIFRUIT', title: 'Spoon out a kiwi for a quick snack.', detail: 'MRI BLS 4.0 (F514100): 71 mg vitamin C per 100 g raw kiwi.' },
+    de: { label: 'KIWI', title: 'Kiwi halbieren und auslöffeln oder fürs Frühstück schneiden.', detail: 'MRI BLS 4.0 (F514100): 71 mg Vitamin C je 100 g rohe Kiwi.' }
   },
   {
     id: 'green-pepper-vitamin-c', category: 'produce',
-    source: 'https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/',
-    en: { label: 'GREEN PEPPER', title: 'Keep ready in the fridge for a snack or sandwich filling', detail: 'NIH U.S. table avg.: 60 mg vitamin C per ½ cup raw sweet green pepper.' },
-    de: { label: 'GRÜNE PAPRIKA', title: 'Im Kühlschrank für einen Snack oder Sandwichbelag bereithalten', detail: 'NIH-US-Tabellenmittel: 60 mg Vitamin C je ½ Tasse rohe grüne Paprika.' }
+    source: 'https://blsdb.de/download',
+    en: { label: 'GREEN PEPPER', title: 'Keep ready in the fridge for a snack or sandwich filling', detail: 'MRI BLS 4.0 (G541100): 117 mg vitamin C per 100 g raw green pepper.' },
+    de: { label: 'GRÜNE PAPRIKA', title: 'Im Kühlschrank für einen Snack oder Sandwichbelag bereithalten', detail: 'MRI BLS 4.0 (G541100): 117 mg Vitamin C je 100 g rohe grüne Paprika.' }
   },
   {
     id: 'broccoli-vitamin-c', category: 'produce',
@@ -48,9 +48,9 @@ const foodFacts = [
   },
   {
     id: 'grapefruit-vitamin-c', category: 'produce',
-    source: 'https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/',
-    en: { label: 'GRAPEFRUIT', title: 'Separate segments over a bowl to catch juice, then serve chilled', detail: 'NIH U.S. table avg.: 39 mg vitamin C per ½ medium grapefruit.' },
-    de: { label: 'GRAPEFRUIT', title: 'Die Stücke über einer Schüssel auslösen und gekühlt servieren', detail: 'NIH-US-Tabellenmittel: 39 mg Vitamin C je ½ mittelgroße Grapefruit.' }
+    source: 'https://blsdb.de/download',
+    en: { label: 'GRAPEFRUIT', title: 'Separate segments over a bowl to catch juice, then serve chilled', detail: 'MRI BLS 4.0 (F604100): 40 mg vitamin C per 100 g raw grapefruit.' },
+    de: { label: 'GRAPEFRUIT', title: 'Die Stücke über einer Schüssel auslösen und gekühlt servieren', detail: 'MRI BLS 4.0 (F604100): 40 mg Vitamin C je 100 g rohe Grapefruit.' }
   },
   {
     id: 'cantaloupe-vitamin-c', category: 'produce',
@@ -60,9 +60,9 @@ const foodFacts = [
   },
   {
     id: 'cauliflower-vitamin-c', category: 'produce',
-    source: 'https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/',
-    en: { label: 'CAULIFLOWER', title: 'Cut into small pieces for a snack plate or lunchbox', detail: 'NIH U.S. table avg.: 26 mg vitamin C per ½ cup raw cauliflower.' },
-    de: { label: 'BLUMENKOHL', title: 'In kleine Stücke für eine Snackplatte oder Lunchbox teilen', detail: 'NIH-US-Tabellenmittel: 26 mg Vitamin C je ½ Tasse roher Blumenkohl.' }
+    source: 'https://blsdb.de/download',
+    en: { label: 'CAULIFLOWER', title: 'Cut into small pieces for a snack plate or lunchbox', detail: 'MRI BLS 4.0 (G311100): 64 mg vitamin C per 100 g raw cauliflower.' },
+    de: { label: 'BLUMENKOHL', title: 'In kleine Stücke für eine Snackplatte oder Lunchbox teilen', detail: 'MRI BLS 4.0 (G311100): 64 mg Vitamin C je 100 g roher Blumenkohl.' }
   },
   {
     id: 'sweet-potato-vitamin-a', category: 'produce',

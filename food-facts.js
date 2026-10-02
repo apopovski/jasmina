@@ -83,6 +83,7 @@ if (factCanvas) {
   const next = document.querySelector('.fact-next');
   const title = document.querySelector('[data-fact-title]');
   const foodName = document.querySelector('[data-fact-food]');
+  const use = document.querySelector('[data-fact-use]');
   const description = document.querySelector('[data-fact-description]');
   const source = document.querySelector('[data-fact-source]');
   const status = document.querySelector('.fact-status');
@@ -107,6 +108,37 @@ if (factCanvas) {
   let slideTimer = null;
   let previewVisible = false;
   let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const claimSource = 'https://eur-lex.europa.eu/eli/reg/2012/432/oj';
+  const nutrientNames = {
+    'vitamin-c': ['vitamin C', 'Vitamin C'], 'vitamin-a': ['vitamin A', 'Vitamin A'],
+    potassium: ['potassium', 'Kalium'], folate: ['folate', 'Folat'],
+    'vitamin-k': ['vitamin K', 'Vitamin K'], calcium: ['calcium', 'Calcium'],
+    manganese: ['manganese', 'Mangan'], copper: ['copper', 'Kupfer'],
+    'vitamin-b6': ['vitamin B6', 'Vitamin B6'], iron: ['iron', 'Eisen'],
+    zinc: ['zinc', 'Zink'], magnesium: ['magnesium', 'Magnesium'],
+    thiamin: ['thiamin', 'Thiamin'], ala: ['omega-3 ALA', 'Omega-3-ALA'],
+    'vitamin-e': ['vitamin E', 'Vitamin E'], selenium: ['selenium', 'Selen']
+  };
+
+  function getInsight(fact) {
+    if (fact.source.includes('blsdb.de')) {
+      if (fact.id.endsWith('vitamin-c')) return german
+        ? 'Vitamin C trägt zu einer normalen Funktion des Immunsystems bei'
+        : 'Vitamin C contributes to the normal function of the immune system';
+      if (fact.id === 'banana-potassium') return german
+        ? 'Kalium trägt zu einer normalen Muskelfunktion bei'
+        : 'Potassium contributes to normal muscle function';
+      if (fact.id === 'romaine-folate') return german
+        ? 'Folat trägt zu einer normalen Blutbildung bei'
+        : 'Folate contributes to normal blood formation';
+    }
+    const nutrient = Object.entries(nutrientNames).find(([suffix]) => fact.id.endsWith(`-${suffix}`));
+    if (!nutrient) throw new Error(`Missing nutrient context for ${fact.id}`);
+    const name = nutrient[1][german ? 1 : 0];
+    return german
+      ? `${name} im Fokus: Was steht in der Nährwerttabelle?`
+      : `${name[0].toUpperCase()}${name.slice(1)} in focus: what does the food table show?`;
+  }
 
   function shuffle(choices) {
     const shuffled = [...choices];
@@ -786,39 +818,54 @@ if (factCanvas) {
     context.letterSpacing = '3px';
     context.fillText(german ? 'GUT ZU WISSEN' : 'GOOD TO KNOW', 105, 545);
     context.letterSpacing = '0px';
-    let foodSize = 64;
+    let foodSize = 78;
     do {
-      context.font = `bold ${foodSize}px "Avenir Next", "Segoe UI", sans-serif`;
+      context.font = `italic bold ${foodSize}px "Iowan Old Style", "Baskerville", Georgia, serif`;
       if (context.measureText(copy.label).width <= 870) break;
       foodSize -= 2;
-    } while (foodSize > 38);
+    } while (foodSize > 40);
     context.fillStyle = '#fff8e9';
     context.fillText(copy.label, 105, 625);
 
-    let headingSize = 82;
-    let headingLines = wrapText(copy.title, 865, `${headingSize}px Georgia, serif`);
-    while (headingLines.length > 3 && headingSize > 48) {
-      headingSize -= 3;
-      headingLines = wrapText(copy.title, 865, `${headingSize}px Georgia, serif`);
+    const insight = getInsight(fact);
+    let headingSize = 59;
+    let headingLines = wrapText(insight, 865, `${headingSize}px Georgia, serif`);
+    while (headingLines.length > 3 && headingSize > 40) {
+      headingSize -= 2;
+      headingLines = wrapText(insight, 865, `${headingSize}px Georgia, serif`);
     }
     context.fillStyle = '#fff8e9';
     context.font = `${headingSize}px Georgia, serif`;
-    headingLines.forEach((line, index) => context.fillText(line, 105, 715 + index * (headingSize + 14)));
+    headingLines.forEach((line, index) => context.fillText(line, 105, 710 + index * (headingSize + 10)));
 
-    const detailTop = Math.max(920, 715 + headingLines.length * (headingSize + 14) + 28);
-    let detailSize = 34;
+    const useLabelTop = Math.max(830, 710 + (headingLines.length - 1) * (headingSize + 10) + 40);
+    context.fillStyle = theme.accent;
+    context.font = 'bold 22px "Avenir Next", "Segoe UI", sans-serif';
+    context.fillText(german ? 'SO KANNST DU ES ESSEN' : 'AN IDEA FOR YOUR PLATE', 105, useLabelTop);
+    let useSize = 33;
+    let useLines = wrapText(copy.title, 850, `${useSize}px "Avenir Next", "Segoe UI", sans-serif`);
+    while (useLines.length > 3 && useSize > 25) {
+      useSize -= 2;
+      useLines = wrapText(copy.title, 850, `${useSize}px "Avenir Next", "Segoe UI", sans-serif`);
+    }
+    context.fillStyle = '#fff8e9';
+    context.font = `${useSize}px "Avenir Next", "Segoe UI", sans-serif`;
+    useLines.forEach((line, index) => context.fillText(line, 105, useLabelTop + 46 + index * (useSize + 9)));
+
+    const detailTop = Math.max(1005, useLabelTop + 46 + (useLines.length - 1) * (useSize + 9) + 65);
+    let detailSize = 25;
     let detailLines = wrapText(copy.detail, 850, `${detailSize}px "Avenir Next", "Segoe UI", sans-serif`);
-    while (detailTop + detailLines.length * (detailSize + 8) > 1125 && detailSize > 25) {
-      detailSize -= 2;
+    while (detailTop + (detailLines.length - 1) * (detailSize + 7) > 1120 && detailSize > 19) {
+      detailSize -= 1;
       detailLines = wrapText(copy.detail, 850, `${detailSize}px "Avenir Next", "Segoe UI", sans-serif`);
     }
     context.fillStyle = 'rgba(255, 250, 233, .09)';
     context.beginPath();
-    context.roundRect(84, detailTop - detailSize - 15, 912, detailLines.length * (detailSize + 10) + 24, 18);
+    context.roundRect(84, detailTop - detailSize - 14, 912, detailLines.length * (detailSize + 7) + 26, 18);
     context.fill();
     context.font = `${detailSize}px "Avenir Next", "Segoe UI", sans-serif`;
     context.fillStyle = '#fff4e0';
-    detailLines.forEach((line, index) => context.fillText(line, 105, detailTop + index * (detailSize + 10)));
+    detailLines.forEach((line, index) => context.fillText(line, 105, detailTop + index * (detailSize + 7)));
 
     context.strokeStyle = 'rgba(255, 250, 233, .55)';
     context.beginPath();
@@ -830,15 +877,22 @@ if (factCanvas) {
     const sourceName = fact.source.includes('blsdb.de')
       ? 'MAX RUBNER-INSTITUT (2025), BLS 4.0'
       : fact.source.includes('ods.od.nih.gov') ? 'NIH OFFICE OF DIETARY SUPPLEMENTS' : 'USDA MYPLATE';
-    context.fillText(`${german ? 'NÄHRSTOFFQUELLE' : 'NUTRIENT SOURCE'}: ${sourceName}`, 105, 1198);
+    context.fillText(`${german ? 'NÄHRSTOFFQUELLE' : 'NUTRIENT SOURCE'}: ${sourceName}`, 105, 1191);
     context.fillText(fact.source.includes('blsdb.de')
       ? `100 G ${german ? 'ROH' : 'RAW'} · CC BY 4.0 · DOI: 10.25826/Data20251217-134202-0`
-      : `${german ? 'SEPARATER DE-DATENSATZ' : 'SEPARATE GERMAN DATASET'}: MRI BLS 4.0`, 105, 1230);
+      : `${german ? 'SEPARATER DE-DATENSATZ' : 'SEPARATE GERMAN DATASET'}: MRI BLS 4.0`, 105, 1218);
+    if (fact.source.includes('blsdb.de')) {
+      context.font = 'bold 18px "Avenir Next", "Segoe UI", sans-serif';
+      context.fillText(german
+        ? '100 g roh täglich · ausgewogene Ernährung & gesunder Lebensstil'
+        : '100 g raw daily · varied, balanced diet & healthy lifestyle', 105, 1246);
+    }
     context.fillStyle = theme.accent;
-    context.fillText('Jasmina Klisch  /  jasminaklisch.com', 105, 1270);
+    context.font = 'bold 21px "Avenir Next", "Segoe UI", sans-serif';
+    context.fillText('Jasmina Klisch  /  jasminaklisch.com', 105, 1278);
     factCanvas.setAttribute('aria-label', german
-      ? `Teilbare Jasmina-Klisch-Ernährungsgrafik: ${copy.title}`
-      : `Shareable Jasmina Klisch nutrition graphic: ${copy.title}`);
+      ? `Teilbare Jasmina-Klisch-Ernährungsgrafik über ${copy.label}: ${insight} Idee: ${copy.title}`
+      : `Shareable Jasmina Klisch nutrition graphic about ${copy.label}: ${insight} Try it: ${copy.title}`);
 
     exportBlob = null;
     const revision = ++exportRevision;
@@ -863,9 +917,9 @@ if (factCanvas) {
   function getCaption() {
     const label = active[german ? 'de' : 'en'].label;
     const regionalReference = active.source.includes('blsdb.de')
-      ? `\nMax Rubner-Institut (2025), BLS 4.0 · CC BY 4.0: https://creativecommons.org/licenses/by/4.0/deed.de\nDOI: https://doi.org/10.25826/Data20251217-134202-0`
+      ? `\n${german ? '100 g roh täglich als Teil einer abwechslungsreichen, ausgewogenen Ernährung und eines gesunden Lebensstils.' : '100 g raw daily as part of a varied, balanced diet and healthy lifestyle.'}\nMax Rubner-Institut (2025), BLS 4.0 · CC BY 4.0: https://creativecommons.org/licenses/by/4.0/deed.de\nDOI: https://doi.org/10.25826/Data20251217-134202-0\n${german ? 'Zugelassene EU-Nährstoffwirkung' : 'EU-authorized nutrient wording'}: ${claimSource}`
       : `\n${german ? 'Separater deutscher Referenzdatensatz' : 'Separate German reference dataset'}: https://blsdb.de/download`;
-    return `${label} — ${title.textContent}\n${description.textContent}\n\n${german ? 'Nährstoffquelle' : 'Nutrient source'}: ${source.href}${regionalReference}\nhttps://apopovski.github.io/jasmina/${german ? 'de/' : ''}`;
+    return `${label} — ${title.textContent}\n${use.textContent}\n${description.textContent}\n\n${german ? 'Nährstoffquelle' : 'Nutrient source'}: ${source.href}${regionalReference}\nhttps://apopovski.github.io/jasmina/${german ? 'de/' : ''}`;
   }
 
   function prepareGraphicNow() {
@@ -886,7 +940,8 @@ if (factCanvas) {
     active = fact;
     const copy = fact[german ? 'de' : 'en'];
     foodName.textContent = copy.label;
-    title.textContent = copy.title;
+    title.textContent = getInsight(fact);
+    use.textContent = `${german ? 'Idee' : 'Try it'}: ${copy.title}`;
     description.textContent = copy.detail;
     source.href = fact.source;
     source.firstChild.textContent = fact.source.includes('blsdb.de')
@@ -919,7 +974,7 @@ if (factCanvas) {
       choose.className = 'fact-option';
       choose.dataset.fact = fact.id;
       choose.setAttribute('aria-pressed', String(active === fact));
-      choose.textContent = `${String(index).padStart(2, '0')}  ${copy.label}: ${copy.title}`;
+      choose.textContent = `${String(index).padStart(2, '0')}  ${copy.label}: ${getInsight(fact)} · ${copy.title}`;
       choose.addEventListener('click', () => {
         pauseSlides();
         slideIndex = sequence.indexOf(fact);
@@ -958,7 +1013,7 @@ if (factCanvas) {
     filtered = facts.filter((fact) => {
       if (category.value !== 'all' && fact.category !== category.value) return false;
       const copy = fact[german ? 'de' : 'en'];
-      return `${copy.title} ${copy.detail} ${copy.label}`.toLocaleLowerCase(german ? 'de' : 'en').includes(query);
+      return `${copy.title} ${copy.detail} ${copy.label} ${getInsight(fact)}`.toLocaleLowerCase(german ? 'de' : 'en').includes(query);
     });
     page = 0;
     if (filtered.length && !filtered.includes(active)) selectFact(filtered[0]);

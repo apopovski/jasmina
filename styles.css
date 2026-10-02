@@ -129,13 +129,16 @@ em { font-weight: 400; }
 .fact-pagination button { min-height: 40px; padding: 8px 12px; border: 1px solid #aab9a6; background: transparent; color: var(--ink); font-size: 12px; font-weight: 700; }
 .fact-pagination button:hover:not(:disabled) { background: #d6e1ce; }
 .fact-pagination button:disabled { opacity: .45; cursor: default; }
-.fact-explanation { min-height: 150px; }
-.fact-food-name { display: block; width: fit-content; margin-bottom: 10px; padding: 7px 12px; border-radius: 100px; background: #d6dfce; color: #304837; font-size: 12px; font-weight: 800; letter-spacing: .1em; }
-.fact-explanation h3 { max-width: 530px; margin-bottom: 10px; font-size: 28px; line-height: 1.25; letter-spacing: -.025em; }
-.fact-explanation p { max-width: 520px; margin-bottom: 16px; color: #536158; font-size: 14px; line-height: 1.75; }
+.fact-explanation { min-height: 205px; }
+.fact-food-name { display: block; width: fit-content; max-width: 100%; margin-bottom: 11px; overflow-wrap: anywhere; color: #985d47; font-family: "Iowan Old Style", "Baskerville", Georgia, serif; font-size: clamp(26px, 3vw, 35px); font-weight: 700; font-style: italic; letter-spacing: -.045em; line-height: 1.1; }
+.fact-explanation h3 { max-width: 530px; margin: 0 0 13px; font-size: 26px; line-height: 1.25; letter-spacing: -.025em; }
+.fact-explanation p { max-width: 520px; margin: 0 0 12px; color: #536158; font-size: 14px; line-height: 1.6; }
+.fact-explanation [data-fact-use] { color: #304837; font-weight: 700; }
+.facts-copy > p.fact-claim-note { max-width: 520px; margin: 15px 0 0; color: #536158; font-size: 12px; line-height: 1.6; }
+.fact-claim-note a { text-decoration: underline; text-underline-offset: 3px; }
 .fact-source { display: inline-flex; gap: 9px; border-bottom: 1px solid #83927e; padding-bottom: 4px; color: #485e4e; font-size: 12px; line-height: 1.4; }
 .fact-source:hover { color: #a46d51; }
-.facts-copy > .fact-source-note { margin: 12px 0 20px; font-size: 12px; line-height: 1.6; }
+.facts-copy > p.fact-source-note { margin: 12px 0 20px; font-size: 12px; line-height: 1.6; }
 .fact-source-note a { text-decoration: underline; text-underline-offset: 3px; }
 .fact-download { display: flex; width: fit-content; margin-top: 34px; }
 .fact-share { width: fit-content; margin-top: 12px; border-color: var(--ink); color: var(--ink); background: transparent; }
