@@ -11,7 +11,7 @@
     <link rel="alternate" hreflang="de" href="https://apopovski.github.io/jasmina/de/">
     <link rel="alternate" hreflang="x-default" href="https://apopovski.github.io/jasmina/">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="styles.css?v=share-2">
+    <link rel="stylesheet" href="styles.css?v=101">
     <link rel="preload" as="image" href="images/Jasmina-optimized.jpg">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Simple Habits. Lasting Health. | Jasmina">
@@ -131,13 +131,23 @@
         <div class="section-shell facts-layout">
           <div class="facts-copy">
             <p class="eyebrow"><span class="eyebrow-line"></span> GOOD FOOD, GOOD TO KNOW</p>
-            <h2 id="facts-title">Little facts.<br><em>Big inspiration.</em></h2>
-            <p>Discover something new about everyday plant foods. Pick a fact, then save its ready-to-share graphic for your feed.</p>
-            <div class="fact-options" role="group" aria-label="Choose a plant food">
-              <button type="button" class="fact-option" data-fact="pepper" aria-pressed="true">01 <span>Red pepper</span></button>
-              <button type="button" class="fact-option" data-fact="spinach" aria-pressed="false">02 <span>Spinach</span></button>
-              <button type="button" class="fact-option" data-fact="walnuts" aria-pressed="false">03 <span>Walnuts</span></button>
+            <h2 id="facts-title">100 little facts.<br><em>Big inspiration.</em></h2>
+            <p>Explore 100 source-linked nutrition facts about plant foods. Choose one to preview its branded graphic, then share it or download the PNG to post anywhere.</p>
+            <div class="fact-filters">
+              <label for="fact-search">Find a food or nutrient</label>
+              <input id="fact-search" type="search" placeholder="Search 100 facts…" autocomplete="off">
+              <label for="fact-category">Explore by category</label>
+              <select id="fact-category">
+                <option value="all">All foods</option>
+                <option value="produce">Fruits &amp; vegetables</option>
+                <option value="legumes">Beans &amp; legumes</option>
+                <option value="grains">Grains &amp; grain foods</option>
+                <option value="nuts-seeds">Nuts &amp; seeds</option>
+              </select>
             </div>
+            <p class="fact-results" role="status" aria-live="polite"></p>
+            <div class="fact-options" aria-label="Nutrition facts"></div>
+            <div class="fact-pagination"><button class="fact-prev" type="button" disabled>← Previous</button><span class="fact-page"></span><button class="fact-next" type="button">Next →</button></div>
             <noscript><p>Enable JavaScript to preview and download these graphics.</p></noscript>
             <div class="fact-explanation" aria-live="polite">
               <h3 data-fact-title>Red bell peppers are rich in vitamin C.</h3>
@@ -145,7 +155,7 @@
             </div>
             <a class="fact-source" data-fact-source href="https://ods.od.nih.gov/factsheets/VitaminC-Consumer/" target="_blank" rel="noopener noreferrer">Source: NIH Office of Dietary Supplements <span aria-hidden="true">↗</span></a>
             <button type="button" class="button button-dark fact-download">Download graphic (PNG) <span aria-hidden="true">↓</span></button>
-            <button type="button" class="button fact-share" aria-expanded="false" aria-controls="fact-share-help">Share graphic <span aria-hidden="true">↗</span></button>
+            <button type="button" class="button fact-share" aria-expanded="false" aria-controls="fact-share-help">Share this graphic <span aria-hidden="true">↗</span></button>
             <div class="fact-share-help" id="fact-share-help" hidden>
               <h3>Post this graphic anywhere.</h3>
               <p>Your browser can't send this image directly to a social app. Download the PNG and upload it to Instagram, Facebook, Pinterest, or another app. Where supported, you can also copy the image to paste into a post. Copy the ready-made caption below.</p>
@@ -226,6 +236,7 @@
       <div class="section-shell footer-bottom"><span>© <span data-year>2026</span> Jasmina. All rights reserved.</span><span>Made for a healthier everyday.</span></div>
     </footer>
     <script src="script.js" defer></script>
-    <script src="food-facts.js?v=share-2" defer></script>
+    <script src="food-facts-data.js?v=101" defer></script>
+    <script src="food-facts.js?v=101" defer></script>
   </body>
 </html>

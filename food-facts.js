@@ -2,65 +2,22 @@ const factCanvas = document.querySelector('#fact-canvas');
 
 if (factCanvas) {
   const german = document.documentElement.lang === 'de';
-  const facts = {
-    pepper: {
-      en: {
-        title: 'Red bell peppers are rich in vitamin C.',
-        detail: 'Vitamin C acts as an antioxidant and helps your body absorb iron from plant foods.',
-        label: 'RED BELL PEPPER',
-        alt: 'Shareable Jasmina nutrition fact graphic about red bell peppers'
-      },
-      de: {
-        title: 'Rote Paprika enthält viel Vitamin C.',
-        detail: 'Vitamin C wirkt als Antioxidans und verbessert die Aufnahme von Eisen aus pflanzlichen Lebensmitteln.',
-        label: 'ROTE PAPRIKA',
-        alt: 'Teilbare Jasmina-Ernährungsgrafik über rote Paprika'
-      },
-      source: 'https://ods.od.nih.gov/factsheets/VitaminC-Consumer/',
-      background: ['#783f35', '#a7634c'],
-      accent: '#f3be92',
-      illustration: 'pepper'
-    },
-    spinach: {
-      en: {
-        title: 'Spinach naturally contains folate.',
-        detail: 'Your body needs folate to make DNA and for cells to divide.',
-        label: 'SPINACH',
-        alt: 'Shareable Jasmina nutrition fact graphic about spinach'
-      },
-      de: {
-        title: 'Spinat enthält von Natur aus Folat.',
-        detail: 'Dein Körper braucht Folat, um DNA zu bilden und damit sich Zellen teilen können.',
-        label: 'SPINAT',
-        alt: 'Teilbare Jasmina-Ernährungsgrafik über Spinat'
-      },
-      source: 'https://ods.od.nih.gov/factsheets/Folate-Consumer/',
-      background: ['#243c30', '#466c51'],
-      accent: '#c9dea7',
-      illustration: 'spinach'
-    },
-    walnuts: {
-      en: {
-        title: 'Walnuts provide plant-based omega-3s.',
-        detail: 'They contain ALA, an essential fatty acid your body cannot make on its own.',
-        label: 'WALNUTS',
-        alt: 'Shareable Jasmina nutrition fact graphic about walnuts'
-      },
-      de: {
-        title: 'Walnüsse liefern pflanzliches Omega-3.',
-        detail: 'Sie enthalten ALA, eine essenzielle Fettsäure, die dein Körper nicht selbst herstellen kann.',
-        label: 'WALNÜSSE',
-        alt: 'Teilbare Jasmina-Ernährungsgrafik über Walnüsse'
-      },
-      source: 'https://ods.od.nih.gov/factsheets/Omega3FattyAcids-Consumer/',
-      background: ['#514631', '#7d704d'],
-      accent: '#e4d9a9',
-      illustration: 'walnuts'
-    }
+  const facts = typeof foodFacts === 'undefined' ? [] : foodFacts;
+  const themes = {
+    produce: { background: ['#783f35', '#a7634c'], accent: '#f3be92', illustration: 'pepper' },
+    legumes: { background: ['#364735', '#607b58'], accent: '#d7dea9', illustration: 'walnuts' },
+    grains: { background: ['#60513a', '#89764e'], accent: '#e4d9a9', illustration: 'spinach' },
+    'nuts-seeds': { background: ['#4b3f32', '#756045'], accent: '#e4c49e', illustration: 'walnuts' }
   };
 
   const context = factCanvas.getContext('2d');
-  const options = [...document.querySelectorAll('.fact-option')];
+  const options = document.querySelector('.fact-options');
+  const search = document.querySelector('#fact-search');
+  const category = document.querySelector('#fact-category');
+  const results = document.querySelector('.fact-results');
+  const pageLabel = document.querySelector('.fact-page');
+  const previous = document.querySelector('.fact-prev');
+  const next = document.querySelector('.fact-next');
   const title = document.querySelector('[data-fact-title]');
   const description = document.querySelector('[data-fact-description]');
   const source = document.querySelector('[data-fact-source]');
@@ -70,7 +27,10 @@ if (factCanvas) {
   const shareHelp = document.querySelector('.fact-share-help');
   const copyCaption = document.querySelector('.fact-copy-caption');
   const copyImage = document.querySelector('.fact-copy-image');
-  let active = 'pepper';
+  let active = facts[0] || null;
+  let filtered = facts;
+  let page = 0;
+  const pageSize = 12;
   let exportBlob = null;
   let exportRevision = 0;
 
@@ -138,7 +98,7 @@ if (factCanvas) {
       context.moveTo(16, 2);
       context.lineTo(100, -47);
       context.stroke();
-    } else {
+    } else if (kind === 'walnuts') {
       context.fillStyle = '#cfb889';
       context.beginPath();
       context.ellipse(0, 0, 140, 112, -0.1, 0, Math.PI * 2);
@@ -154,6 +114,20 @@ if (factCanvas) {
       context.moveTo(64, -59);
       context.bezierCurveTo(100, -11, 41, 21, 81, 54);
       context.stroke();
+    } else {
+      context.fillStyle = accent;
+      for (let petal = 0; petal < 7; petal++) {
+        context.save();
+        context.rotate((petal * Math.PI * 2) / 7);
+        context.beginPath();
+        context.ellipse(0, -75, 38, 82, 0, 0, Math.PI * 2);
+        context.fill();
+        context.restore();
+      }
+      context.fillStyle = '#fff8e9';
+      context.beginPath();
+      context.arc(0, 0, 32, 0, Math.PI * 2);
+      context.fill();
     }
     context.strokeStyle = accent;
     context.lineWidth = 2;
@@ -164,11 +138,12 @@ if (factCanvas) {
   }
 
   function render() {
-    const fact = facts[active];
+    const fact = active;
     const copy = fact[german ? 'de' : 'en'];
+    const theme = themes[fact.category];
     const gradient = context.createLinearGradient(0, 0, 1080, 1350);
-    gradient.addColorStop(0, fact.background[0]);
-    gradient.addColorStop(1, fact.background[1]);
+    gradient.addColorStop(0, theme.background[0]);
+    gradient.addColorStop(1, theme.background[1]);
     context.fillStyle = gradient;
     context.fillRect(0, 0, 1080, 1350);
 
@@ -181,26 +156,29 @@ if (factCanvas) {
     context.beginPath();
     context.arc(780, 300, 235, 0, Math.PI * 2);
     context.stroke();
-    drawFood(fact.illustration, fact.accent);
+    const illustration = /pepper|paprika/.test(fact.id) ? 'pepper'
+      : /spinach|spinat/.test(fact.id) ? 'spinach'
+      : /walnut|walnuss/.test(fact.id) ? 'walnuts' : 'botanical';
+    drawFood(illustration, theme.accent);
 
     context.fillStyle = '#fff8e9';
     context.font = 'bold 51px Georgia, serif';
     context.fillText('✳ jasmina.', 105, 151);
     context.font = 'bold 23px "Avenir Next", "Segoe UI", sans-serif';
     context.letterSpacing = '3px';
-    context.fillStyle = fact.accent;
+    context.fillStyle = theme.accent;
     context.fillText(german ? 'WISSENSWERTES ÜBER PFLANZEN' : 'PLANT-BASED FOOD FACTS', 105, 230);
     context.letterSpacing = '0px';
 
-    context.fillStyle = fact.accent;
+    context.fillStyle = theme.accent;
     context.font = 'bold 24px "Avenir Next", "Segoe UI", sans-serif';
     context.fillText(german ? 'GUT ZU WISSEN?' : 'DID YOU KNOW?', 105, 550);
     context.font = 'bold 24px "Avenir Next", "Segoe UI", sans-serif';
     context.fillText(copy.label, 105, 602);
 
-    let headingSize = 85;
+    let headingSize = 82;
     let headingLines = wrapText(copy.title, 865, `${headingSize}px Georgia, serif`);
-    while (headingLines.length > 3 && headingSize > 60) {
+    while (headingLines.length > 3 && headingSize > 48) {
       headingSize -= 3;
       headingLines = wrapText(copy.title, 865, `${headingSize}px Georgia, serif`);
     }
@@ -208,12 +186,16 @@ if (factCanvas) {
     context.font = `${headingSize}px Georgia, serif`;
     headingLines.forEach((line, index) => context.fillText(line, 105, 715 + index * (headingSize + 14)));
 
-    const detailTop = Math.max(900, 715 + headingLines.length * (headingSize + 14) + 35);
-    const detailSize = 34;
-    const detailLines = wrapText(copy.detail, 850, `${detailSize}px "Avenir Next", "Segoe UI", sans-serif`);
+    const detailTop = Math.max(920, 715 + headingLines.length * (headingSize + 14) + 28);
+    let detailSize = 34;
+    let detailLines = wrapText(copy.detail, 850, `${detailSize}px "Avenir Next", "Segoe UI", sans-serif`);
+    while (detailTop + detailLines.length * (detailSize + 8) > 1125 && detailSize > 25) {
+      detailSize -= 2;
+      detailLines = wrapText(copy.detail, 850, `${detailSize}px "Avenir Next", "Segoe UI", sans-serif`);
+    }
     context.font = `${detailSize}px "Avenir Next", "Segoe UI", sans-serif`;
     context.fillStyle = '#fff4e0';
-    detailLines.forEach((line, index) => context.fillText(line, 105, detailTop + index * 47));
+    detailLines.forEach((line, index) => context.fillText(line, 105, detailTop + index * (detailSize + 10)));
 
     context.strokeStyle = 'rgba(255, 250, 233, .55)';
     context.beginPath();
@@ -222,10 +204,13 @@ if (factCanvas) {
     context.stroke();
     context.font = 'bold 24px "Avenir Next", "Segoe UI", sans-serif';
     context.fillStyle = '#fff8e9';
-    context.fillText(german ? 'QUELLE: NIH OFFICE OF DIETARY SUPPLEMENTS' : 'SOURCE: NIH OFFICE OF DIETARY SUPPLEMENTS', 105, 1211);
-    context.fillStyle = fact.accent;
+    const sourceName = fact.source.includes('ods.od.nih.gov') ? 'NIH OFFICE OF DIETARY SUPPLEMENTS' : 'USDA MYPLATE';
+    context.fillText(`${german ? 'QUELLE' : 'SOURCE'}: ${sourceName}`, 105, 1211);
+    context.fillStyle = theme.accent;
     context.fillText('jasmina.  /  apopovski.github.io/jasmina', 105, 1260);
-    factCanvas.setAttribute('aria-label', copy.alt);
+    factCanvas.setAttribute('aria-label', german
+      ? `Teilbare Jasmina-Ernährungsgrafik: ${copy.title}`
+      : `Shareable Jasmina nutrition graphic: ${copy.title}`);
 
     exportBlob = null;
     const revision = ++exportRevision;
@@ -247,30 +232,102 @@ if (factCanvas) {
     share.setAttribute('aria-expanded', 'true');
   }
 
-  function selectFact(key) {
-    active = key;
-    const fact = facts[key];
+  function prepareGraphicNow() {
+    if (exportBlob) return true;
+    try {
+      const encoded = factCanvas.toDataURL('image/png').split(',')[1];
+      const bytes = Uint8Array.from(atob(encoded), (character) => character.charCodeAt(0));
+      exportBlob = new Blob([bytes], { type: 'image/png' });
+      return true;
+    } catch (error) {
+      status.textContent = german ? 'Die Grafik konnte nicht erstellt werden. Bitte versuche es in einem anderen Browser.' : 'Could not create the graphic. Please try another browser.';
+      console.error('Could not export food fact graphic:', error);
+      return false;
+    }
+  }
+
+  function selectFact(fact) {
+    active = fact;
     const copy = fact[german ? 'de' : 'en'];
-    options.forEach((option) => option.setAttribute('aria-pressed', String(option.dataset.fact === key)));
     title.textContent = copy.title;
     description.textContent = copy.detail;
     source.href = fact.source;
+    source.firstChild.textContent = fact.source.includes('ods.od.nih.gov')
+      ? german ? 'Quelle: NIH Office of Dietary Supplements ' : 'Source: NIH Office of Dietary Supplements '
+      : german ? 'Quelle: USDA MyPlate ' : 'Source: USDA MyPlate ';
     status.textContent = '';
     shareHelp.hidden = true;
     share.setAttribute('aria-expanded', 'false');
+    options.querySelectorAll('.fact-option').forEach((option) => {
+      option.setAttribute('aria-pressed', String(option.dataset.fact === fact.id));
+    });
     render();
   }
 
-  options.forEach((option) => option.addEventListener('click', () => selectFact(option.dataset.fact)));
+  function renderList() {
+    const start = page * pageSize;
+    const slice = filtered.slice(start, start + pageSize);
+    options.replaceChildren();
+    slice.forEach((fact) => {
+      const index = facts.indexOf(fact) + 1;
+      const copy = fact[german ? 'de' : 'en'];
+      const row = document.createElement('div');
+      row.className = 'fact-row';
+      const choose = document.createElement('button');
+      choose.type = 'button';
+      choose.className = 'fact-option';
+      choose.dataset.fact = fact.id;
+      choose.setAttribute('aria-pressed', String(active === fact));
+      choose.textContent = `${String(index).padStart(2, '0')}  ${copy.title}`;
+      choose.addEventListener('click', () => selectFact(fact));
+      const quickShare = document.createElement('button');
+      quickShare.type = 'button';
+      quickShare.className = 'fact-option-share';
+      quickShare.setAttribute('aria-label', german ? `Grafik teilen: ${copy.title}` : `Share graphic: ${copy.title}`);
+      quickShare.title = german ? 'Grafik teilen' : 'Share graphic';
+      quickShare.textContent = '↗';
+      quickShare.addEventListener('click', () => {
+        selectFact(fact);
+        if (prepareGraphicNow()) share.click();
+        if (shareHelp.hidden === false) {
+          shareHelp.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+      row.append(choose, quickShare);
+      options.append(row);
+    });
+    const maxPage = Math.max(1, Math.ceil(filtered.length / pageSize));
+    results.textContent = german ? `${filtered.length} von ${facts.length} Fakten` : `${filtered.length} of ${facts.length} facts`;
+    pageLabel.textContent = german ? `Seite ${page + 1} von ${maxPage}` : `Page ${page + 1} of ${maxPage}`;
+    previous.disabled = page === 0;
+    next.disabled = page + 1 >= maxPage;
+    if (!filtered.length) {
+      options.textContent = german ? 'Keine passenden Fakten. Versuche einen anderen Suchbegriff.' : 'No matching facts. Try another search.';
+    }
+  }
+
+  function filterFacts() {
+    const query = search.value.trim().toLocaleLowerCase(german ? 'de' : 'en');
+    filtered = facts.filter((fact) => {
+      if (category.value !== 'all' && fact.category !== category.value) return false;
+      const copy = fact[german ? 'de' : 'en'];
+      return `${copy.title} ${copy.detail} ${copy.label}`.toLocaleLowerCase(german ? 'de' : 'en').includes(query);
+    });
+    page = 0;
+    if (filtered.length && !filtered.includes(active)) selectFact(filtered[0]);
+    renderList();
+  }
+
+  search.addEventListener('input', filterFacts);
+  category.addEventListener('change', filterFacts);
+  previous.addEventListener('click', () => { page -= 1; renderList(); });
+  next.addEventListener('click', () => { page += 1; renderList(); });
 
   download.addEventListener('click', () => {
-    if (!exportBlob) {
-      status.textContent = german ? 'Die Grafik wird vorbereitet. Bitte versuche es gleich noch einmal.' : 'Graphic is preparing. Please try again in a moment.';
-      return;
-    }
+    if (!prepareGraphicNow()) return;
     const url = URL.createObjectURL(exportBlob);
     const link = document.createElement('a');
-    link.download = `jasmina-${active}-${german ? 'de' : 'en'}.png`;
+    link.download = `jasmina-${active.id}-${german ? 'de' : 'en'}.png`;
     link.href = url;
     document.body.append(link);
     link.click();
@@ -280,11 +337,8 @@ if (factCanvas) {
   });
 
   share.addEventListener('click', () => {
-    if (!exportBlob) {
-      status.textContent = german ? 'Die Grafik wird vorbereitet. Bitte versuche es gleich noch einmal.' : 'Graphic is preparing. Please try again in a moment.';
-      return;
-    }
-    const file = new File([exportBlob], `jasmina-${active}-${german ? 'de' : 'en'}.png`, { type: 'image/png' });
+    if (!prepareGraphicNow()) return;
+    const file = new File([exportBlob], `jasmina-${active.id}-${german ? 'de' : 'en'}.png`, { type: 'image/png' });
     if (navigator.share && navigator.canShare?.({ files: [file] })) {
       try {
         const result = navigator.share({ files: [file], title: title.textContent });
@@ -323,10 +377,7 @@ if (factCanvas) {
   if (navigator.clipboard?.write && typeof ClipboardItem !== 'undefined') {
     copyImage.hidden = false;
     copyImage.addEventListener('click', async () => {
-      if (!exportBlob) {
-        status.textContent = german ? 'Die Grafik wird vorbereitet. Bitte versuche es gleich noch einmal.' : 'Graphic is preparing. Please try again in a moment.';
-        return;
-      }
+      if (!prepareGraphicNow()) return;
       try {
         await navigator.clipboard.write([new ClipboardItem({ 'image/png': exportBlob })]);
         status.textContent = german ? 'Bild kopiert. Füge es in einen Beitrag ein.' : 'Image copied. Paste it into a post.';
@@ -337,16 +388,24 @@ if (factCanvas) {
     });
   }
 
-  if (context) {
+  if (context && facts.length === 100 && facts.every((fact) =>
+    fact.id && themes[fact.category] && fact.source && fact.en?.title && fact.de?.title
+  )) {
+    renderList();
     render();
     document.fonts.ready.then(render);
   } else {
-    options.forEach((option) => { option.disabled = true; });
+    search.disabled = true;
+    category.disabled = true;
+    previous.disabled = true;
+    next.disabled = true;
     download.disabled = true;
     share.disabled = true;
     copyImage.hidden = true;
+    const noCanvas = !context;
     status.textContent = german
-      ? 'Dein Browser unterstützt die Grafikvorschau leider nicht.'
-      : 'Your browser does not support the graphic preview.';
+      ? noCanvas ? 'Dein Browser unterstützt die Grafikvorschau leider nicht.' : 'Die Fakten konnten nicht geladen werden. Bitte lade die Seite erneut.'
+      : noCanvas ? 'Your browser does not support the graphic preview.' : 'The facts could not be loaded. Please refresh the page.';
+    if (!noCanvas) console.error('Nutrition facts data missing or invalid.');
   }
 }
