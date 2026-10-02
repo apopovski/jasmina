@@ -5,37 +5,37 @@ if (factCanvas) {
   const facts = typeof foodFacts === 'undefined' ? [] : foodFacts;
   const foodVisuals = {
     'RED PEPPER': { icon: 'pepper', hue: 12 },
-    ORANGE: { icon: '🍊', hue: 27 },
-    KIWIFRUIT: { icon: '🥝', hue: 91 },
+    ORANGE: { icon: 'orange', hue: 27 },
+    KIWIFRUIT: { icon: 'kiwi', hue: 91 },
     'GREEN PEPPER': { icon: 'green-pepper', hue: 133 },
-    BROCCOLI: { icon: '🥦', hue: 139 },
-    STRAWBERRIES: { icon: '🍓', hue: 352 },
-    'BRUSSELS SPROUTS': { icon: '🥬', hue: 111 },
+    BROCCOLI: { icon: 'broccoli', hue: 139 },
+    STRAWBERRIES: { icon: 'strawberry', hue: 352 },
+    'BRUSSELS SPROUTS': { icon: 'sprouts', hue: 111 },
     GRAPEFRUIT: { icon: 'citrus', hue: 347 },
     CANTALOUPE: { icon: 'melon', hue: 33 },
     CAULIFLOWER: { icon: 'cauliflower', hue: 42 },
-    'SWEET POTATO': { icon: '🍠', hue: 24 },
-    CARROTS: { icon: '🥕', hue: 30 },
+    'SWEET POTATO': { icon: 'tuber', hue: 24, color: '#d27e56' },
+    CARROTS: { icon: 'carrot', hue: 30 },
     SPINACH: { icon: 'spinach', hue: 147 },
-    MANGO: { icon: '🥭', hue: 39 },
+    MANGO: { icon: 'mango', hue: 39 },
     'DRIED APRICOTS': { icon: 'dried-fruit', hue: 22, color: '#df823d' },
     'ACORN SQUASH': { icon: 'squash', hue: 40 },
     PRUNES: { icon: 'dried-fruit', hue: 276, color: '#68456e' },
     RAISINS: { icon: 'dried-fruit', hue: 288, color: '#82658b', small: true },
-    POTATO: { icon: '🥔', hue: 32 },
-    BANANA: { icon: '🍌', hue: 49 },
+    POTATO: { icon: 'tuber', hue: 32, color: '#d5b782' },
+    BANANA: { icon: 'banana', hue: 49 },
     ASPARAGUS: { icon: 'asparagus', hue: 124 },
-    ROMAINE: { icon: '🥬', hue: 105 },
-    AVOCADO: { icon: '🥑', hue: 85 },
-    'MUSTARD GREENS': { icon: '🥬', hue: 66 },
-    'GREEN PEAS': { icon: '🫛', hue: 106 },
+    ROMAINE: { icon: 'leafy', hue: 105 },
+    AVOCADO: { icon: 'avocado', hue: 85 },
+    'MUSTARD GREENS': { icon: 'leafy', hue: 66 },
+    'GREEN PEAS': { icon: 'pea-pod', hue: 106 },
     PAPAYA: { icon: 'papaya', hue: 16 },
-    COLLARDS: { icon: '🥬', hue: 135 },
-    'TURNIP GREENS': { icon: '🥬', hue: 159 },
-    KALE: { icon: '🥬', hue: 120 },
-    BLUEBERRIES: { icon: '🫐', hue: 227 },
-    'BOK CHOY': { icon: '🥬', hue: 171 },
-    PINEAPPLE: { icon: '🍍', hue: 53 },
+    COLLARDS: { icon: 'leafy', hue: 135 },
+    'TURNIP GREENS': { icon: 'leafy', hue: 159 },
+    KALE: { icon: 'leafy', hue: 120 },
+    BLUEBERRIES: { icon: 'blueberries', hue: 227 },
+    'BOK CHOY': { icon: 'leafy', hue: 171 },
+    PINEAPPLE: { icon: 'pineapple', hue: 53 },
     LENTILS: { icon: 'beans', hue: 25, color: '#bd9365', small: true },
     'WHITE BEANS': { icon: 'beans', hue: 45, color: '#efe2b8' },
     'KIDNEY BEANS': { icon: 'beans', hue: 5, color: '#ad615a' },
@@ -44,21 +44,21 @@ if (factCanvas) {
     CHICKPEAS: { icon: 'beans', hue: 34, color: '#d8b77d' },
     SOYBEANS: { icon: 'beans', hue: 72, color: '#d8cf91' },
     TOFU: { icon: 'tofu', hue: 59 },
-    EDAMAME: { icon: '🫛', hue: 112 },
+    EDAMAME: { icon: 'pea-pod', hue: 112 },
     NATTO: { icon: 'beans', hue: 55, color: '#b88a54' },
-    PEANUTS: { icon: '🥜', hue: 28 },
+    PEANUTS: { icon: 'peanut', hue: 28 },
     'PINTO BEANS': { icon: 'beans', hue: 18, color: '#c89672' },
     'BAKED BEANS': { icon: 'beans', hue: 9, color: '#c67249' },
     'BROWN RICE': { icon: 'grains', hue: 36, color: '#ccb582' },
-    'WHOLE WHEAT BREAD': { icon: '🍞', hue: 31 },
-    OATMEAL: { icon: '🥣', hue: 44 },
+    'WHOLE WHEAT BREAD': { icon: 'bread', hue: 31 },
+    OATMEAL: { icon: 'oatmeal', hue: 44 },
     'SHREDDED WHEAT': { icon: 'grains', hue: 48, color: '#cfb276' },
-    'WHOLE WHEAT SPAGHETTI': { icon: '🍝', hue: 19 },
-    'WHOLE WHEAT PASTA': { icon: '🍝', hue: 29 },
-    'WHOLE WHEAT MACARONI': { icon: '🍝', hue: 37 },
+    'WHOLE WHEAT SPAGHETTI': { icon: 'pasta', hue: 19 },
+    'WHOLE WHEAT PASTA': { icon: 'pasta', hue: 29 },
+    'WHOLE WHEAT MACARONI': { icon: 'pasta', hue: 37 },
     MILLET: { icon: 'grains', hue: 63, color: '#e6d4a0' },
     BULGUR: { icon: 'grains', hue: 43, color: '#bbaa84' },
-    'CORN TORTILLA': { icon: '🫓', hue: 50 },
+    'CORN TORTILLA': { icon: 'tortilla', hue: 50 },
     'WHEAT GERM': { icon: 'grains', hue: 35, color: '#b89561' },
     'PUMPKIN SEEDS': { icon: 'seeds', hue: 70, color: '#9faf75' },
     'CHIA SEEDS': { icon: 'seeds', hue: 115, color: '#484344', small: true },
@@ -131,6 +131,253 @@ if (factCanvas) {
       context.fill();
       context.stroke();
       context.restore();
+    }
+  }
+
+  function oval(x, y, width, height, color, rotation = 0) {
+    context.fillStyle = color;
+    context.beginPath();
+    context.ellipse(x, y, width, height, rotation, 0, Math.PI * 2);
+    context.fill();
+  }
+
+  function leaf(x, y, rotation, color = '#9cbd83') {
+    context.save();
+    context.translate(x, y);
+    context.rotate(rotation);
+    oval(0, -53, 33, 67, color, -.15);
+    context.strokeStyle = '#e4edc1';
+    context.lineWidth = 4;
+    context.beginPath();
+    context.moveTo(0, 23);
+    context.quadraticCurveTo(5, -42, 0, -103);
+    context.stroke();
+    context.restore();
+  }
+
+  function drawProduce(visual) {
+    const kind = visual.icon;
+    context.lineCap = 'round';
+    if (kind === 'banana') {
+      context.rotate(-.33);
+      context.fillStyle = '#f6cf67';
+      context.beginPath();
+      context.moveTo(-116, -95);
+      context.bezierCurveTo(-160, 25, -42, 141, 77, 116);
+      context.bezierCurveTo(138, 105, 153, 70, 156, 41);
+      context.bezierCurveTo(40, 88, -75, 28, -90, -104);
+      context.closePath();
+      context.fill();
+      context.strokeStyle = '#fff2c0';
+      context.lineWidth = 7;
+      context.beginPath();
+      context.moveTo(-99, -52);
+      context.bezierCurveTo(-56, 55, 42, 121, 131, 79);
+      context.stroke();
+      oval(-105, -100, 17, 9, '#7c7950', -.3);
+    } else if (kind === 'orange' || kind === 'kiwi') {
+      oval(0, 5, 114, 111, kind === 'orange' ? '#e9a45b' : '#a8a073');
+      oval(0, 5, 97, 95, kind === 'orange' ? '#f5bf77' : '#b8d088');
+      if (kind === 'kiwi') {
+        oval(0, 5, 35, 32, '#f6e6af');
+        for (let seed = 0; seed < 19; seed++) {
+          const angle = seed * Math.PI * 2 / 19;
+          oval(Math.cos(angle) * 62, 5 + Math.sin(angle) * 58, 4, 8, '#526443', angle);
+        }
+      } else {
+        context.strokeStyle = '#fff0c4';
+        context.lineWidth = 4;
+        for (let slice = 0; slice < 8; slice++) {
+          const angle = slice * Math.PI / 4;
+          context.beginPath();
+          context.moveTo(0, 5);
+          context.lineTo(Math.cos(angle) * 91, 5 + Math.sin(angle) * 91);
+          context.stroke();
+        }
+        oval(0, 5, 9, 9, '#fff0c4');
+      }
+      leaf(11, -99, 1.3, '#91b67b');
+    } else if (kind === 'mango' || kind === 'avocado') {
+      context.rotate(-.3);
+      oval(0, 5, 100, 130, kind === 'mango' ? '#db9d57' : '#72956e', -.3);
+      oval(4, 8, 85, 112, kind === 'mango' ? '#efbc70' : '#c9d391', -.3);
+      if (kind === 'avocado') oval(14, 43, 34, 36, '#a6774e');
+      else {
+        context.strokeStyle = '#f9d89a';
+        context.lineWidth = 5;
+        context.beginPath();
+        context.moveTo(-40, -60);
+        context.quadraticCurveTo(28, -85, 55, -24);
+        context.stroke();
+      }
+      leaf(-12, -107, 1, '#9ab87b');
+    } else if (kind === 'strawberry') {
+      for (const [x, y, size] of [[-62, 7, .8], [57, -3, .9], [5, 36, 1]]) {
+        context.save();
+        context.translate(x, y);
+        context.scale(size, size);
+        context.fillStyle = '#d97e72';
+        context.beginPath();
+        context.moveTo(-57, -51);
+        context.bezierCurveTo(-115, 8, -30, 114, 0, 121);
+        context.bezierCurveTo(30, 114, 115, 8, 57, -51);
+        context.quadraticCurveTo(0, -84, -57, -51);
+        context.fill();
+        for (let seed = 0; seed < 12; seed++) {
+          oval((seed % 4 - 1.5) * 25, (Math.floor(seed / 4) - 1) * 33 + 7, 3, 6, '#f9d5a0');
+        }
+        leaf(0, -47, .9, '#94b580');
+        context.restore();
+      }
+    } else if (kind === 'carrot') {
+      for (const [x, tilt] of [[-55, -.35], [58, .25]]) {
+        context.save();
+        context.translate(x, 5);
+        context.rotate(tilt);
+        context.fillStyle = '#e9a36c';
+        context.beginPath();
+        context.moveTo(-48, -51);
+        context.quadraticCurveTo(0, -94, 48, -51);
+        context.quadraticCurveTo(28, 28, 0, 124);
+        context.quadraticCurveTo(-32, 28, -48, -51);
+        context.fill();
+        leaf(-22, -80, -.7);
+        leaf(19, -84, .7);
+        context.restore();
+      }
+    } else if (kind === 'tuber') {
+      context.rotate(-.35);
+      oval(0, 0, 140, 86, visual.color);
+      context.fillStyle = '#fff0cc';
+      for (const [x, y] of [[-82, -24], [-43, 24], [29, -36], [83, 18]]) {
+        oval(x, y, 5, 3, '#fff0cc');
+      }
+    } else if (kind === 'blueberries') {
+      for (const [x, y] of [[-60, -37], [40, -68], [93, 18], [-98, 51], [-8, 60]]) {
+        oval(x, y, 61, 59, '#7f90be');
+        oval(x - 7, y - 9, 16, 12, '#a5b5d6');
+        oval(x + 8, y + 9, 8, 6, '#526d9f');
+      }
+      leaf(40, -105, .8);
+    } else if (kind === 'pineapple') {
+      for (const angle of [-.8, -.35, .15, .6]) leaf(angle * 80, -94, angle, '#a4bd80');
+      context.rotate(-.15);
+      oval(0, 21, 91, 111, '#e6bb70');
+      context.save();
+      context.beginPath();
+      context.ellipse(0, 21, 91, 111, 0, 0, Math.PI * 2);
+      context.clip();
+      context.strokeStyle = '#f6dea6';
+      context.lineWidth = 5;
+      for (let offset = -160; offset <= 160; offset += 40) {
+        context.beginPath();
+        context.moveTo(offset - 60, -80);
+        context.lineTo(offset + 60, 115);
+        context.moveTo(offset + 60, -80);
+        context.lineTo(offset - 60, 115);
+        context.stroke();
+      }
+      context.restore();
+    } else if (kind === 'pea-pod') {
+      context.rotate(-.4);
+      oval(0, 0, 149, 57, '#9fbf81');
+      oval(0, 12, 136, 34, '#c6dba0');
+      for (let pea = -2; pea <= 2; pea++) oval(pea * 48, 9, 25, 25, '#8db470');
+      context.strokeStyle = '#e3edbc';
+      context.lineWidth = 5;
+      context.beginPath();
+      context.moveTo(-134, 16);
+      context.quadraticCurveTo(0, 88, 136, 16);
+      context.stroke();
+    } else if (kind === 'sprouts') {
+      for (const [x, y, radius] of [[-66, 21, 71], [64, 7, 76], [0, -53, 68]]) {
+        oval(x, y, radius, radius * .86, '#9cba83');
+        context.strokeStyle = '#d9e6b5';
+        context.lineWidth = 5;
+        context.beginPath();
+        context.moveTo(x - radius * .5, y - 5);
+        context.quadraticCurveTo(x, y - radius * .6, x + radius * .5, y + 14);
+        context.stroke();
+      }
+    } else if (kind === 'leafy' || kind === 'broccoli') {
+      if (kind === 'broccoli') {
+        context.fillStyle = '#b9d3a0';
+        context.fillRect(-26, 28, 52, 107);
+        for (const [x, y, r] of [[-65, -12, 64], [7, -70, 74], [79, -1, 60], [1, 3, 76]]) {
+          oval(x, y, r, r * .78, '#89ad82');
+        }
+      } else {
+        for (const [x, rotation] of [[-78, -.8], [-28, -.25], [40, .35], [86, .8]]) {
+          context.save();
+          context.translate(x, 35);
+          context.rotate(rotation);
+          leaf(0, 0, 0, `hsl(${visual.hue} 31% 64%)`);
+          context.restore();
+        }
+      }
+    } else if (kind === 'peanut') {
+      for (const [x, y, tilt] of [[-56, -29, -.4], [66, 29, .5]]) {
+        context.save();
+        context.translate(x, y);
+        context.rotate(tilt);
+        oval(0, -35, 47, 60, '#d7ab7c');
+        oval(0, 35, 47, 60, '#d7ab7c');
+        context.strokeStyle = '#f2d3a7';
+        context.lineWidth = 4;
+        for (const offset of [-25, 0, 25]) {
+          context.beginPath();
+          context.moveTo(-40, offset - 35);
+          context.lineTo(40, offset + 35);
+          context.stroke();
+        }
+        context.restore();
+      }
+    } else if (kind === 'bread' || kind === 'tortilla') {
+      if (kind === 'bread') {
+        context.fillStyle = '#ba8759';
+        context.beginPath();
+        context.moveTo(-120, 105);
+        context.lineTo(-120, -37);
+        context.bezierCurveTo(-133, -116, -31, -133, 0, -94);
+        context.bezierCurveTo(52, -130, 137, -91, 120, -24);
+        context.lineTo(120, 105);
+        context.closePath();
+        context.fill();
+        context.fillStyle = '#efcf9c';
+        context.fillRect(-99, -21, 198, 105);
+      } else {
+        context.rotate(-.26);
+        oval(0, 0, 133, 99, '#e5c98d');
+        for (const [x, y] of [[-56, -19], [52, -35], [19, 44]]) oval(x, y, 9, 5, '#c4a573');
+      }
+    } else if (kind === 'oatmeal' || kind === 'pasta') {
+      context.fillStyle = '#efe2bb';
+      context.beginPath();
+      context.moveTo(-133, -34);
+      context.lineTo(-111, 95);
+      context.quadraticCurveTo(0, 142, 111, 95);
+      context.lineTo(133, -34);
+      context.closePath();
+      context.fill();
+      oval(0, -37, 130, 53, kind === 'oatmeal' ? '#caba91' : '#d8b479');
+      if (kind === 'oatmeal') {
+        for (let grain = 0; grain < 16; grain++) {
+          const angle = grain * 2.4;
+          const radius = Math.sqrt(grain) * 24;
+          oval(Math.cos(angle) * radius, -37 + Math.sin(angle) * radius * .36, 10, 5, '#f3e3b7', angle);
+        }
+      } else {
+        context.strokeStyle = '#f5d397';
+        context.lineWidth = 9;
+        for (const offset of [-65, -22, 22, 65]) {
+          context.beginPath();
+          context.moveTo(offset - 25, -53);
+          context.bezierCurveTo(offset + 30, -105, offset - 30, -1, offset + 25, -28);
+          context.stroke();
+        }
+      }
+    } else {
+      throw new Error(`No food illustration for ${kind}`);
     }
   }
 
@@ -283,12 +530,7 @@ if (factCanvas) {
         context.lineWidth = 4;
         context.strokeRect(x, y, 96, 79);
       }
-    } else {
-      context.textAlign = 'center';
-      context.textBaseline = 'middle';
-      context.font = '205px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif';
-      context.fillText(visual.icon, 0, -12, 285);
-    }
+    } else drawProduce(visual);
     context.strokeStyle = accent;
     context.lineWidth = 2;
     context.beginPath();
