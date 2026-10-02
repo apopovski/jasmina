@@ -25,7 +25,7 @@ if (factCanvas) {
     POTATO: { icon: 'tuber', hue: 32, color: '#d5b782' },
     BANANA: { icon: 'banana', hue: 49 },
     ASPARAGUS: { icon: 'asparagus', hue: 124 },
-    ROMAINE: { icon: 'leafy', hue: 105 },
+    ROMAINE: { icon: 'romaine', hue: 105 },
     AVOCADO: { icon: 'avocado', hue: 85 },
     'MUSTARD GREENS': { icon: 'leafy', hue: 66 },
     'GREEN PEAS': { icon: 'pea-pod', hue: 106 },
@@ -82,6 +82,7 @@ if (factCanvas) {
   const previous = document.querySelector('.fact-prev');
   const next = document.querySelector('.fact-next');
   const title = document.querySelector('[data-fact-title]');
+  const foodName = document.querySelector('[data-fact-food]');
   const description = document.querySelector('[data-fact-description]');
   const source = document.querySelector('[data-fact-source]');
   const status = document.querySelector('.fact-status');
@@ -90,12 +91,78 @@ if (factCanvas) {
   const shareHelp = document.querySelector('.fact-share-help');
   const copyCaption = document.querySelector('.fact-copy-caption');
   const copyImage = document.querySelector('.fact-copy-image');
+  const slideBack = document.querySelector('.fact-slide-back');
+  const slideForward = document.querySelector('.fact-slide-forward');
+  const slideToggle = document.querySelector('.fact-slide-toggle');
+  const slideCount = document.querySelector('.fact-slide-count');
+  const preview = document.querySelector('.facts-preview');
   let active = facts[0] || null;
   let filtered = facts;
   let page = 0;
   const pageSize = 12;
   let exportBlob = null;
   let exportRevision = 0;
+  let sequence = [];
+  let slideIndex = 0;
+  let slideTimer = null;
+  let previewVisible = false;
+  let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function shuffle(choices) {
+    const shuffled = [...choices];
+    for (let index = shuffled.length - 1; index > 0; index--) {
+      const randomIndex = Math.floor(Math.random() * (index + 1));
+      [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+    }
+    return shuffled;
+  }
+
+  function updateSlideControls() {
+    const available = filtered.length > 1;
+    slideBack.disabled = !available;
+    slideForward.disabled = !available;
+    slideToggle.disabled = !available;
+    slideToggle.setAttribute('aria-pressed', String(paused));
+    slideToggle.setAttribute('aria-label', paused
+      ? german ? 'Diashow fortsetzen' : 'Resume slideshow'
+      : german ? 'Diashow pausieren' : 'Pause slideshow');
+    slideToggle.innerHTML = paused
+      ? `${german ? 'Starten' : 'Play'} <span aria-hidden="true">▶</span>`
+      : 'Pause <span aria-hidden="true">Ⅱ</span>';
+    slideCount.textContent = `${String(filtered.indexOf(active) + 1).padStart(2, '0')} / ${String(filtered.length).padStart(2, '0')}`;
+  }
+
+  function scheduleSlide() {
+    clearTimeout(slideTimer);
+    if (!paused && previewVisible && !document.hidden && filtered.length > 1) {
+      slideTimer = setTimeout(() => advanceSlide(1, true), 7000);
+    }
+  }
+
+  function pauseSlides() {
+    paused = true;
+    updateSlideControls();
+    scheduleSlide();
+  }
+
+  function resetSequence() {
+    sequence = [active, ...shuffle(filtered.filter((fact) => fact !== active))];
+    slideIndex = 0;
+    updateSlideControls();
+    scheduleSlide();
+  }
+
+  function advanceSlide(direction, reshuffle = false) {
+    if (filtered.length < 2) return;
+    if (reshuffle && slideIndex === sequence.length - 1) resetSequence();
+    slideIndex = (slideIndex + direction + sequence.length) % sequence.length;
+    selectFact(sequence[slideIndex]);
+    const selectedPage = Math.floor(filtered.indexOf(active) / pageSize);
+    if (selectedPage !== page) {
+      page = selectedPage;
+      renderList();
+    }
+  }
 
   function wrapText(text, maxWidth, font) {
     context.font = font;
@@ -125,8 +192,16 @@ if (factCanvas) {
       context.rotate(angle);
       context.strokeStyle = 'rgba(255, 248, 233, .38)';
       context.lineWidth = 2;
-      oval(0, 0, size * (visual.icon === 'nuts' ? 1.1 : .65), size, visual.color);
+      oval(0, 0, size * (visual.icon === 'nuts' ? 1.1 : visual.icon === 'beans' ? .86 : .65), size, visual.color);
       context.stroke();
+      if (visual.icon === 'beans' || visual.icon === 'nuts') {
+        context.strokeStyle = 'rgba(255, 245, 215, .38)';
+        context.lineWidth = 2;
+        context.beginPath();
+        context.moveTo(-size * .22, -size * .42);
+        context.quadraticCurveTo(size * .3, -size * .12, size * .16, size * .45);
+        context.stroke();
+      }
       context.restore();
     }
   }
@@ -406,6 +481,10 @@ if (factCanvas) {
   function drawFood(visual, label, accent) {
     context.save();
     context.translate(780, 288);
+    context.fillStyle = 'rgba(14, 32, 19, .22)';
+    context.beginPath();
+    context.ellipse(12, 150, 150, 26, -.08, 0, Math.PI * 2);
+    context.fill();
     const scale = visual.icon === 'banana' ? 1.35
       : ['beans', 'seeds', 'nuts', 'grains', 'dried-fruit'].includes(visual.icon) ? 1.28 : 1.2;
     context.scale(scale, scale);
@@ -419,9 +498,9 @@ if (factCanvas) {
         pepperSkin.addColorStop(.55, '#a6c987');
         pepperSkin.addColorStop(1, '#729a67');
       } else {
-        pepperSkin.addColorStop(0, '#f3c09a');
-        pepperSkin.addColorStop(.55, '#d99876');
-        pepperSkin.addColorStop(1, '#b57461');
+        pepperSkin.addColorStop(0, '#ffb196');
+        pepperSkin.addColorStop(.55, '#e36354');
+        pepperSkin.addColorStop(1, '#a94139');
       }
       context.fillStyle = pepperSkin;
       context.beginPath();
@@ -432,7 +511,15 @@ if (factCanvas) {
       context.bezierCurveTo(166, -23, 121, -107, 43, -67);
       context.bezierCurveTo(2, -99, -50, -95, -96, -53);
       context.fill();
-      context.strokeStyle = visual.icon === 'green-pepper' ? '#d9e9ad' : '#f4c39e';
+      context.strokeStyle = visual.icon === 'green-pepper' ? 'rgba(50, 99, 53, .45)' : 'rgba(130, 59, 46, .4)';
+      context.lineWidth = 4;
+      context.beginPath();
+      context.moveTo(-112, -35);
+      context.bezierCurveTo(-147, 10, -121, 99, -76, 111);
+      context.moveTo(109, -37);
+      context.bezierCurveTo(138, 38, 85, 108, 31, 112);
+      context.stroke();
+      context.strokeStyle = visual.icon === 'green-pepper' ? '#d9e9ad' : '#ffa28b';
       context.lineWidth = 5;
       context.beginPath();
       context.moveTo(-58, -58);
@@ -440,12 +527,28 @@ if (factCanvas) {
       context.moveTo(44, -68);
       context.bezierCurveTo(83, -18, 70, 72, 33, 109);
       context.stroke();
-      context.strokeStyle = '#b7cf9b';
-      context.lineWidth = 17;
+      for (const rotation of [-.65, .15, .85]) {
+        context.save();
+        context.rotate(rotation);
+        oval(0, -72, 22, 42, '#779c69', rotation * .2);
+        context.restore();
+      }
+      context.strokeStyle = '#597a51';
+      context.lineWidth = 21;
       context.beginPath();
       context.moveTo(-8, -68);
-      context.quadraticCurveTo(-5, -120, 31, -131);
+      context.quadraticCurveTo(-3, -125, 38, -139);
       context.stroke();
+      context.strokeStyle = '#9dbb81';
+      context.lineWidth = 5;
+      context.beginPath();
+      context.moveTo(-13, -73);
+      context.quadraticCurveTo(-9, -122, 31, -135);
+      context.stroke();
+      context.fillStyle = 'rgba(255, 246, 204, .24)';
+      context.beginPath();
+      context.ellipse(-52, 12, 13, 71, -.15, 0, Math.PI * 2);
+      context.fill();
     } else if (visual.icon === 'spinach') {
       context.rotate(-0.17);
       const leafColor = context.createLinearGradient(-110, -145, 85, 130);
@@ -526,6 +629,42 @@ if (factCanvas) {
         context.beginPath();
         context.arc(x, y, radius, 0, Math.PI * 2);
         context.fill();
+      }
+      for (const [x, y] of [[-86, 5], [-36, -35], [15, -72], [65, -18], [-25, 52], [35, 55]]) {
+        oval(x, y, 23, 19, '#fff3da');
+      }
+    } else if (visual.icon === 'romaine') {
+      context.rotate(-.1);
+      for (const [x, y, rotation, length, color] of [
+        [-67, 18, -.6, 158, '#789e71'], [67, 18, .6, 158, '#87ad77'],
+        [-36, 5, -.24, 180, '#a5c690'], [35, 5, .24, 181, '#b3cc94'],
+        [0, 14, 0, 193, '#a2c68b']
+      ]) {
+        context.save();
+        context.translate(x, y);
+        context.rotate(rotation);
+        context.fillStyle = color;
+        context.beginPath();
+        context.moveTo(0, 128);
+        context.bezierCurveTo(-86, 65, -55, -71, 0, -length);
+        context.bezierCurveTo(59, -92, 83, 44, 0, 128);
+        context.fill();
+        context.strokeStyle = 'rgba(235, 244, 197, .75)';
+        context.lineWidth = 7;
+        context.beginPath();
+        context.moveTo(0, 125);
+        context.quadraticCurveTo(8, -30, 0, -length + 18);
+        context.stroke();
+        for (const row of [-85, -36, 12]) {
+          context.lineWidth = 2;
+          context.beginPath();
+          context.moveTo(0, row + 26);
+          context.lineTo(-30, row);
+          context.moveTo(0, row + 22);
+          context.lineTo(31, row - 8);
+          context.stroke();
+        }
+        context.restore();
       }
     } else if (visual.icon === 'asparagus') {
       for (let spear = -2; spear <= 2; spear++) {
@@ -613,6 +752,13 @@ if (factCanvas) {
     context.fillStyle = gradient;
     context.fillRect(0, 0, 1080, 1350);
 
+    context.strokeStyle = 'rgba(255, 250, 233, .08)';
+    context.lineWidth = 2;
+    for (const [x, y, radius] of [[70, 1010, 350], [1040, 1020, 280]]) {
+      context.beginPath();
+      context.arc(x, y, radius, 0, Math.PI * 2);
+      context.stroke();
+    }
     context.strokeStyle = 'rgba(255, 250, 233, .26)';
     context.lineWidth = 2;
     context.strokeRect(51, 51, 978, 1248);
@@ -636,10 +782,18 @@ if (factCanvas) {
     context.letterSpacing = '0px';
 
     context.fillStyle = theme.accent;
-    context.font = 'bold 24px "Avenir Next", "Segoe UI", sans-serif';
-    context.fillText(german ? 'GUT ZU WISSEN' : 'GOOD TO KNOW', 105, 550);
-    context.font = 'bold 24px "Avenir Next", "Segoe UI", sans-serif';
-    context.fillText(copy.label, 105, 602);
+    context.font = 'bold 21px "Avenir Next", "Segoe UI", sans-serif';
+    context.letterSpacing = '3px';
+    context.fillText(german ? 'GUT ZU WISSEN' : 'GOOD TO KNOW', 105, 545);
+    context.letterSpacing = '0px';
+    let foodSize = 64;
+    do {
+      context.font = `bold ${foodSize}px "Avenir Next", "Segoe UI", sans-serif`;
+      if (context.measureText(copy.label).width <= 870) break;
+      foodSize -= 2;
+    } while (foodSize > 38);
+    context.fillStyle = '#fff8e9';
+    context.fillText(copy.label, 105, 625);
 
     let headingSize = 82;
     let headingLines = wrapText(copy.title, 865, `${headingSize}px Georgia, serif`);
@@ -658,6 +812,10 @@ if (factCanvas) {
       detailSize -= 2;
       detailLines = wrapText(copy.detail, 850, `${detailSize}px "Avenir Next", "Segoe UI", sans-serif`);
     }
+    context.fillStyle = 'rgba(255, 250, 233, .09)';
+    context.beginPath();
+    context.roundRect(84, detailTop - detailSize - 15, 912, detailLines.length * (detailSize + 10) + 24, 18);
+    context.fill();
     context.font = `${detailSize}px "Avenir Next", "Segoe UI", sans-serif`;
     context.fillStyle = '#fff4e0';
     detailLines.forEach((line, index) => context.fillText(line, 105, detailTop + index * (detailSize + 10)));
@@ -677,7 +835,7 @@ if (factCanvas) {
       ? `100 G ${german ? 'ROH' : 'RAW'} · CC BY 4.0 · DOI: 10.25826/Data20251217-134202-0`
       : `${german ? 'SEPARATER DE-DATENSATZ' : 'SEPARATE GERMAN DATASET'}: MRI BLS 4.0`, 105, 1230);
     context.fillStyle = theme.accent;
-    context.fillText('Jasmina Klisch  /  apopovski.github.io/jasmina', 105, 1270);
+    context.fillText('Jasmina Klisch  /  jasminaklisch.com', 105, 1270);
     factCanvas.setAttribute('aria-label', german
       ? `Teilbare Jasmina-Klisch-Ernährungsgrafik: ${copy.title}`
       : `Shareable Jasmina Klisch nutrition graphic: ${copy.title}`);
@@ -727,6 +885,7 @@ if (factCanvas) {
   function selectFact(fact) {
     active = fact;
     const copy = fact[german ? 'de' : 'en'];
+    foodName.textContent = copy.label;
     title.textContent = copy.title;
     description.textContent = copy.detail;
     source.href = fact.source;
@@ -741,7 +900,9 @@ if (factCanvas) {
     options.querySelectorAll('.fact-option').forEach((option) => {
       option.setAttribute('aria-pressed', String(option.dataset.fact === fact.id));
     });
+    updateSlideControls();
     render();
+    scheduleSlide();
   }
 
   function renderList() {
@@ -759,7 +920,11 @@ if (factCanvas) {
       choose.dataset.fact = fact.id;
       choose.setAttribute('aria-pressed', String(active === fact));
       choose.textContent = `${String(index).padStart(2, '0')}  ${copy.label}: ${copy.title}`;
-      choose.addEventListener('click', () => selectFact(fact));
+      choose.addEventListener('click', () => {
+        pauseSlides();
+        slideIndex = sequence.indexOf(fact);
+        selectFact(fact);
+      });
       const quickShare = document.createElement('button');
       quickShare.type = 'button';
       quickShare.className = 'fact-option-share';
@@ -767,6 +932,8 @@ if (factCanvas) {
       quickShare.title = german ? 'Grafik teilen' : 'Share graphic';
       quickShare.textContent = '↗';
       quickShare.addEventListener('click', () => {
+        pauseSlides();
+        slideIndex = sequence.indexOf(fact);
         selectFact(fact);
         if (prepareGraphicNow()) share.click();
         if (shareHelp.hidden === false) {
@@ -795,6 +962,12 @@ if (factCanvas) {
     });
     page = 0;
     if (filtered.length && !filtered.includes(active)) selectFact(filtered[0]);
+    if (!filtered.length) {
+      pauseSlides();
+      slideCount.textContent = '00 / 00';
+    } else {
+      resetSequence();
+    }
     renderList();
   }
 
@@ -802,8 +975,26 @@ if (factCanvas) {
   category.addEventListener('change', filterFacts);
   previous.addEventListener('click', () => { page -= 1; renderList(); });
   next.addEventListener('click', () => { page += 1; renderList(); });
+  slideBack.addEventListener('click', () => advanceSlide(-1));
+  slideForward.addEventListener('click', () => advanceSlide(1));
+  slideToggle.addEventListener('click', () => {
+    paused = !paused;
+    updateSlideControls();
+    scheduleSlide();
+  });
+  document.addEventListener('visibilitychange', scheduleSlide);
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(([entry]) => {
+      previewVisible = entry.isIntersecting;
+      scheduleSlide();
+    }, { threshold: .15 });
+    observer.observe(preview);
+  } else {
+    previewVisible = true;
+  }
 
   download.addEventListener('click', () => {
+    pauseSlides();
     if (!prepareGraphicNow()) return;
     const url = URL.createObjectURL(exportBlob);
     const link = document.createElement('a');
@@ -817,6 +1008,7 @@ if (factCanvas) {
   });
 
   share.addEventListener('click', () => {
+    pauseSlides();
     if (!prepareGraphicNow()) return;
     const file = new File([exportBlob], `jasmina-klisch-${active.id}-${german ? 'de' : 'en'}.png`, { type: 'image/png' });
     let canShareFile;
@@ -853,6 +1045,7 @@ if (factCanvas) {
   });
 
   copyCaption.addEventListener('click', async () => {
+    pauseSlides();
     try {
       await navigator.clipboard.writeText(getCaption());
       status.textContent = german ? 'Begleittext kopiert. Lade die Grafik herunter und teile beides in deiner App.' : 'Caption copied. Download the graphic and post both in your app.';
@@ -865,6 +1058,7 @@ if (factCanvas) {
   if (navigator.clipboard?.write && typeof ClipboardItem !== 'undefined') {
     copyImage.hidden = false;
     copyImage.addEventListener('click', async () => {
+      pauseSlides();
       if (!prepareGraphicNow()) return;
       try {
         await navigator.clipboard.write([new ClipboardItem({ 'image/png': exportBlob })]);
@@ -880,6 +1074,7 @@ if (factCanvas) {
     fact.id && foodVisuals[fact.en?.label] && fact.source && fact.en?.title && fact.de?.title
   )) {
     renderList();
+    resetSequence();
     render();
     document.fonts.ready.then(render);
   } else {
@@ -889,6 +1084,9 @@ if (factCanvas) {
     next.disabled = true;
     download.disabled = true;
     share.disabled = true;
+    slideBack.disabled = true;
+    slideForward.disabled = true;
+    slideToggle.disabled = true;
     copyImage.hidden = true;
     const noCanvas = !context;
     status.textContent = german

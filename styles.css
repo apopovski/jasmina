@@ -129,7 +129,8 @@ em { font-weight: 400; }
 .fact-pagination button { min-height: 40px; padding: 8px 12px; border: 1px solid #aab9a6; background: transparent; color: var(--ink); font-size: 12px; font-weight: 700; }
 .fact-pagination button:hover:not(:disabled) { background: #d6e1ce; }
 .fact-pagination button:disabled { opacity: .45; cursor: default; }
-.fact-explanation { min-height: 124px; }
+.fact-explanation { min-height: 150px; }
+.fact-food-name { display: block; width: fit-content; margin-bottom: 10px; padding: 7px 12px; border-radius: 100px; background: #d6dfce; color: #304837; font-size: 12px; font-weight: 800; letter-spacing: .1em; }
 .fact-explanation h3 { max-width: 530px; margin-bottom: 10px; font-size: 28px; line-height: 1.25; letter-spacing: -.025em; }
 .fact-explanation p { max-width: 520px; margin-bottom: 16px; color: #536158; font-size: 14px; line-height: 1.75; }
 .fact-source { display: inline-flex; gap: 9px; border-bottom: 1px solid #83927e; padding-bottom: 4px; color: #485e4e; font-size: 12px; line-height: 1.4; }
@@ -146,8 +147,22 @@ em { font-weight: 400; }
 .fact-copy-caption:hover, .fact-copy-image:hover { color: #a46d51; }
 .fact-status { min-height: 20px; margin: 12px 0 0; color: #526652; font-size: 12px; }
 .facts-preview { position: sticky; top: 24px; width: min(100%, 490px); justify-self: end; }
-.facts-preview canvas { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; background: #783f35; box-shadow: 18px 22px 0 rgba(38, 56, 45, .1); }
-.facts-preview p { margin: 27px 0 0; color: #667666; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; text-align: center; }
+.facts-preview canvas { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; border-radius: 16px; background: #783f35; box-shadow: 0 24px 52px rgba(38, 56, 45, .22); }
+.fact-slider { display: flex; align-items: center; gap: 9px; margin-top: 20px; padding: 9px; border: 1px solid #bfcaba; border-radius: 100px; background: #f7f8f0; box-shadow: 0 8px 28px rgba(38, 56, 45, .08); }
+.fact-slider button { flex: none; min-width: 43px; height: 43px; padding: 0 12px; border: 1px solid #d3ddd0; border-radius: 100px; background: #fff; color: #314b3a; font-size: 18px; cursor: pointer; transition: background .2s, transform .2s; }
+.fact-slider button:hover:not(:disabled) { background: #d6e1ce; transform: translateY(-2px); }
+.fact-slider button:disabled { opacity: .4; cursor: not-allowed; }
+.fact-slider .fact-slide-toggle { min-width: 108px; background: #304837; color: #fff; border-color: #304837; font-size: 13px; font-weight: 700; }
+.fact-slider .fact-slide-toggle:hover:not(:disabled) { background: #44634e; }
+.fact-slide-toggle span { margin-left: 7px; }
+.fact-slide-count { margin-left: auto; padding-right: 15px; color: #405346; font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+@media (max-width: 480px) {
+  .fact-slider { gap: 4px; padding: 6px; }
+  .fact-slider button { min-width: 36px; height: 38px; padding: 0 7px; }
+  .fact-slider .fact-slide-toggle { min-width: 80px; }
+  .fact-slide-count { padding-right: 4px; font-size: 11px; }
+}
+.facts-preview p { margin: 15px 0 0; color: #667666; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; text-align: center; }
 .guide-section { padding-top: 120px; padding-bottom: 120px; }
 .guide-card { display: grid; grid-template-columns: 55% 45%; min-height: 580px; overflow: hidden; background: var(--ink); color: #f6f6ed; }
 .guide-copy { padding: clamp(55px, 6vw, 90px) 4% 70px clamp(48px, 6vw, 88px); position: relative; z-index: 1; }

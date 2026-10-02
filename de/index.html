@@ -12,7 +12,7 @@
     <link rel="alternate" hreflang="x-default" href="https://apopovski.github.io/jasmina/">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="preload" href="../fonts/Allura-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="../styles.css?v=facts-3">
+    <link rel="stylesheet" href="../styles.css?v=facts-4">
     <link rel="preload" as="image" href="../images/Jasmina-optimized.jpg">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Einfache Gewohnheiten. Langfristiges Wohlbefinden. | Jasmina Klisch">
@@ -133,7 +133,7 @@
           <div class="facts-copy">
             <p class="eyebrow"><span class="eyebrow-line"></span> GUTES ESSEN, GUT ZU WISSEN</p>
             <h2 id="facts-title">100 kleine Fakten.<br><em>Große Inspiration.</em></h2>
-            <p>Entdecke 100 belegte Fakten über pflanzliche Lebensmittel. Jedes Lebensmittel erhält eine eigene Illustration und Farbpalette. Teile die Grafik auf unterstützten Geräten direkt in einer App oder lade das PNG zum Posten herunter.</p>
+            <p>Entdecke 100 belegte Fakten über pflanzliche Lebensmittel. Die illustrierte Vorschau wechselt alle paar Sekunden in zufälliger Reihenfolge; mit den Pfeilen kannst du blättern oder die Diashow pausieren. Teile die Grafik auf unterstützten Geräten direkt in einer App oder lade das PNG zum Posten herunter.</p>
             <div class="fact-filters">
               <label for="fact-search">Lebensmittel oder Nährstoff suchen</label>
               <input id="fact-search" type="search" placeholder="100 Fakten durchsuchen…" autocomplete="off">
@@ -150,7 +150,8 @@
             <div class="fact-options" aria-label="Ernährungsfakten"></div>
             <div class="fact-pagination"><button class="fact-prev" type="button" disabled>← Zurück</button><span class="fact-page"></span><button class="fact-next" type="button">Weiter →</button></div>
             <noscript><p>Aktiviere JavaScript, um die Grafiken anzusehen und herunterzuladen.</p></noscript>
-            <div class="fact-explanation" aria-live="polite">
+            <div class="fact-explanation">
+              <span class="fact-food-name" data-fact-food>ROTE PAPRIKA</span>
               <h3 data-fact-title>Mit Dip servieren oder für einen knackigen Biss ins Sandwich legen</h3>
               <p data-fact-description>NIH-US-Tabellenmittel: 95 mg Vitamin C je ½ Tasse rohe rote Paprika.</p>
             </div>
@@ -168,6 +169,12 @@
           </div>
           <div class="facts-preview">
             <canvas id="fact-canvas" width="1080" height="1350" role="img" aria-label="Teilbare Jasmina-Klisch-Ernährungsgrafik über rote Paprika"></canvas>
+            <div class="fact-slider" aria-label="Diashow mit Ernährungsfakten">
+              <button type="button" class="fact-slide-back" aria-label="Vorheriger Ernährungsfakt">←</button>
+              <button type="button" class="fact-slide-toggle" aria-label="Diashow pausieren" aria-pressed="false">Pause <span aria-hidden="true">Ⅱ</span></button>
+              <button type="button" class="fact-slide-forward" aria-label="Nächster Ernährungsfakt">→</button>
+              <span class="fact-slide-count" aria-live="off">01 / 100</span>
+            </div>
             <p>1080 × 1350 px · Bereit zum Teilen</p>
           </div>
         </div>
@@ -239,6 +246,6 @@
     </footer>
     <script src="../script.js" defer></script>
     <script src="../food-facts-data.js?v=103" defer></script>
-    <script src="../food-facts.js?v=illustrations-4" defer></script>
+    <script src="../food-facts.js?v=illustrations-5" defer></script>
   </body>
 </html>
