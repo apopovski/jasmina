@@ -67,7 +67,12 @@ if (factCanvas) {
   const status = document.querySelector('.fact-status');
   const download = document.querySelector('.fact-download');
   const share = document.querySelector('.fact-share');
+  const shareHelp = document.querySelector('.fact-share-help');
+  const copyCaption = document.querySelector('.fact-copy-caption');
+  const copyImage = document.querySelector('.fact-copy-image');
   let active = 'pepper';
+  let exportBlob = null;
+  let exportRevision = 0;
 
   function wrapText(text, maxWidth, font) {
     context.font = font;
@@ -221,6 +226,25 @@ if (factCanvas) {
     context.fillStyle = fact.accent;
     context.fillText('jasmina.  /  apopovski.github.io/jasmina', 105, 1260);
     factCanvas.setAttribute('aria-label', copy.alt);
+
+    exportBlob = null;
+    const revision = ++exportRevision;
+    factCanvas.toBlob((blob) => {
+      if (revision === exportRevision) {
+        exportBlob = blob;
+        if (!blob) {
+          status.textContent = german
+            ? 'Die Grafik konnte nicht erstellt werden. Bitte versuche es in einem anderen Browser.'
+            : 'Could not create the graphic. Please try another browser.';
+          console.error('Could not export food fact graphic: canvas produced no PNG.');
+        }
+      }
+    }, 'image/png');
+  }
+
+  function showShareHelp() {
+    shareHelp.hidden = false;
+    share.setAttribute('aria-expanded', 'true');
   }
 
   function selectFact(key) {
@@ -232,62 +256,95 @@ if (factCanvas) {
     description.textContent = copy.detail;
     source.href = fact.source;
     status.textContent = '';
+    shareHelp.hidden = true;
+    share.setAttribute('aria-expanded', 'false');
     render();
   }
 
   options.forEach((option) => option.addEventListener('click', () => selectFact(option.dataset.fact)));
 
   download.addEventListener('click', () => {
-    factCanvas.toBlob((blob) => {
-      if (!blob) {
-        status.textContent = german
-          ? 'Der Download ist fehlgeschlagen. Bitte versuche es in einem anderen Browser.'
-          : 'Download failed. Please try another browser.';
-        console.error('Could not export food fact graphic: canvas produced no PNG.');
+    if (!exportBlob) {
+      status.textContent = german ? 'Die Grafik wird vorbereitet. Bitte versuche es gleich noch einmal.' : 'Graphic is preparing. Please try again in a moment.';
+      return;
+    }
+    const url = URL.createObjectURL(exportBlob);
+    const link = document.createElement('a');
+    link.download = `jasmina-${active}-${german ? 'de' : 'en'}.png`;
+    link.href = url;
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+    status.textContent = german ? 'PNG-Download gestartet.' : 'PNG download started.';
+  });
+
+  share.addEventListener('click', () => {
+    if (!exportBlob) {
+      status.textContent = german ? 'Die Grafik wird vorbereitet. Bitte versuche es gleich noch einmal.' : 'Graphic is preparing. Please try again in a moment.';
+      return;
+    }
+    const file = new File([exportBlob], `jasmina-${active}-${german ? 'de' : 'en'}.png`, { type: 'image/png' });
+    if (navigator.share && navigator.canShare?.({ files: [file] })) {
+      try {
+        const result = navigator.share({ files: [file], title: title.textContent });
+        result.then(() => {
+          status.textContent = german ? 'Grafik geteilt.' : 'Graphic shared.';
+        }).catch((error) => {
+          if (error.name !== 'AbortError') {
+            showShareHelp();
+            status.textContent = german ? 'Direktes Teilen ist fehlgeschlagen. Lade die Grafik herunter und teile sie in deiner App.' : 'Direct sharing failed. Download the graphic and post it in your app.';
+            console.error('Could not share food fact graphic:', error);
+          }
+        });
+      } catch (error) {
+        showShareHelp();
+        status.textContent = german ? 'Direktes Teilen ist fehlgeschlagen. Lade die Grafik herunter und teile sie in deiner App.' : 'Direct sharing failed. Download the graphic and post it in your app.';
+        console.error('Could not share food fact graphic:', error);
+      }
+    } else {
+      const opening = shareHelp.hidden;
+      shareHelp.hidden = !opening;
+      share.setAttribute('aria-expanded', String(opening));
+    }
+  });
+
+  copyCaption.addEventListener('click', async () => {
+    const caption = `${title.textContent} ${description.textContent}\n\n${german ? 'Quelle' : 'Source'}: ${source.href}\nhttps://apopovski.github.io/jasmina/${german ? 'de/' : ''}`;
+    try {
+      await navigator.clipboard.writeText(caption);
+      status.textContent = german ? 'Begleittext kopiert. Lade die Grafik herunter und teile beides in deiner App.' : 'Caption copied. Download the graphic and post both in your app.';
+    } catch (error) {
+      status.textContent = german ? 'Kopieren fehlgeschlagen. Du kannst den Text oben manuell markieren und kopieren.' : 'Could not copy the caption. You can select and copy the text above instead.';
+      console.error('Could not copy food fact caption:', error);
+    }
+  });
+
+  if (navigator.clipboard?.write && typeof ClipboardItem !== 'undefined') {
+    copyImage.hidden = false;
+    copyImage.addEventListener('click', async () => {
+      if (!exportBlob) {
+        status.textContent = german ? 'Die Grafik wird vorbereitet. Bitte versuche es gleich noch einmal.' : 'Graphic is preparing. Please try again in a moment.';
         return;
       }
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.download = `jasmina-${active}-${german ? 'de' : 'en'}.png`;
-      link.href = url;
-      document.body.append(link);
-      link.click();
-      link.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 60000);
-      status.textContent = german ? 'PNG-Download gestartet.' : 'PNG download started.';
-    }, 'image/png');
-  });
+      try {
+        await navigator.clipboard.write([new ClipboardItem({ 'image/png': exportBlob })]);
+        status.textContent = german ? 'Bild kopiert. Füge es in einen Beitrag ein.' : 'Image copied. Paste it into a post.';
+      } catch (error) {
+        status.textContent = german ? 'Kopieren fehlgeschlagen. Lade die Grafik stattdessen herunter.' : 'Could not copy the image. Please download it instead.';
+        console.error('Could not copy food fact graphic:', error);
+      }
+    });
+  }
 
   if (context) {
     render();
     document.fonts.ready.then(render);
-    if (navigator.share && navigator.canShare && navigator.canShare({
-      files: [new File([''], 'jasmina-fact.png', { type: 'image/png' })]
-    })) {
-      share.hidden = false;
-      share.addEventListener('click', () => {
-        factCanvas.toBlob(async (blob) => {
-          if (!blob) {
-            status.textContent = german ? 'Die Grafik konnte nicht geteilt werden.' : 'The graphic could not be shared.';
-            console.error('Could not share food fact graphic: canvas produced no PNG.');
-            return;
-          }
-          const file = new File([blob], `jasmina-${active}-${german ? 'de' : 'en'}.png`, { type: 'image/png' });
-          try {
-            await navigator.share({ files: [file], title: title.textContent });
-            status.textContent = german ? 'Grafik geteilt.' : 'Graphic shared.';
-          } catch (error) {
-            if (error.name !== 'AbortError') {
-              status.textContent = german ? 'Teilen fehlgeschlagen. Lade die Grafik stattdessen herunter.' : 'Sharing failed. Please download the graphic instead.';
-              console.error('Could not share food fact graphic:', error);
-            }
-          }
-        }, 'image/png');
-      });
-    }
   } else {
     options.forEach((option) => { option.disabled = true; });
     download.disabled = true;
+    share.disabled = true;
+    copyImage.hidden = true;
     status.textContent = german
       ? 'Dein Browser unterstützt die Grafikvorschau leider nicht.'
       : 'Your browser does not support the graphic preview.';

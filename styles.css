@@ -116,6 +116,11 @@ em { font-weight: 400; }
 .fact-download { display: flex; width: fit-content; margin-top: 34px; }
 .fact-share { width: fit-content; margin-top: 12px; border-color: var(--ink); color: var(--ink); background: transparent; }
 .fact-share:hover { background: #d5decd; }
+.fact-share-help { max-width: 530px; margin-top: 18px; padding: 22px; border: 1px solid #b7c4b0; background: #f5f6ee; }
+.fact-share-help h3 { margin: 0 0 9px; font-size: 25px; line-height: 1.2; }
+.fact-share-help p { margin: 0 0 16px; color: #536158; font-size: 13px; line-height: 1.65; }
+.fact-copy-caption, .fact-copy-image { padding: 0 0 5px; margin: 0 15px 9px 0; border: 0; border-bottom: 1px solid currentColor; background: transparent; color: var(--ink); font-size: 13px; font-weight: 700; }
+.fact-copy-caption:hover, .fact-copy-image:hover { color: #a46d51; }
 .fact-status { min-height: 20px; margin: 12px 0 0; color: #526652; font-size: 12px; }
 .facts-preview { width: min(100%, 490px); justify-self: end; }
 .facts-preview canvas { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; background: #783f35; box-shadow: 18px 22px 0 rgba(38, 56, 45, .1); }

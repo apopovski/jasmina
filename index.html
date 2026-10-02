@@ -145,7 +145,13 @@
             </div>
             <a class="fact-source" data-fact-source href="https://ods.od.nih.gov/factsheets/VitaminC-Consumer/" target="_blank" rel="noopener noreferrer">Source: NIH Office of Dietary Supplements <span aria-hidden="true">↗</span></a>
             <button type="button" class="button button-dark fact-download">Download graphic (PNG) <span aria-hidden="true">↓</span></button>
-            <button type="button" class="button fact-share" hidden>Share graphic <span aria-hidden="true">↗</span></button>
+            <button type="button" class="button fact-share" aria-expanded="false" aria-controls="fact-share-help">Share graphic <span aria-hidden="true">↗</span></button>
+            <div class="fact-share-help" id="fact-share-help" hidden>
+              <h3>Post this graphic anywhere.</h3>
+              <p>Your browser can't send this image directly to a social app. Download the PNG and upload it to Instagram, Facebook, Pinterest, or another app. Where supported, you can also copy the image to paste into a post. Copy the ready-made caption below.</p>
+              <button type="button" class="fact-copy-image" hidden>Copy image <span aria-hidden="true">↗</span></button>
+              <button type="button" class="fact-copy-caption">Copy caption <span aria-hidden="true">↗</span></button>
+            </div>
             <p class="fact-status" role="status" aria-live="polite"></p>
           </div>
           <div class="facts-preview">
