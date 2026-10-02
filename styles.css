@@ -134,6 +134,8 @@ em { font-weight: 400; }
 .fact-explanation p { max-width: 520px; margin-bottom: 16px; color: #536158; font-size: 14px; line-height: 1.75; }
 .fact-source { display: inline-flex; gap: 9px; border-bottom: 1px solid #83927e; padding-bottom: 4px; color: #485e4e; font-size: 12px; line-height: 1.4; }
 .fact-source:hover { color: #a46d51; }
+.facts-copy > .fact-source-note { margin: 12px 0 20px; font-size: 12px; line-height: 1.6; }
+.fact-source-note a { text-decoration: underline; text-underline-offset: 3px; }
 .fact-download { display: flex; width: fit-content; margin-top: 34px; }
 .fact-share { width: fit-content; margin-top: 12px; border-color: var(--ink); color: var(--ink); background: transparent; }
 .fact-share:hover { background: #d5decd; }

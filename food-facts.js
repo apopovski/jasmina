@@ -116,19 +116,16 @@ if (factCanvas) {
 
   function drawPieces(visual) {
     const count = visual.small ? 35 : visual.icon === 'grains' ? 27 : 11;
-    const size = visual.small ? 10 : visual.icon === 'seeds' || visual.icon === 'grains' ? 15 : 28;
+    const size = visual.small ? 12 : visual.icon === 'seeds' || visual.icon === 'grains' ? 18 : 31;
     for (let index = 0; index < count; index++) {
       const angle = index * 2.4;
-      const radius = Math.sqrt(index / count) * 116;
+      const radius = Math.sqrt(index / count) * 137;
       context.save();
       context.translate(Math.cos(angle) * radius, Math.sin(angle) * radius * .72);
       context.rotate(angle);
-      context.fillStyle = visual.color;
       context.strokeStyle = 'rgba(255, 248, 233, .38)';
       context.lineWidth = 2;
-      context.beginPath();
-      context.ellipse(0, 0, size * (visual.icon === 'nuts' ? 1.1 : .65), size, 0, 0, Math.PI * 2);
-      context.fill();
+      oval(0, 0, size * (visual.icon === 'nuts' ? 1.1 : .65), size, visual.color);
       context.stroke();
       context.restore();
     }
@@ -139,6 +136,15 @@ if (factCanvas) {
     context.beginPath();
     context.ellipse(x, y, width, height, rotation, 0, Math.PI * 2);
     context.fill();
+    context.save();
+    context.clip();
+    const light = context.createLinearGradient(x - width, y - height, x + width, y + height);
+    light.addColorStop(0, 'rgba(255, 250, 225, .23)');
+    light.addColorStop(.55, 'rgba(255, 250, 225, 0)');
+    light.addColorStop(1, 'rgba(41, 34, 27, .16)');
+    context.fillStyle = light;
+    context.fillRect(x - width * 2, y - height * 2, width * 4, height * 4);
+    context.restore();
   }
 
   function leaf(x, y, rotation, color = '#9cbd83') {
@@ -159,8 +165,12 @@ if (factCanvas) {
     const kind = visual.icon;
     context.lineCap = 'round';
     if (kind === 'banana') {
-      context.rotate(-.33);
-      context.fillStyle = '#f6cf67';
+      context.rotate(-.31);
+      const bananaSkin = context.createLinearGradient(-110, -100, 65, 120);
+      bananaSkin.addColorStop(0, '#fff0ac');
+      bananaSkin.addColorStop(.47, '#f8d76b');
+      bananaSkin.addColorStop(1, '#d6ac50');
+      context.fillStyle = bananaSkin;
       context.beginPath();
       context.moveTo(-116, -95);
       context.bezierCurveTo(-160, 25, -42, 141, 77, 116);
@@ -169,12 +179,24 @@ if (factCanvas) {
       context.closePath();
       context.fill();
       context.strokeStyle = '#fff2c0';
-      context.lineWidth = 7;
+      context.lineWidth = 6;
       context.beginPath();
       context.moveTo(-99, -52);
       context.bezierCurveTo(-56, 55, 42, 121, 131, 79);
       context.stroke();
+      context.strokeStyle = 'rgba(136, 99, 53, .28)';
+      context.lineWidth = 3;
+      for (const offset of [-8, 12]) {
+        context.beginPath();
+        context.moveTo(-87 + offset, -47);
+        context.bezierCurveTo(-55 + offset, 23, 51, 105, 118, 84);
+        context.stroke();
+      }
+      for (const [x, y] of [[-62, 24], [-24, 68], [13, 91], [43, 90], [75, 82]]) {
+        oval(x, y, 3, 6, 'rgba(126, 89, 47, .35)', -.4);
+      }
       oval(-105, -100, 17, 9, '#7c7950', -.3);
+      oval(150, 42, 8, 13, '#8f7d50', -.2);
     } else if (kind === 'orange' || kind === 'kiwi') {
       oval(0, 5, 114, 111, kind === 'orange' ? '#e9a45b' : '#a8a073');
       oval(0, 5, 97, 95, kind === 'orange' ? '#f5bf77' : '#b8d088');
@@ -383,12 +405,25 @@ if (factCanvas) {
 
   function drawFood(visual, label, accent) {
     context.save();
-    context.translate(780, 300);
+    context.translate(780, 288);
+    const scale = visual.icon === 'banana' ? 1.35
+      : ['beans', 'seeds', 'nuts', 'grains', 'dried-fruit'].includes(visual.icon) ? 1.28 : 1.2;
+    context.scale(scale, scale);
     context.lineJoin = 'round';
 
     if (visual.icon === 'pepper' || visual.icon === 'green-pepper') {
       context.rotate(-0.17);
-      context.fillStyle = visual.icon === 'green-pepper' ? '#a6c987' : '#d99876';
+      const pepperSkin = context.createLinearGradient(-120, -110, 115, 130);
+      if (visual.icon === 'green-pepper') {
+        pepperSkin.addColorStop(0, '#d2e5a3');
+        pepperSkin.addColorStop(.55, '#a6c987');
+        pepperSkin.addColorStop(1, '#729a67');
+      } else {
+        pepperSkin.addColorStop(0, '#f3c09a');
+        pepperSkin.addColorStop(.55, '#d99876');
+        pepperSkin.addColorStop(1, '#b57461');
+      }
+      context.fillStyle = pepperSkin;
       context.beginPath();
       context.moveTo(-96, -53);
       context.bezierCurveTo(-174, -91, -194, 19, -127, 103);
@@ -413,7 +448,11 @@ if (factCanvas) {
       context.stroke();
     } else if (visual.icon === 'spinach') {
       context.rotate(-0.17);
-      context.fillStyle = '#9dbf8c';
+      const leafColor = context.createLinearGradient(-110, -145, 85, 130);
+      leafColor.addColorStop(0, '#d2e3ae');
+      leafColor.addColorStop(.55, '#9dbf8c');
+      leafColor.addColorStop(1, '#6d9c79');
+      context.fillStyle = leafColor;
       context.beginPath();
       context.moveTo(-8, 135);
       context.bezierCurveTo(-226, 67, -171, -114, 47, -147);
@@ -431,7 +470,11 @@ if (factCanvas) {
       context.stroke();
     } else if (visual.icon === 'walnuts') {
       context.rotate(-0.17);
-      context.fillStyle = '#cfb889';
+      const nutColor = context.createLinearGradient(-120, -115, 115, 115);
+      nutColor.addColorStop(0, '#ecdbab');
+      nutColor.addColorStop(.55, '#cfb889');
+      nutColor.addColorStop(1, '#a88d65');
+      context.fillStyle = nutColor;
       context.beginPath();
       context.ellipse(0, 0, 140, 112, -0.1, 0, Math.PI * 2);
       context.fill();
@@ -487,13 +530,28 @@ if (factCanvas) {
     } else if (visual.icon === 'asparagus') {
       for (let spear = -2; spear <= 2; spear++) {
         const x = spear * 36;
+        const top = -35 - Math.abs(spear) * 9;
+        const stalk = context.createLinearGradient(x - 10, 0, x + 10, 0);
+        stalk.addColorStop(0, '#749d70');
+        stalk.addColorStop(.65, '#b8d397');
+        stalk.addColorStop(1, '#789f70');
+        context.fillStyle = stalk;
+        context.fillRect(x - 10, top, 20, 170);
         context.fillStyle = spear % 2 ? '#91ba79' : '#b0cd8e';
-        context.fillRect(x - 10, -35 - Math.abs(spear) * 9, 20, 170);
         context.beginPath();
-        context.moveTo(x - 19, -35 - Math.abs(spear) * 9);
-        context.lineTo(x, -135 - Math.abs(spear) * 9);
-        context.lineTo(x + 19, -35 - Math.abs(spear) * 9);
+        context.moveTo(x - 13, top);
+        context.bezierCurveTo(x - 24, top - 29, x - 13, top - 80, x, top - 100);
+        context.bezierCurveTo(x + 13, top - 80, x + 24, top - 29, x + 13, top);
+        context.closePath();
         context.fill();
+        context.strokeStyle = '#d8e6b3';
+        context.lineWidth = 3;
+        for (const height of [26, 49, 70]) {
+          context.beginPath();
+          context.moveTo(x - 12, top - height);
+          context.quadraticCurveTo(x, top - height + 8, x + 11, top - height - 3);
+          context.stroke();
+        }
       }
     } else if (visual.icon === 'papaya' || visual.icon === 'squash') {
       context.rotate(-.35);
@@ -531,18 +589,13 @@ if (factCanvas) {
         context.strokeRect(x, y, 96, 79);
       }
     } else drawProduce(visual);
-    context.strokeStyle = accent;
-    context.lineWidth = 2;
-    context.beginPath();
-    context.arc(0, 0, 181, 0, Math.PI * 2);
-    context.stroke();
     context.restore();
 
     context.save();
     context.textAlign = 'center';
     context.fillStyle = '#fff8e9';
     context.font = 'bold 21px "Avenir Next", "Segoe UI", sans-serif';
-    context.fillText(label, 780, 435, 310);
+    context.fillText(label, 780, 503, 330);
     context.restore();
   }
 
@@ -564,10 +617,10 @@ if (factCanvas) {
     context.lineWidth = 2;
     context.strokeRect(51, 51, 978, 1248);
     context.beginPath();
-    context.arc(780, 300, 275, 0, Math.PI * 2);
+    context.arc(780, 288, 262, 0, Math.PI * 2);
     context.stroke();
     context.beginPath();
-    context.arc(780, 300, 235, 0, Math.PI * 2);
+    context.arc(780, 288, 236, 0, Math.PI * 2);
     context.stroke();
     drawFood(visual, copy.label, theme.accent);
 
@@ -584,7 +637,7 @@ if (factCanvas) {
 
     context.fillStyle = theme.accent;
     context.font = 'bold 24px "Avenir Next", "Segoe UI", sans-serif';
-    context.fillText(german ? 'GUT ZU WISSEN?' : 'DID YOU KNOW?', 105, 550);
+    context.fillText(german ? 'GUT ZU WISSEN' : 'GOOD TO KNOW', 105, 550);
     context.font = 'bold 24px "Avenir Next", "Segoe UI", sans-serif';
     context.fillText(copy.label, 105, 602);
 
@@ -614,12 +667,17 @@ if (factCanvas) {
     context.moveTo(105, 1160);
     context.lineTo(975, 1160);
     context.stroke();
-    context.font = 'bold 24px "Avenir Next", "Segoe UI", sans-serif';
+    context.font = 'bold 21px "Avenir Next", "Segoe UI", sans-serif';
     context.fillStyle = '#fff8e9';
-    const sourceName = fact.source.includes('ods.od.nih.gov') ? 'NIH OFFICE OF DIETARY SUPPLEMENTS' : 'USDA MYPLATE';
-    context.fillText(`${german ? 'QUELLE' : 'SOURCE'}: ${sourceName}`, 105, 1211);
+    const sourceName = fact.source.includes('blsdb.de')
+      ? 'MAX RUBNER-INSTITUT (2025), BLS 4.0'
+      : fact.source.includes('ods.od.nih.gov') ? 'NIH OFFICE OF DIETARY SUPPLEMENTS' : 'USDA MYPLATE';
+    context.fillText(`${german ? 'NÄHRSTOFFQUELLE' : 'NUTRIENT SOURCE'}: ${sourceName}`, 105, 1198);
+    context.fillText(fact.source.includes('blsdb.de')
+      ? `100 G ${german ? 'ROH' : 'RAW'} · CC BY 4.0 · DOI: 10.25826/Data20251217-134202-0`
+      : `${german ? 'SEPARATER DE-DATENSATZ' : 'SEPARATE GERMAN DATASET'}: MRI BLS 4.0`, 105, 1230);
     context.fillStyle = theme.accent;
-    context.fillText('Jasmina Klisch  /  apopovski.github.io/jasmina', 105, 1260);
+    context.fillText('Jasmina Klisch  /  apopovski.github.io/jasmina', 105, 1270);
     factCanvas.setAttribute('aria-label', german
       ? `Teilbare Jasmina-Klisch-Ernährungsgrafik: ${copy.title}`
       : `Shareable Jasmina Klisch nutrition graphic: ${copy.title}`);
@@ -645,7 +703,11 @@ if (factCanvas) {
   }
 
   function getCaption() {
-    return `${title.textContent} ${description.textContent}\n\n${german ? 'Quelle' : 'Source'}: ${source.href}\nhttps://apopovski.github.io/jasmina/${german ? 'de/' : ''}`;
+    const label = active[german ? 'de' : 'en'].label;
+    const regionalReference = active.source.includes('blsdb.de')
+      ? `\nMax Rubner-Institut (2025), BLS 4.0 · CC BY 4.0: https://creativecommons.org/licenses/by/4.0/deed.de\nDOI: https://doi.org/10.25826/Data20251217-134202-0`
+      : `\n${german ? 'Separater deutscher Referenzdatensatz' : 'Separate German reference dataset'}: https://blsdb.de/download`;
+    return `${label} — ${title.textContent}\n${description.textContent}\n\n${german ? 'Nährstoffquelle' : 'Nutrient source'}: ${source.href}${regionalReference}\nhttps://apopovski.github.io/jasmina/${german ? 'de/' : ''}`;
   }
 
   function prepareGraphicNow() {
@@ -668,9 +730,11 @@ if (factCanvas) {
     title.textContent = copy.title;
     description.textContent = copy.detail;
     source.href = fact.source;
-    source.firstChild.textContent = fact.source.includes('ods.od.nih.gov')
-      ? german ? 'Quelle: NIH Office of Dietary Supplements ' : 'Source: NIH Office of Dietary Supplements '
-      : german ? 'Quelle: USDA MyPlate ' : 'Source: USDA MyPlate ';
+    source.firstChild.textContent = fact.source.includes('blsdb.de')
+      ? german ? 'Quelle: Max Rubner-Institut, BLS 4.0 ' : 'Source: Max Rubner Institute, BLS 4.0 '
+      : fact.source.includes('ods.od.nih.gov')
+        ? german ? 'Quelle: NIH Office of Dietary Supplements ' : 'Source: NIH Office of Dietary Supplements '
+        : german ? 'Quelle: USDA MyPlate ' : 'Source: USDA MyPlate ';
     status.textContent = '';
     shareHelp.hidden = true;
     share.setAttribute('aria-expanded', 'false');
@@ -694,12 +758,12 @@ if (factCanvas) {
       choose.className = 'fact-option';
       choose.dataset.fact = fact.id;
       choose.setAttribute('aria-pressed', String(active === fact));
-      choose.textContent = `${String(index).padStart(2, '0')}  ${copy.title}`;
+      choose.textContent = `${String(index).padStart(2, '0')}  ${copy.label}: ${copy.title}`;
       choose.addEventListener('click', () => selectFact(fact));
       const quickShare = document.createElement('button');
       quickShare.type = 'button';
       quickShare.className = 'fact-option-share';
-      quickShare.setAttribute('aria-label', german ? `Grafik teilen: ${copy.title}` : `Share graphic: ${copy.title}`);
+      quickShare.setAttribute('aria-label', german ? `Grafik teilen: ${copy.label} – ${copy.title}` : `Share graphic: ${copy.label} – ${copy.title}`);
       quickShare.title = german ? 'Grafik teilen' : 'Share graphic';
       quickShare.textContent = '↗';
       quickShare.addEventListener('click', () => {

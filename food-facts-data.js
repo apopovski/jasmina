@@ -1,613 +1,613 @@
-// Plant-forward nutrition facts for social graphics.
-// Amounts are taken from the "Selected Food Sources" tables of the linked NIH Office of Dietary Supplements
-// Health Professional fact sheets; %DV values use the FDA Daily Values cited on those pages.
+// Plant-forward food facts for social graphics.
+// NIH links substantiate U.S. serving-based entries; MRI BLS 4.0 entries cite raw food per 100 g.
+// Serving suggestions are editorial, not recommendations from the data providers.
 // Loaded before food-facts.js, which reads the global `foodFacts`.
 const foodFacts = [
   // ---------- PRODUCE ----------
   {
     id: 'red-pepper-vitamin-c', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/',
-    en: { label: 'RED PEPPER', title: '½ cup raw sweet red pepper provides 95 mg of vitamin C.', detail: 'That is 106% of the Daily Value; vitamin C helps the body make collagen, a protein needed for wound healing.' },
-    de: { label: 'ROTE PAPRIKA', title: '½ Tasse rohe rote Paprika liefert 95 mg Vitamin C.', detail: 'Das sind 106 % des US-Tageswerts; Vitamin C hilft beim Aufbau von Kollagen, das für die Wundheilung nötig ist.' }
+    en: { label: 'RED PEPPER', title: 'Serve with a dip or tuck into a sandwich for a crisp bite', detail: 'NIH U.S. table avg.: 95 mg vitamin C per ½ cup raw sweet red pepper.' },
+    de: { label: 'ROTE PAPRIKA', title: 'Mit Dip servieren oder für einen knackigen Biss ins Sandwich legen', detail: 'NIH-US-Tabellenmittel: 95 mg Vitamin C je ½ Tasse rohe rote Paprika.' }
   },
   {
     id: 'orange-vitamin-c', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/',
-    en: { label: 'ORANGE', title: 'One medium orange provides 70 mg of vitamin C.', detail: 'Vitamin C acts as an antioxidant that helps protect cells from damage caused by free radicals.' },
-    de: { label: 'ORANGE', title: 'Eine mittelgroße Orange liefert 70 mg Vitamin C.', detail: 'Vitamin C wirkt als Antioxidans und hilft, Zellen vor Schäden durch freie Radikale zu schützen.' }
+    en: { label: 'ORANGE', title: 'Peel at the table or add segments to a simple fruit bowl', detail: 'NIH U.S. table avg.: 70 mg vitamin C per 1 medium orange.' },
+    de: { label: 'ORANGE', title: 'Am Tisch schälen oder die Stücke in eine einfache Obstschale geben', detail: 'NIH-US-Tabellenmittel: 70 mg Vitamin C je 1 mittelgroße Orange.' }
   },
   {
     id: 'kiwifruit-vitamin-c', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/',
-    en: { label: 'KIWIFRUIT', title: 'One medium kiwifruit provides 64 mg of vitamin C.', detail: 'Kiwifruit is usually eaten raw, which avoids the vitamin C losses that cooking can cause.' },
-    de: { label: 'KIWI', title: 'Eine mittelgroße Kiwi liefert 64 mg Vitamin C.', detail: 'Kiwis werden meist roh gegessen – so entfallen Vitamin-C-Verluste, die beim Kochen entstehen können.' }
+    en: { label: 'KIWIFRUIT', title: 'Spoon out a kiwi for a quick snack.', detail: 'NIH U.S. table avg.: 64 mg vitamin C per 1 medium kiwifruit.' },
+    de: { label: 'KIWI', title: 'Kiwi halbieren und auslöffeln oder fürs Frühstück schneiden.', detail: 'NIH-US-Tabellenmittel: 64 mg Vitamin C je 1 mittelgroße Kiwi.' }
   },
   {
     id: 'green-pepper-vitamin-c', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/',
-    en: { label: 'GREEN PEPPER', title: '½ cup raw sweet green pepper provides 60 mg of vitamin C.', detail: 'That covers 67% of the Daily Value for vitamin C, which helps the immune system work properly.' },
-    de: { label: 'GRÜNE PAPRIKA', title: '½ Tasse rohe grüne Paprika liefert 60 mg Vitamin C.', detail: 'Das deckt 67 % des US-Tageswerts für Vitamin C, das dem Immunsystem hilft, richtig zu arbeiten.' }
+    en: { label: 'GREEN PEPPER', title: 'Keep ready in the fridge for a snack or sandwich filling', detail: 'NIH U.S. table avg.: 60 mg vitamin C per ½ cup raw sweet green pepper.' },
+    de: { label: 'GRÜNE PAPRIKA', title: 'Im Kühlschrank für einen Snack oder Sandwichbelag bereithalten', detail: 'NIH-US-Tabellenmittel: 60 mg Vitamin C je ½ Tasse rohe grüne Paprika.' }
   },
   {
     id: 'broccoli-vitamin-c', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/',
-    en: { label: 'BROCCOLI', title: '½ cup cooked broccoli provides 51 mg of vitamin C.', detail: 'Steaming or microwaving can reduce the amount of vitamin C lost during cooking.' },
-    de: { label: 'BROKKOLI', title: '½ Tasse gegarter Brokkoli liefert 51 mg Vitamin C.', detail: 'Dämpfen oder Garen in der Mikrowelle kann die Vitamin-C-Verluste beim Kochen verringern.' }
+    en: { label: 'BROCCOLI', title: 'Serve with rice or pasta, or stir into soup before serving', detail: 'NIH U.S. table avg.: 51 mg vitamin C per ½ cup cooked broccoli.' },
+    de: { label: 'BROKKOLI', title: 'Zu Reis oder Nudeln servieren oder vor dem Servieren in Suppe rühren', detail: 'NIH-US-Tabellenmittel: 51 mg Vitamin C je ½ Tasse gegarter Brokkoli.' }
   },
   {
     id: 'strawberries-vitamin-c', category: 'produce',
-    source: 'https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/',
-    en: { label: 'STRAWBERRIES', title: '½ cup sliced fresh strawberries provides 49 mg of vitamin C.', detail: 'Vitamin C improves the absorption of iron from plant-based foods eaten at the same meal.' },
-    de: { label: 'ERDBEEREN', title: '½ Tasse frische Erdbeerscheiben liefert 49 mg Vitamin C.', detail: 'Vitamin C verbessert die Aufnahme von Eisen aus pflanzlichen Lebensmitteln derselben Mahlzeit.' }
+    source: 'https://blsdb.de/download',
+    en: { label: 'STRAWBERRIES', title: 'Add to porridge, yoghurt or cereal just before eating', detail: 'MRI BLS 4.0 (F301100): 56.9 mg vitamin C per 100 g raw strawberries (rounded).' },
+    de: { label: 'ERDBEEREN', title: 'Kurz vor dem Essen ins Porridge, in Joghurt oder Müsli geben', detail: 'MRI BLS 4.0 (F301100): 56,9 mg Vitamin C je 100 g rohe Erdbeeren (gerundet).' }
   },
   {
     id: 'brussels-sprouts-vitamin-c', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/',
-    en: { label: 'BRUSSELS SPROUTS', title: '½ cup cooked Brussels sprouts provides 48 mg of vitamin C.', detail: 'That amount equals 53% of the 90 mg Daily Value for vitamin C.' },
-    de: { label: 'ROSENKOHL', title: '½ Tasse gegarter Rosenkohl liefert 48 mg Vitamin C.', detail: 'Das entspricht 53 % des US-Tageswerts von 90 mg Vitamin C.' }
+    en: { label: 'BRUSSELS SPROUTS', title: 'Halve larger sprouts before cooking for easier portions', detail: 'NIH U.S. table avg.: 48 mg vitamin C per ½ cup cooked Brussels sprouts.' },
+    de: { label: 'ROSENKOHL', title: 'Größere Röschen vor dem Garen für handliche Portionen halbieren', detail: 'NIH-US-Tabellenmittel: 48 mg Vitamin C je ½ Tasse gegarter Rosenkohl.' }
   },
   {
     id: 'grapefruit-vitamin-c', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/',
-    en: { label: 'GRAPEFRUIT', title: 'Half a medium grapefruit provides 39 mg of vitamin C.', detail: 'NIH names citrus fruits such as grapefruit among the foods that supply vitamin C.' },
-    de: { label: 'GRAPEFRUIT', title: 'Eine halbe mittelgroße Grapefruit liefert 39 mg Vitamin C.', detail: 'Das NIH nennt Zitrusfrüchte wie Grapefruit unter den Lebensmitteln, die Vitamin C liefern.' }
+    en: { label: 'GRAPEFRUIT', title: 'Separate segments over a bowl to catch juice, then serve chilled', detail: 'NIH U.S. table avg.: 39 mg vitamin C per ½ medium grapefruit.' },
+    de: { label: 'GRAPEFRUIT', title: 'Die Stücke über einer Schüssel auslösen und gekühlt servieren', detail: 'NIH-US-Tabellenmittel: 39 mg Vitamin C je ½ mittelgroße Grapefruit.' }
   },
   {
     id: 'cantaloupe-vitamin-c', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/',
-    en: { label: 'CANTALOUPE', title: '½ cup cantaloupe provides 29 mg of vitamin C.', detail: 'That is 32% of the 90 mg Daily Value for vitamin C.' },
-    de: { label: 'CANTALOUPE-MELONE', title: '½ Tasse Cantaloupe-Melone liefert 29 mg Vitamin C.', detail: 'Das sind 32 % des US-Tageswerts von 90 mg Vitamin C.' }
+    en: { label: 'CANTALOUPE', title: 'Cut bite-size and serve plain or alongside breakfast', detail: 'NIH U.S. table avg.: 29 mg vitamin C per ½ cup cantaloupe.' },
+    de: { label: 'CANTALOUPE-MELONE', title: 'Mundgerecht schneiden und pur oder zum Frühstück servieren', detail: 'NIH-US-Tabellenmittel: 29 mg Vitamin C je ½ Tasse Cantaloupe-Melone.' }
   },
   {
     id: 'cauliflower-vitamin-c', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminC-HealthProfessional/',
-    en: { label: 'CAULIFLOWER', title: '½ cup raw cauliflower provides 26 mg of vitamin C.', detail: 'Prolonged storage and cooking can reduce the vitamin C content of vegetables.' },
-    de: { label: 'BLUMENKOHL', title: '½ Tasse roher Blumenkohl liefert 26 mg Vitamin C.', detail: 'Lange Lagerung und Kochen können den Vitamin-C-Gehalt von Gemüse verringern.' }
+    en: { label: 'CAULIFLOWER', title: 'Cut into small pieces for a snack plate or lunchbox', detail: 'NIH U.S. table avg.: 26 mg vitamin C per ½ cup raw cauliflower.' },
+    de: { label: 'BLUMENKOHL', title: 'In kleine Stücke für eine Snackplatte oder Lunchbox teilen', detail: 'NIH-US-Tabellenmittel: 26 mg Vitamin C je ½ Tasse roher Blumenkohl.' }
   },
   {
     id: 'sweet-potato-vitamin-a', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminA-HealthProfessional/',
-    en: { label: 'SWEET POTATO', title: 'A sweet potato baked in its skin has 1,403 mcg RAE vitamin A.', detail: 'Plants supply provitamin A carotenoids, such as beta-carotene, that the body converts to vitamin A.' },
-    de: { label: 'SÜSSKARTOFFEL', title: 'Eine in der Schale gebackene Süßkartoffel hat 1.403 µg RAE Vitamin A.', detail: 'Pflanzen liefern Provitamin-A-Carotinoide wie Beta-Carotin, die der Körper in Vitamin A umwandelt.' }
+    en: { label: 'SWEET POTATO', title: 'Split it open and add a spoonful of topping you like', detail: 'NIH vitamin A table lists: 1 sweet potato baked in its skin.' },
+    de: { label: 'SÜSSKARTOFFEL', title: 'Aufschneiden und mit einem Löffel Belag nach Wahl servieren', detail: 'NIH-Tabelle Vitamin A: 1 ganze, in der Schale gebackene Süßkartoffel.' }
   },
   {
     id: 'carrots-vitamin-a', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminA-HealthProfessional/',
-    en: { label: 'CARROTS', title: '½ cup raw carrots provides 459 mcg RAE of vitamin A.', detail: 'Vitamin A is important for normal vision and for the immune system.' },
-    de: { label: 'KAROTTEN', title: '½ Tasse rohe Karotten liefert 459 µg RAE Vitamin A.', detail: 'Vitamin A ist wichtig für normales Sehen und für das Immunsystem.' }
+    en: { label: 'CARROTS', title: 'Pair raw sticks with dip or add them to a packed lunch', detail: 'NIH vitamin A table lists: ½ cup raw carrots.' },
+    de: { label: 'KAROTTEN', title: 'Rohe Stifte mit Dip servieren oder in die Lunchbox packen', detail: 'NIH-Tabelle Vitamin A: ½ Tasse rohe Karotten.' }
   },
   {
     id: 'spinach-vitamin-a', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminA-HealthProfessional/',
-    en: { label: 'SPINACH', title: '½ cup boiled frozen spinach provides 573 mcg RAE of vitamin A.', detail: 'Green leafy vegetables are among the plant foods that supply provitamin A carotenoids.' },
-    de: { label: 'SPINAT', title: '½ Tasse gekochter TK-Spinat liefert 573 µg RAE Vitamin A.', detail: 'Grünes Blattgemüse gehört zu den pflanzlichen Lebensmitteln mit Provitamin-A-Carotinoiden.' }
+    en: { label: 'SPINACH', title: 'Fold into soup, pasta sauce or a grain bowl before serving', detail: 'NIH vitamin A table lists: ½ cup boiled frozen spinach.' },
+    de: { label: 'SPINAT', title: 'Vor dem Servieren in Suppe, Pastasauce oder eine Getreide-Bowl geben', detail: 'NIH-Tabelle Vitamin A: ½ Tasse gekochter TK-Spinat.' }
   },
   {
     id: 'mango-vitamin-a', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminA-HealthProfessional/',
-    en: { label: 'MANGO', title: 'One whole raw mango provides 112 mcg RAE of vitamin A.', detail: 'Carotenoids are pigments that give yellow, orange, and red fruits and vegetables their color.' },
-    de: { label: 'MANGO', title: 'Eine ganze rohe Mango liefert 112 µg RAE Vitamin A.', detail: 'Carotinoide sind Pigmente, die gelbem, orangem und rotem Obst und Gemüse die Farbe geben.' }
+    en: { label: 'MANGO', title: 'Serve the cubes on their own or spoon over breakfast', detail: 'NIH vitamin A table lists: 1 whole raw mango.' },
+    de: { label: 'MANGO', title: 'Die Würfel pur servieren oder über das Frühstück geben', detail: 'NIH-Tabelle Vitamin A: 1 ganze rohe Mango.' }
   },
   {
     id: 'dried-apricots-vitamin-a', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminA-HealthProfessional/',
-    en: { label: 'DRIED APRICOTS', title: 'Five dried apricots provide 63 mcg RAE of vitamin A.', detail: 'Vitamin A is needed for normal growth and development.' },
-    de: { label: 'GETROCKNETE APRIKOSEN', title: 'Fünf getrocknete Aprikosen liefern 63 µg RAE Vitamin A.', detail: 'Vitamin A wird für normales Wachstum und eine normale Entwicklung benötigt.' }
+    en: { label: 'DRIED APRICOTS', title: 'Pack a few for the commute or chop into breakfast cereal', detail: 'NIH vitamin A table lists: 5 dried apricots.' },
+    de: { label: 'GETROCKNETE APRIKOSEN', title: 'Einige für unterwegs einpacken oder ins Frühstücksmüsli schneiden', detail: 'NIH-Tabelle Vitamin A: 5 getrocknete Aprikosen.' }
   },
   {
     id: 'dried-apricots-potassium', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/Potassium-HealthProfessional/',
-    en: { label: 'DRIED APRICOTS', title: '½ cup dried apricots provides 755 mg of potassium.', detail: 'Potassium is needed for normal kidney and heart function.' },
-    de: { label: 'GETROCKNETE APRIKOSEN', title: '½ Tasse getrocknete Aprikosen liefert 755 mg Kalium.', detail: 'Kalium wird für eine normale Nieren- und Herzfunktion benötigt.' }
+    en: { label: 'DRIED APRICOTS', title: 'Combine with a few nuts or chop over porridge as a chewy topping', detail: 'NIH U.S. table avg.: 755 mg potassium per ½ cup dried apricots.' },
+    de: { label: 'GETROCKNETE APRIKOSEN', title: 'Mit einigen Nüssen kombinieren oder als Porridge-Belag klein schneiden', detail: 'NIH-US-Tabellenmittel: 755 mg Kalium je ½ Tasse getrocknete Aprikosen.' }
   },
   {
     id: 'acorn-squash-potassium', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/Potassium-HealthProfessional/',
-    en: { label: 'ACORN SQUASH', title: '1 cup mashed acorn squash provides 644 mg of potassium.', detail: 'Potassium supports muscle contraction and nerve transmission.' },
-    de: { label: 'EICHELKÜRBIS', title: '1 Tasse pürierter Eichelkürbis liefert 644 mg Kalium.', detail: 'Kalium unterstützt Muskelkontraktion und Nervenübertragung.' }
+    en: { label: 'ACORN SQUASH', title: 'Serve cooked squash with grains or beans.', detail: 'NIH U.S. table avg.: 644 mg potassium per 1 cup mashed acorn squash.' },
+    de: { label: 'EICHELKÜRBIS', title: 'Gegarten Kürbis zu Getreide oder Bohnen servieren.', detail: 'NIH-US-Tabellenmittel: 644 mg Kalium je 1 Tasse pürierter Eichelkürbis.' }
   },
   {
     id: 'prunes-potassium', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/Potassium-HealthProfessional/',
-    en: { label: 'PRUNES', title: '½ cup dried prunes provides 635 mg of potassium.', detail: 'Many people in the United States get less potassium than recommended.' },
-    de: { label: 'TROCKENPFLAUMEN', title: '½ Tasse Trockenpflaumen liefert 635 mg Kalium.', detail: 'Viele Menschen in den USA nehmen weniger Kalium auf als empfohlen.' }
+    en: { label: 'PRUNES', title: 'Stir prunes into oats or yoghurt.', detail: 'NIH U.S. table avg.: 635 mg potassium per ½ cup dried prunes.' },
+    de: { label: 'TROCKENPFLAUMEN', title: 'Backpflaumen in Haferflocken oder Joghurt rühren.', detail: 'NIH-US-Tabellenmittel: 635 mg Kalium je ½ Tasse Trockenpflaumen.' }
   },
   {
     id: 'raisins-potassium', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/Potassium-HealthProfessional/',
-    en: { label: 'RAISINS', title: '½ cup raisins provides 618 mg of potassium.', detail: 'That equals 13% of the 4,700 mg Daily Value for potassium.' },
-    de: { label: 'ROSINEN', title: '½ Tasse Rosinen liefert 618 mg Kalium.', detail: 'Das entspricht 13 % des US-Tageswerts von 4.700 mg Kalium.' }
+    en: { label: 'RAISINS', title: 'Pack a small portion in a reusable container for a snack', detail: 'NIH U.S. table avg.: 618 mg potassium per ½ cup raisins.' },
+    de: { label: 'ROSINEN', title: 'Eine kleine Portion in einer Dose als Snack mitnehmen', detail: 'NIH-US-Tabellenmittel: 618 mg Kalium je ½ Tasse Rosinen.' }
   },
   {
     id: 'potato-potassium', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/Potassium-HealthProfessional/',
-    en: { label: 'POTATO', title: 'One medium baked potato (flesh only) has 610 mg of potassium.', detail: 'The body needs potassium for almost everything it does.' },
-    de: { label: 'KARTOFFEL', title: 'Eine mittelgroße Ofenkartoffel (ohne Schale) hat 610 mg Kalium.', detail: 'Der Körper braucht Kalium für fast alles, was er tut.' }
+    en: { label: 'POTATO', title: 'Top a baked potato with beans or vegetables.', detail: 'NIH U.S. table avg.: 610 mg potassium per 1 medium baked potato (flesh only).' },
+    de: { label: 'KARTOFFEL', title: 'Ofenkartoffel aufschneiden und mit Bohnen oder Gemüse belegen.', detail: 'NIH-US-Tabellenmittel: 610 mg Kalium je 1 mittelgroße Ofenkartoffel (ohne Schale).' }
   },
   {
     id: 'banana-potassium', category: 'produce',
-    source: 'https://ods.od.nih.gov/factsheets/Potassium-HealthProfessional/',
-    en: { label: 'BANANA', title: 'One medium banana provides 422 mg of potassium.', detail: 'Bananas appear alongside dried apricots, prunes, and raisins in NIH’s list of potassium fruits.' },
-    de: { label: 'BANANE', title: 'Eine mittelgroße Banane liefert 422 mg Kalium.', detail: 'Bananen stehen neben Aprikosen, Pflaumen und Rosinen auf der NIH-Liste kaliumhaltiger Früchte.' }
+    source: 'https://blsdb.de/download',
+    en: { label: 'BANANA', title: 'Slice over toast or cereal as a quick breakfast topping', detail: 'MRI BLS 4.0 (F503100): 334 mg potassium per 100 g raw banana.' },
+    de: { label: 'BANANE', title: 'Für ein schnelles Frühstück auf Toast oder ins Müsli schneiden', detail: 'MRI BLS 4.0 (F503100): 334 mg Kalium je 100 g rohe Banane.' }
   },
   {
     id: 'spinach-folate', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/Folate-HealthProfessional/',
-    en: { label: 'SPINACH', title: '½ cup boiled spinach provides 131 mcg DFE of folate.', detail: 'Folate is a B vitamin the body needs to make DNA and other genetic material.' },
-    de: { label: 'SPINAT', title: '½ Tasse gekochter Spinat liefert 131 µg DFE Folat.', detail: 'Folat ist ein B-Vitamin, das der Körper zur Bildung von DNA und anderem Erbmaterial braucht.' }
+    en: { label: 'SPINACH', title: 'Stir the leaves through hot pasta just before serving', detail: 'NIH folate table lists: ½ cup boiled spinach.' },
+    de: { label: 'SPINAT', title: 'Die Blätter kurz vor dem Servieren unter heiße Pasta rühren', detail: 'NIH-Tabelle Folat: ½ Tasse gekochter Spinat.' }
   },
   {
     id: 'asparagus-folate', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/Folate-HealthProfessional/',
-    en: { label: 'ASPARAGUS', title: 'Four boiled asparagus spears provide 89 mcg DFE of folate.', detail: 'The body needs folate for cells to divide.' },
-    de: { label: 'SPARGEL', title: 'Vier gekochte Spargelstangen liefern 89 µg DFE Folat.', detail: 'Der Körper braucht Folat, damit sich Zellen teilen können.' }
+    en: { label: 'ASPARAGUS', title: 'Arrange beside potatoes or grains and serve with lemon', detail: 'NIH folate table lists: 4 boiled asparagus spears.' },
+    de: { label: 'SPARGEL', title: 'Zu Kartoffeln oder Getreide anrichten und mit Zitrone servieren', detail: 'NIH-Tabelle Folat: 4 gekochte Spargelstangen.' }
   },
   {
     id: 'romaine-folate', category: 'produce',
-    source: 'https://ods.od.nih.gov/factsheets/Folate-HealthProfessional/',
-    en: { label: 'ROMAINE', title: '1 cup shredded romaine lettuce provides 64 mcg DFE of folate.', detail: 'That is 16% of the 400 mcg DFE Daily Value for folate.' },
-    de: { label: 'RÖMERSALAT', title: '1 Tasse geschnittener Römersalat liefert 64 µg DFE Folat.', detail: 'Das sind 16 % des US-Tageswerts von 400 µg DFE Folat.' }
+    source: 'https://blsdb.de/download',
+    en: { label: 'ROMAINE', title: 'Use the large leaves as wraps for your favourite fillings', detail: 'MRI BLS 4.0 (G107100): 56.6 µg folate per 100 g raw romaine lettuce.' },
+    de: { label: 'RÖMERSALAT', title: 'Große Blätter als Wraps für deine Lieblingsfüllung nutzen', detail: 'MRI BLS 4.0 (G107100): 56,6 µg Folat je 100 g roher Römersalat.' }
   },
   {
     id: 'avocado-folate', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/Folate-HealthProfessional/',
-    en: { label: 'AVOCADO', title: '½ cup sliced raw avocado provides 59 mcg DFE of folate.', detail: 'Folate occurs naturally in foods; folic acid is the form added to fortified foods.' },
-    de: { label: 'AVOCADO', title: '½ Tasse Avocadoscheiben liefert 59 µg DFE Folat.', detail: 'Folat kommt natürlich in Lebensmitteln vor; Folsäure ist die Form, die angereicherten Produkten zugesetzt wird.' }
+    en: { label: 'AVOCADO', title: 'Season to taste and spread over toast or add to a sandwich', detail: 'NIH folate table lists: ½ cup sliced raw avocado.' },
+    de: { label: 'AVOCADO', title: 'Nach Geschmack würzen und auf Toast streichen oder ins Sandwich geben', detail: 'NIH-Tabelle Folat: ½ Tasse Avocadoscheiben.' }
   },
   {
     id: 'mustard-greens-folate', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/Folate-HealthProfessional/',
-    en: { label: 'MUSTARD GREENS', title: '½ cup boiled frozen mustard greens has 52 mcg DFE of folate.', detail: 'Dark green leafy vegetables are among the vegetables NIH highlights for natural folate.' },
-    de: { label: 'SENFKOHL', title: '½ Tasse gekochter TK-Senfkohl liefert 52 µg DFE Folat.', detail: 'Dunkelgrünes Blattgemüse gehört laut NIH zu den Gemüsen mit natürlichem Folat.' }
+    en: { label: 'MUSTARD GREENS', title: 'Serve with grains or stir into a bean dish before serving', detail: 'NIH folate table lists: ½ cup boiled frozen mustard greens.' },
+    de: { label: 'SENFKOHL', title: 'Zu Getreide servieren oder vor dem Anrichten in Bohnen rühren', detail: 'NIH-Tabelle Folat: ½ Tasse gekochter TK-Senfkohl.' }
   },
   {
     id: 'green-peas-folate', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/Folate-HealthProfessional/',
-    en: { label: 'GREEN PEAS', title: '½ cup boiled frozen green peas provides 47 mcg DFE of folate.', detail: 'DFE units account for the different absorption of food folate and added folic acid.' },
-    de: { label: 'ERBSEN', title: '½ Tasse gekochte TK-Erbsen liefert 47 µg DFE Folat.', detail: 'DFE-Einheiten berücksichtigen, dass Nahrungsfolat und zugesetzte Folsäure unterschiedlich aufgenommen werden.' }
+    en: { label: 'GREEN PEAS', title: 'Add near the end, warm through and serve', detail: 'NIH folate table lists: ½ cup boiled frozen green peas.' },
+    de: { label: 'ERBSEN', title: 'Gegen Ende dazugeben, erwärmen und servieren', detail: 'NIH-Tabelle Folat: ½ Tasse gekochte TK-Erbsen.' }
   },
   {
     id: 'papaya-folate', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/Folate-HealthProfessional/',
-    en: { label: 'PAPAYA', title: '½ cup cubed raw papaya provides 27 mcg DFE of folate.', detail: 'Fruits contribute folate too, alongside vegetables, beans, and nuts.' },
-    de: { label: 'PAPAYA', title: '½ Tasse rohe Papayawürfel liefert 27 µg DFE Folat.', detail: 'Auch Obst trägt zur Folatzufuhr bei – neben Gemüse, Bohnen und Nüssen.' }
+    en: { label: 'PAPAYA', title: 'Serve chilled or spoon over yoghurt at breakfast', detail: 'NIH folate table lists: ½ cup cubed raw papaya.' },
+    de: { label: 'PAPAYA', title: 'Gekühlt servieren oder zum Frühstück über Joghurt geben', detail: 'NIH-Tabelle Folat: ½ Tasse rohe Papayawürfel.' }
   },
   {
     id: 'collards-vitamin-k', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminK-HealthProfessional/',
-    en: { label: 'COLLARDS', title: '½ cup boiled frozen collards provides 530 mcg of vitamin K.', detail: 'Vitamin K is important for blood clotting and healthy bones.' },
-    de: { label: 'BLATTKOHL', title: '½ Tasse gekochter TK-Blattkohl liefert 530 µg Vitamin K.', detail: 'Vitamin K ist wichtig für die Blutgerinnung und gesunde Knochen.' }
+    en: { label: 'COLLARDS', title: 'Spoon alongside grains or beans for an easy plate', detail: 'NIH U.S. table avg.: 530 µg vitamin K per ½ cup boiled frozen collards.' },
+    de: { label: 'BLATTKOHL', title: 'Als einfache Kombination neben Getreide oder Bohnen anrichten', detail: 'NIH-US-Tabellenmittel: 530 µg Vitamin K je ½ Tasse gekochter TK-Blattkohl.' }
   },
   {
     id: 'turnip-greens-vitamin-k', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminK-HealthProfessional/',
-    en: { label: 'TURNIP GREENS', title: '½ cup boiled frozen turnip greens has 426 mcg of vitamin K.', detail: 'People taking warfarin are advised to keep their vitamin K intake consistent from day to day.' },
-    de: { label: 'RÜBSTIEL', title: '½ Tasse gekochter TK-Rübstiel liefert 426 µg Vitamin K.', detail: 'Wer Warfarin einnimmt, sollte täglich etwa gleich viel Vitamin K aufnehmen.' }
+    en: { label: 'TURNIP GREENS', title: 'Serve as a side with potatoes, grains or beans', detail: 'NIH U.S. table avg.: 426 µg vitamin K per ½ cup boiled frozen turnip greens.' },
+    de: { label: 'RÜBSTIEL', title: 'Als Beilage zu Kartoffeln, Getreide oder Bohnen anrichten', detail: 'NIH-US-Tabellenmittel: 426 µg Vitamin K je ½ Tasse gekochter TK-Rübstiel.' }
   },
   {
     id: 'kale-vitamin-k', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminK-HealthProfessional/',
-    en: { label: 'KALE', title: '1 cup raw kale provides 113 mcg of vitamin K.', detail: 'That equals 94% of the 120 mcg Daily Value for vitamin K.' },
-    de: { label: 'GRÜNKOHL', title: '1 Tasse roher Grünkohl liefert 113 µg Vitamin K.', detail: 'Das entspricht 94 % des US-Tageswerts von 120 µg Vitamin K.' }
+    en: { label: 'KALE', title: 'Toss the ribbons with dressing, then add your favorite toppings', detail: 'NIH U.S. table avg.: 113 µg vitamin K per 1 cup raw kale.' },
+    de: { label: 'GRÜNKOHL', title: 'Die Streifen mit Dressing vermengen und nach Wunsch garnieren', detail: 'NIH-US-Tabellenmittel: 113 µg Vitamin K je 1 Tasse roher Grünkohl.' }
   },
   {
     id: 'blueberries-vitamin-k', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminK-HealthProfessional/',
-    en: { label: 'BLUEBERRIES', title: '½ cup raw blueberries provides 14 mcg of vitamin K.', detail: 'NIH lists blueberries and figs among the fruits that supply vitamin K.' },
-    de: { label: 'HEIDELBEEREN', title: '½ Tasse rohe Heidelbeeren liefert 14 µg Vitamin K.', detail: 'Das NIH nennt Heidelbeeren und Feigen unter den Früchten, die Vitamin K liefern.' }
+    en: { label: 'BLUEBERRIES', title: 'Add to cereal, yoghurt or porridge just before serving', detail: 'NIH U.S. table avg.: 14 µg vitamin K per ½ cup raw blueberries.' },
+    de: { label: 'HEIDELBEEREN', title: 'Kurz vor dem Servieren ins Müsli, in Joghurt oder Porridge geben', detail: 'NIH-US-Tabellenmittel: 14 µg Vitamin K je ½ Tasse rohe Heidelbeeren.' }
   },
   {
     id: 'kale-calcium', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/Calcium-HealthProfessional/',
-    en: { label: 'KALE', title: '1 cup cooked fresh kale provides 94 mg of calcium.', detail: 'Calcium is needed for muscles to move and for nerves to carry messages.' },
-    de: { label: 'GRÜNKOHL', title: '1 Tasse gegarter frischer Grünkohl liefert 94 mg Calcium.', detail: 'Calcium wird für Muskelbewegungen und die Signalübertragung der Nerven benötigt.' }
+    en: { label: 'KALE', title: 'Pair the greens with grains and dressing for an easy lunch', detail: 'NIH U.S. table avg.: 94 mg calcium per 1 cup cooked fresh kale.' },
+    de: { label: 'GRÜNKOHL', title: 'Mit Getreide und Dressing zu einem einfachen Mittagessen kombinieren', detail: 'NIH-US-Tabellenmittel: 94 mg Calcium je 1 Tasse gegarter frischer Grünkohl.' }
   },
   {
     id: 'bok-choy-calcium', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/Calcium-HealthProfessional/',
-    en: { label: 'BOK CHOY', title: '1 cup shredded raw bok choy provides 74 mg of calcium.', detail: 'Almost all calcium in the body is stored in bones and teeth, giving them structure.' },
-    de: { label: 'PAK CHOI', title: '1 Tasse roher, geschnittener Pak Choi liefert 74 mg Calcium.', detail: 'Fast das gesamte Calcium im Körper steckt in Knochen und Zähnen und gibt ihnen Struktur.' }
+    en: { label: 'BOK CHOY', title: 'Keep pieces bite-size and serve with rice or noodles', detail: 'NIH U.S. table avg.: 74 mg calcium per 1 cup shredded raw bok choy.' },
+    de: { label: 'PAK CHOI', title: 'Mundgerecht schneiden und mit Reis oder Nudeln servieren', detail: 'NIH-US-Tabellenmittel: 74 mg Calcium je 1 Tasse roher, geschnittener Pak Choi.' }
   },
   {
     id: 'pineapple-manganese', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/Manganese-HealthProfessional/',
-    en: { label: 'PINEAPPLE', title: '½ cup raw pineapple chunks provides 0.8 mg of manganese.', detail: 'That is 35% of the 2.3 mg Daily Value; manganese is a cofactor for many enzymes.' },
-    de: { label: 'ANANAS', title: '½ Tasse rohe Ananasstücke liefert 0,8 mg Mangan.', detail: 'Das sind 35 % des US-Tageswerts von 2,3 mg; Mangan ist Cofaktor vieler Enzyme.' }
+    en: { label: 'PINEAPPLE', title: 'Serve chilled or pair with yoghurt for a sweet bite', detail: 'NIH U.S. table avg.: 0.8 mg manganese per ½ cup raw pineapple chunks.' },
+    de: { label: 'ANANAS', title: 'Gekühlt oder mit Joghurt als süßen Snack reichen', detail: 'NIH-US-Tabellenmittel: 0,8 mg Mangan je ½ Tasse rohe Ananasstücke.' }
   },
   {
     id: 'avocado-copper', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/Copper-HealthProfessional/',
-    en: { label: 'AVOCADO', title: '½ cup raw avocado provides 219 mcg of copper.', detail: 'Copper helps the body make energy, connective tissues, and blood vessels.' },
-    de: { label: 'AVOCADO', title: '½ Tasse rohe Avocado liefert 219 µg Kupfer.', detail: 'Kupfer hilft dem Körper, Energie, Bindegewebe und Blutgefäße zu bilden.' }
+    en: { label: 'AVOCADO', title: 'Mash or slice and layer with other sandwich ingredients', detail: 'NIH U.S. table avg.: 219 µg copper per ½ cup raw avocado.' },
+    de: { label: 'AVOCADO', title: 'Zerdrücken oder in Scheiben mit weiteren Zutaten ins Sandwich legen', detail: 'NIH-US-Tabellenmittel: 219 µg Kupfer je ½ Tasse rohe Avocado.' }
   },
   {
     id: 'banana-vitamin-b6', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/VitaminB6-HealthProfessional/',
-    en: { label: 'BANANA', title: 'One medium banana provides 0.4 mg of vitamin B6.', detail: 'Vitamin B6 takes part in more than 100 enzyme reactions, mostly in protein metabolism.' },
-    de: { label: 'BANANE', title: 'Eine mittelgroße Banane liefert 0,4 mg Vitamin B6.', detail: 'Vitamin B6 ist an über 100 Enzymreaktionen beteiligt, vor allem im Eiweißstoffwechsel.' }
+    en: { label: 'BANANA', title: 'Add to porridge or yoghurt, or enjoy as a cold snack', detail: 'NIH U.S. table avg.: 0.4 mg vitamin B6 per 1 medium banana.' },
+    de: { label: 'BANANE', title: 'In Porridge oder Joghurt geben oder als kalten Snack genießen', detail: 'NIH-US-Tabellenmittel: 0,4 mg Vitamin B6 je 1 mittelgroße Banane.' }
   },
   {
     id: 'spinach-iron', category: 'produce',
     source: 'https://ods.od.nih.gov/factsheets/Iron-HealthProfessional/',
-    en: { label: 'SPINACH', title: '½ cup boiled spinach provides 3 mg of iron.', detail: 'This is nonheme iron; eating it with vitamin C foods improves how much the body absorbs.' },
-    de: { label: 'SPINAT', title: '½ Tasse gekochter Spinat liefert 3 mg Eisen.', detail: 'Es ist Nicht-Häm-Eisen; zusammen mit Vitamin-C-Lebensmitteln nimmt der Körper mehr davon auf.' }
+    en: { label: 'SPINACH', title: 'Serve cooked spinach with pepper or citrus alongside', detail: 'NIH U.S. table avg.: 3 mg iron per ½ cup boiled spinach.' },
+    de: { label: 'SPINAT', title: 'Gegarten Spinat mit Paprika oder Zitrusfrucht servieren', detail: 'NIH-US-Tabellenmittel: 3 mg Eisen je ½ Tasse gekochter Spinat.' }
   },
 
   // ---------- LEGUMES ----------
   {
     id: 'lentils-potassium', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Potassium-HealthProfessional/',
-    en: { label: 'LENTILS', title: '1 cup cooked lentils provides 731 mg of potassium.', detail: 'That is 16% of the Daily Value for a mineral many U.S. diets fall short on.' },
-    de: { label: 'LINSEN', title: '1 Tasse gekochte Linsen liefert 731 mg Kalium.', detail: 'Das sind 16 % des US-Tageswerts für einen Mineralstoff, von dem viele in den USA zu wenig aufnehmen.' }
+    en: { label: 'LENTILS', title: 'Add lentils to soup, salad or a grain bowl.', detail: 'NIH U.S. table avg.: 731 mg potassium per 1 cup cooked lentils.' },
+    de: { label: 'LINSEN', title: 'Linsen in Suppe, Salat oder eine Getreide-Bowl geben.', detail: 'NIH-US-Tabellenmittel: 731 mg Kalium je 1 Tasse gekochte Linsen.' }
   },
   {
     id: 'lentils-iron', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Iron-HealthProfessional/',
-    en: { label: 'LENTILS', title: '½ cup boiled lentils provides 3 mg of iron.', detail: 'Iron helps make hemoglobin, the protein in red blood cells that carries oxygen.' },
-    de: { label: 'LINSEN', title: '½ Tasse gekochte Linsen liefert 3 mg Eisen.', detail: 'Eisen wird für Hämoglobin gebraucht, das Protein in roten Blutkörperchen, das Sauerstoff transportiert.' }
+    en: { label: 'LENTILS', title: 'Spoon cooked lentils over grains and finish with chopped vegetables', detail: 'NIH U.S. table avg.: 3 mg iron per ½ cup boiled lentils.' },
+    de: { label: 'LINSEN', title: 'Gekochte Linsen auf Getreide geben und mit gehacktem Gemüse ergänzen', detail: 'NIH-US-Tabellenmittel: 3 mg Eisen je ½ Tasse gekochte Linsen.' }
   },
   {
     id: 'lentils-zinc', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Zinc-HealthProfessional/',
-    en: { label: 'LENTILS', title: '½ cup boiled lentils provides 1.3 mg of zinc.', detail: 'Zinc supports immune function, protein and DNA synthesis, and wound healing.' },
-    de: { label: 'LINSEN', title: '½ Tasse gekochte Linsen liefert 1,3 mg Zink.', detail: 'Zink unterstützt das Immunsystem, den Aufbau von Proteinen und DNA sowie die Wundheilung.' }
+    en: { label: 'LENTILS', title: 'Add broth and vegetables, then warm through for a simple meal', detail: 'NIH U.S. table avg.: 1.3 mg zinc per ½ cup boiled lentils.' },
+    de: { label: 'LINSEN', title: 'Brühe und Gemüse dazugeben und für eine einfache Mahlzeit erwärmen', detail: 'NIH-US-Tabellenmittel: 1,3 mg Zink je ½ Tasse gekochte Linsen.' }
   },
   {
     id: 'white-beans-iron', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Iron-HealthProfessional/',
-    en: { label: 'WHITE BEANS', title: '1 cup canned white beans provides 8 mg of iron.', detail: 'That is 44% of the 18 mg Daily Value for iron.' },
-    de: { label: 'WEISSE BOHNEN', title: '1 Tasse weiße Bohnen (Dose) liefert 8 mg Eisen.', detail: 'Das sind 44 % des US-Tageswerts von 18 mg Eisen.' }
+    en: { label: 'WHITE BEANS', title: 'Add white beans to salad or mash for a spread.', detail: 'NIH U.S. table avg.: 8 mg iron per 1 cup canned white beans.' },
+    de: { label: 'WEISSE BOHNEN', title: 'Weiße Bohnen in Salat geben oder als Aufstrich zerdrücken.', detail: 'NIH-US-Tabellenmittel: 8 mg Eisen je 1 Tasse weiße Bohnen (Dose).' }
   },
   {
     id: 'kidney-beans-potassium', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Potassium-HealthProfessional/',
-    en: { label: 'KIDNEY BEANS', title: '1 cup canned kidney beans provides 607 mg of potassium.', detail: 'Potassium is a mineral the body uses for heart, kidney, muscle, and nerve function.' },
-    de: { label: 'KIDNEYBOHNEN', title: '1 Tasse Kidneybohnen (Dose) liefert 607 mg Kalium.', detail: 'Kalium braucht der Körper für die Funktion von Herz, Nieren, Muskeln und Nerven.' }
+    en: { label: 'KIDNEY BEANS', title: 'Combine with grains and chopped vegetables for lunch', detail: 'NIH U.S. table avg.: 607 mg potassium per 1 cup canned kidney beans.' },
+    de: { label: 'KIDNEYBOHNEN', title: 'Mit Getreide und gehacktem Gemüse zum Mittagessen kombinieren', detail: 'NIH-US-Tabellenmittel: 607 mg Kalium je 1 Tasse Kidneybohnen (Dose).' }
   },
   {
     id: 'kidney-beans-folate', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Folate-HealthProfessional/',
-    en: { label: 'KIDNEY BEANS', title: '½ cup canned kidney beans provides 46 mcg DFE of folate.', detail: 'NIH lists beans and peas among the foods in which folate is naturally present.' },
-    de: { label: 'KIDNEYBOHNEN', title: '½ Tasse Kidneybohnen (Dose) liefert 46 µg DFE Folat.', detail: 'Das NIH zählt Bohnen und Erbsen zu den Lebensmitteln mit natürlich enthaltenem Folat.' }
+    en: { label: 'KIDNEY BEANS', title: 'Mix drained beans with chopped vegetables and chill until serving', detail: 'NIH folate table lists: ½ cup canned kidney beans.' },
+    de: { label: 'KIDNEYBOHNEN', title: 'Abgetropfte Bohnen mit Gemüse mischen und bis zum Servieren kühlen', detail: 'NIH-Tabelle Folat: ½ Tasse Kidneybohnen (Dose).' }
   },
   {
     id: 'black-beans-magnesium', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/',
-    en: { label: 'BLACK BEANS', title: '½ cup cooked black beans provides 60 mg of magnesium.', detail: 'Magnesium is needed to make protein, bone, and DNA.' },
-    de: { label: 'SCHWARZE BOHNEN', title: '½ Tasse gekochte schwarze Bohnen liefert 60 mg Magnesium.', detail: 'Magnesium wird für den Aufbau von Proteinen, Knochen und DNA benötigt.' }
+    en: { label: 'BLACK BEANS', title: 'Spoon into tortillas and add crunchy vegetables to finish', detail: 'NIH U.S. table avg.: 60 mg magnesium per ½ cup cooked black beans.' },
+    de: { label: 'SCHWARZE BOHNEN', title: 'In Tortillas geben und mit knackigem Gemüse ergänzen', detail: 'NIH-US-Tabellenmittel: 60 mg Magnesium je ½ Tasse gekochte schwarze Bohnen.' }
   },
   {
     id: 'black-beans-thiamin', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Thiamin-HealthProfessional/',
-    en: { label: 'BLACK BEANS', title: '½ cup boiled black beans provides 0.4 mg of thiamin.', detail: 'That is 33% of the Daily Value for thiamin (vitamin B1), which helps turn food into energy.' },
-    de: { label: 'SCHWARZE BOHNEN', title: '½ Tasse gekochte schwarze Bohnen liefert 0,4 mg Thiamin.', detail: 'Das sind 33 % des US-Tageswerts für Thiamin (Vitamin B1), das hilft, Nahrung in Energie umzuwandeln.' }
+    en: { label: 'BLACK BEANS', title: 'Top cooked rice with beans and a spoonful of salsa', detail: 'NIH U.S. table avg.: 0.4 mg thiamin per ½ cup boiled black beans.' },
+    de: { label: 'SCHWARZE BOHNEN', title: 'Gekochten Reis mit Bohnen und einem Löffel Salsa garnieren', detail: 'NIH-US-Tabellenmittel: 0,4 mg Thiamin je ½ Tasse gekochte schwarze Bohnen.' }
   },
   {
     id: 'black-eyed-peas-folate', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Folate-HealthProfessional/',
-    en: { label: 'BLACK-EYED PEAS', title: '½ cup boiled black-eyed peas provides 105 mcg DFE of folate.', detail: 'That covers 26% of the Daily Value for folate.' },
-    de: { label: 'AUGENBOHNEN', title: '½ Tasse gekochte Augenbohnen liefert 105 µg DFE Folat.', detail: 'Das deckt 26 % des US-Tageswerts für Folat.' }
+    en: { label: 'BLACK-EYED PEAS', title: 'Combine with cooked grains and chopped herbs before serving', detail: 'NIH folate table lists: ½ cup boiled black-eyed peas.' },
+    de: { label: 'AUGENBOHNEN', title: 'Vor dem Servieren mit Getreide und gehackten Kräutern kombinieren', detail: 'NIH-Tabelle Folat: ½ Tasse gekochte Augenbohnen.' }
   },
   {
     id: 'chickpeas-vitamin-b6', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/VitaminB6-HealthProfessional/',
-    en: { label: 'CHICKPEAS', title: '1 cup canned chickpeas provides 1.1 mg of vitamin B6.', detail: 'That is 65% of the 1.7 mg Daily Value for vitamin B6.' },
-    de: { label: 'KICHERERBSEN', title: '1 Tasse Kichererbsen (Dose) liefert 1,1 mg Vitamin B6.', detail: 'Das sind 65 % des US-Tageswerts von 1,7 mg Vitamin B6.' }
+    en: { label: 'CHICKPEAS', title: 'Rinse and add to a salad, wrap or grain bowl', detail: 'NIH U.S. table avg.: 1.1 mg vitamin B6 per 1 cup canned chickpeas.' },
+    de: { label: 'KICHERERBSEN', title: 'Abspülen und in Salat, Wrap oder Getreide-Bowl geben', detail: 'NIH-US-Tabellenmittel: 1,1 mg Vitamin B6 je 1 Tasse Kichererbsen (Dose).' }
   },
   {
     id: 'chickpeas-manganese', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Manganese-HealthProfessional/',
-    en: { label: 'CHICKPEAS', title: '½ cup cooked chickpeas provides 0.9 mg of manganese.', detail: 'Manganese helps the body metabolize amino acids, glucose, and carbohydrates.' },
-    de: { label: 'KICHERERBSEN', title: '½ Tasse gekochte Kichererbsen liefert 0,9 mg Mangan.', detail: 'Mangan hilft dem Körper beim Stoffwechsel von Aminosäuren, Glukose und Kohlenhydraten.' }
+    en: { label: 'CHICKPEAS', title: 'Rinse, drain and toss into salad with chopped vegetables', detail: 'NIH U.S. table avg.: 0.9 mg manganese per ½ cup cooked chickpeas.' },
+    de: { label: 'KICHERERBSEN', title: 'Abspülen, abtropfen lassen und mit gehacktem Gemüse in den Salat geben', detail: 'NIH-US-Tabellenmittel: 0,9 mg Mangan je ½ Tasse gekochte Kichererbsen.' }
   },
   {
     id: 'chickpeas-copper', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Copper-HealthProfessional/',
-    en: { label: 'CHICKPEAS', title: '½ cup chickpeas provides 289 mcg of copper.', detail: 'That is 32% of the 900 mcg Daily Value for copper.' },
-    de: { label: 'KICHERERBSEN', title: '½ Tasse Kichererbsen liefert 289 µg Kupfer.', detail: 'Das sind 32 % des US-Tageswerts von 900 µg Kupfer.' }
+    en: { label: 'CHICKPEAS', title: 'Season and spread onto bread or fill a wrap', detail: 'NIH U.S. table avg.: 289 µg copper per ½ cup chickpeas.' },
+    de: { label: 'KICHERERBSEN', title: 'Würzen und auf Brot streichen oder in einen Wrap füllen', detail: 'NIH-US-Tabellenmittel: 289 µg Kupfer je ½ Tasse Kichererbsen.' }
   },
   {
     id: 'soybeans-potassium', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Potassium-HealthProfessional/',
-    en: { label: 'SOYBEANS', title: '½ cup boiled mature soybeans provides 443 mg of potassium.', detail: 'NIH names soybeans with lentils and kidney beans as legume sources of potassium.' },
-    de: { label: 'SOJABOHNEN', title: '½ Tasse gekochte reife Sojabohnen liefert 443 mg Kalium.', detail: 'Das NIH nennt Sojabohnen neben Linsen und Kidneybohnen als kaliumhaltige Hülsenfrüchte.' }
+    en: { label: 'SOYBEANS', title: 'Add to grains and vegetables for lunch or a side', detail: 'NIH U.S. table avg.: 443 mg potassium per ½ cup boiled mature soybeans.' },
+    de: { label: 'SOJABOHNEN', title: 'Für Mittagessen oder Beilage mit Getreide und Gemüse kombinieren', detail: 'NIH-US-Tabellenmittel: 443 mg Kalium je ½ Tasse gekochte reife Sojabohnen.' }
   },
   {
     id: 'soybeans-calcium', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Calcium-HealthProfessional/',
-    en: { label: 'SOYBEANS', title: '½ cup cooked soybeans provides 131 mg of calcium.', detail: 'Calcium also helps blood vessels move blood and helps release hormones.' },
-    de: { label: 'SOJABOHNEN', title: '½ Tasse gekochte Sojabohnen liefert 131 mg Calcium.', detail: 'Calcium hilft auch den Blutgefäßen beim Bluttransport und bei der Freisetzung von Hormonen.' }
+    en: { label: 'SOYBEANS', title: 'Spoon into a salad or combine with cooked grains', detail: 'NIH U.S. table avg.: 131 mg calcium per ½ cup cooked soybeans.' },
+    de: { label: 'SOJABOHNEN', title: 'In Salat füllen oder mit gekochtem Getreide kombinieren', detail: 'NIH-US-Tabellenmittel: 131 mg Calcium je ½ Tasse gekochte Sojabohnen.' }
   },
   {
     id: 'tofu-calcium', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Calcium-HealthProfessional/',
-    en: { label: 'TOFU', title: '½ cup firm tofu made with calcium sulfate has 253 mg calcium.', detail: 'Calcium content depends on how tofu is made, so check the label for calcium sulfate.' },
-    de: { label: 'TOFU', title: '½ Tasse fester Tofu mit Calciumsulfat liefert 253 mg Calcium.', detail: 'Der Calciumgehalt hängt von der Herstellung ab – achten Sie auf Calciumsulfat auf dem Etikett.' }
+    en: { label: 'TOFU', title: 'Look for calcium sulfate in the ingredients, then use in a stir-fry', detail: 'NIH U.S. table avg.: 253 mg calcium per ½ cup firm tofu made with calcium sulfate.' },
+    de: { label: 'TOFU', title: 'Der Calciumgehalt hängt von der Herstellung ab; Zutatenliste prüfen', detail: 'NIH-US-Tabellenmittel: 253 mg Calcium je ½ Tasse fester Tofu mit Calciumsulfat.' }
   },
   {
     id: 'tofu-iron', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Iron-HealthProfessional/',
-    en: { label: 'TOFU', title: '½ cup firm tofu provides 3 mg of iron.', detail: 'Iron is also used to make myoglobin, a protein that provides oxygen to muscles.' },
-    de: { label: 'TOFU', title: '½ Tasse fester Tofu liefert 3 mg Eisen.', detail: 'Eisen wird auch für Myoglobin gebraucht, ein Protein, das die Muskeln mit Sauerstoff versorgt.' }
+    en: { label: 'TOFU', title: 'Serve tofu cubes with vegetables and rice or noodles.', detail: 'NIH U.S. table avg.: 3 mg iron per ½ cup firm tofu.' },
+    de: { label: 'TOFU', title: 'Tofuwürfel mit Gemüse und Reis oder Nudeln servieren.', detail: 'NIH-US-Tabellenmittel: 3 mg Eisen je ½ Tasse fester Tofu.' }
   },
   {
     id: 'tofu-copper', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Copper-HealthProfessional/',
-    en: { label: 'TOFU', title: '½ cup raw firm tofu provides 476 mcg of copper.', detail: 'Copper helps maintain the nervous system and the immune system.' },
-    de: { label: 'TOFU', title: '½ Tasse roher fester Tofu liefert 476 µg Kupfer.', detail: 'Kupfer trägt zum Erhalt von Nervensystem und Immunsystem bei.' }
+    en: { label: 'TOFU', title: 'Slice and add to bread with crunchy vegetables and a spread', detail: 'NIH U.S. table avg.: 476 µg copper per ½ cup raw firm tofu.' },
+    de: { label: 'TOFU', title: 'In Scheiben mit knackigem Gemüse und Aufstrich aufs Brot legen', detail: 'NIH-US-Tabellenmittel: 476 µg Kupfer je ½ Tasse roher fester Tofu.' }
   },
   {
     id: 'edamame-magnesium', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/',
-    en: { label: 'EDAMAME', title: '½ cup shelled cooked edamame provides 50 mg of magnesium.', detail: 'Magnesium helps regulate blood sugar levels and blood pressure.' },
-    de: { label: 'EDAMAME', title: '½ Tasse gegarte, geschälte Edamame liefert 50 mg Magnesium.', detail: 'Magnesium hilft, Blutzuckerspiegel und Blutdruck zu regulieren.' }
+    en: { label: 'EDAMAME', title: 'Add prepared beans to a rice bowl or serve in a small dish', detail: 'NIH U.S. table avg.: 50 mg magnesium per ½ cup shelled cooked edamame.' },
+    de: { label: 'EDAMAME', title: 'Zubereitete Bohnen in eine Reisschale geben oder separat reichen', detail: 'NIH-US-Tabellenmittel: 50 mg Magnesium je ½ Tasse gegarte, geschälte Edamame.' }
   },
   {
     id: 'edamame-ala', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/',
-    en: { label: 'EDAMAME', title: '½ cup prepared edamame provides 0.28 g of omega-3 ALA.', detail: 'ALA is the plant omega-3; the body converts only very small amounts of it into EPA and DHA.' },
-    de: { label: 'EDAMAME', title: '½ Tasse zubereitete Edamame liefert 0,28 g Omega-3-ALA.', detail: 'ALA ist das pflanzliche Omega-3; der Körper wandelt nur sehr wenig davon in EPA und DHA um.' }
+    en: { label: 'EDAMAME', title: 'Combine with grains and vegetables for a quick meal', detail: 'NIH U.S. table avg.: 0.28 g omega-3 ALA per ½ cup prepared edamame.' },
+    de: { label: 'EDAMAME', title: 'Für eine schnelle Mahlzeit mit Getreide und Gemüse kombinieren', detail: 'NIH-US-Tabellenmittel: 0,28 g Omega-3-ALA je ½ Tasse zubereitete Edamame.' }
   },
   {
     id: 'natto-vitamin-k', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/VitaminK-HealthProfessional/',
-    en: { label: 'NATTO', title: '3 oz natto provides 850 mcg of vitamin K as MK-7.', detail: 'Natto is fermented soybeans; its vitamin K is mainly menaquinone-7, a form of vitamin K2.' },
-    de: { label: 'NATTO', title: '85 g Natto liefern 850 µg Vitamin K als MK-7.', detail: 'Natto sind fermentierte Sojabohnen; ihr Vitamin K ist vor allem Menachinon-7, eine Form von Vitamin K2.' }
+    en: { label: 'NATTO', title: 'Spoon over rice and add accompaniments you usually enjoy', detail: 'NIH U.S. table avg.: 850 µg vitamin K per 3 oz natto.' },
+    de: { label: 'NATTO', title: 'Über Reis geben und mit den üblichen Beilagen servieren', detail: 'NIH-US-Tabellenmittel: 850 µg Vitamin K je 85 g Natto.' }
   },
   {
     id: 'peanuts-folate', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Folate-HealthProfessional/',
-    en: { label: 'PEANUTS', title: '1 oz dry-roasted peanuts provides 27 mcg DFE of folate.', detail: 'Peanuts are legumes, and NIH lists them among nut and bean sources of folate.' },
-    de: { label: 'ERDNÜSSE', title: '28 g trocken geröstete Erdnüsse liefern 27 µg DFE Folat.', detail: 'Erdnüsse sind Hülsenfrüchte; das NIH führt sie unter den Nuss- und Bohnenquellen für Folat.' }
+    en: { label: 'PEANUTS', title: 'Portion into a small container or sprinkle over noodles', detail: 'NIH folate table lists: 1 oz dry-roasted peanuts.' },
+    de: { label: 'ERDNÜSSE', title: 'In eine kleine Dose füllen oder über Nudeln streuen', detail: 'NIH-Tabelle Folat: 28 g trocken geröstete Erdnüsse.' }
   },
   {
     id: 'peanuts-vitamin-e', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/VitaminE-HealthProfessional/',
-    en: { label: 'PEANUTS', title: '1 oz dry-roasted peanuts provides 2.2 mg of vitamin E.', detail: 'Vitamin E is fat-soluble and acts as an antioxidant in the body.' },
-    de: { label: 'ERDNÜSSE', title: '28 g trocken geröstete Erdnüsse liefern 2,2 mg Vitamin E.', detail: 'Vitamin E ist fettlöslich und wirkt im Körper als Antioxidans.' }
+    en: { label: 'PEANUTS', title: 'Chop and scatter over oats or yoghurt for crunch', detail: 'NIH U.S. table avg.: 2.2 mg vitamin E per 1 oz dry-roasted peanuts.' },
+    de: { label: 'ERDNÜSSE', title: 'Hacken und für etwas Biss über Haferflocken oder Joghurt streuen', detail: 'NIH-US-Tabellenmittel: 2,2 mg Vitamin E je 28 g trocken geröstete Erdnüsse.' }
   },
   {
     id: 'pinto-beans-calcium', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Calcium-HealthProfessional/',
-    en: { label: 'PINTO BEANS', title: '½ cup canned, drained pinto beans provides 54 mg of calcium.', detail: 'That is 4% of the Daily Value for calcium.' },
-    de: { label: 'PINTOBOHNEN', title: '½ Tasse abgetropfte Pintobohnen (Dose) liefert 54 mg Calcium.', detail: 'Das sind 4 % des US-Tageswerts für Calcium.' }
+    en: { label: 'PINTO BEANS', title: 'Pair with chopped vegetables and a familiar sauce', detail: 'NIH U.S. table avg.: 54 mg calcium per ½ cup canned, drained pinto beans.' },
+    de: { label: 'PINTOBOHNEN', title: 'Mit gehacktem Gemüse und einer vertrauten Sauce kombinieren', detail: 'NIH-US-Tabellenmittel: 54 mg Calcium je ½ Tasse abgetropfte Pintobohnen (Dose).' }
   },
   {
     id: 'baked-beans-selenium', category: 'legumes',
     source: 'https://ods.od.nih.gov/factsheets/Selenium-HealthProfessional/',
-    en: { label: 'BAKED BEANS', title: '1 cup canned vegetarian baked beans has 13 mcg of selenium.', detail: 'Selenium is important for reproduction, thyroid hormone metabolism, and DNA synthesis.' },
-    de: { label: 'BAKED BEANS', title: '1 Tasse vegetarische Baked Beans (Dose) hat 13 µg Selen.', detail: 'Selen ist wichtig für Fortpflanzung, Schilddrüsenhormon-Stoffwechsel und DNA-Synthese.' }
+    en: { label: 'BAKED BEANS', title: 'Warm according to the pack instructions and spoon over toast', detail: 'NIH U.S. table avg.: 13 µg selenium per 1 cup canned vegetarian baked beans.' },
+    de: { label: 'BAKED BEANS', title: 'Nach Packungsangabe erwärmen und auf Toast geben', detail: 'NIH-US-Tabellenmittel: 13 µg Selen je 1 Tasse vegetarische Baked Beans (Dose).' }
   },
 
   // ---------- GRAINS ----------
   {
     id: 'brown-rice-magnesium', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/',
-    en: { label: 'BROWN RICE', title: '½ cup cooked brown rice provides 42 mg of magnesium.', detail: 'The same amount of cooked white rice provides 10 mg, as refining removes magnesium-rich germ and bran.' },
-    de: { label: 'NATURREIS', title: '½ Tasse gekochter Naturreis liefert 42 mg Magnesium.', detail: 'Weißer Reis liefert 10 mg, da beim Raffinieren der magnesiumreiche Keim und die Kleie entfernt werden.' }
+    en: { label: 'BROWN RICE', title: 'Serve with beans or vegetables for an easy bowl', detail: 'NIH U.S. table avg.: 42 mg magnesium per ½ cup cooked brown rice.' },
+    de: { label: 'NATURREIS', title: 'Mit Bohnen oder Gemüse zu einer einfachen Bowl servieren', detail: 'NIH-US-Tabellenmittel: 42 mg Magnesium je ½ Tasse gekochter Naturreis.' }
   },
   {
     id: 'brown-rice-manganese', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Manganese-HealthProfessional/',
-    en: { label: 'BROWN RICE', title: '½ cup cooked brown rice provides 1.1 mg of manganese.', detail: 'That is 48% of the Daily Value; manganese plays a role in bone formation.' },
-    de: { label: 'NATURREIS', title: '½ Tasse gekochter Naturreis liefert 1,1 mg Mangan.', detail: 'Das sind 48 % des US-Tageswerts; Mangan spielt eine Rolle bei der Knochenbildung.' }
+    en: { label: 'BROWN RICE', title: 'Top with beans and vegetables for an adaptable lunch bowl', detail: 'NIH U.S. table avg.: 1.1 mg manganese per ½ cup cooked brown rice.' },
+    de: { label: 'NATURREIS', title: 'Für eine vielseitige Lunch-Bowl mit Bohnen und Gemüse belegen', detail: 'NIH-US-Tabellenmittel: 1,1 mg Mangan je ½ Tasse gekochter Naturreis.' }
   },
   {
     id: 'brown-rice-selenium', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Selenium-HealthProfessional/',
-    en: { label: 'BROWN RICE', title: '1 cup cooked long-grain brown rice has 12 mcg of selenium.', detail: 'Selenium levels in grains vary with the selenium content of the soil where they grow.' },
-    de: { label: 'NATURREIS', title: '1 Tasse gekochter Langkorn-Naturreis hat 12 µg Selen.', detail: 'Der Selengehalt von Getreide hängt vom Selengehalt des Bodens ab, auf dem es wächst.' }
+    en: { label: 'BROWN RICE', title: 'Cook according to pack directions and use as a simple side', detail: 'NIH U.S. table avg.: 12 µg selenium per 1 cup cooked long-grain brown rice.' },
+    de: { label: 'NATURREIS', title: 'Nach Packungsangabe garen und als einfache Beilage verwenden', detail: 'NIH-US-Tabellenmittel: 12 µg Selen je 1 Tasse gekochter Langkorn-Naturreis.' }
   },
   {
     id: 'brown-rice-thiamin', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Thiamin-HealthProfessional/',
-    en: { label: 'BROWN RICE', title: '½ cup cooked unenriched brown rice has 0.2 mg of thiamin.', detail: 'Thiamin is naturally present in whole grains and is added to many enriched grain products.' },
-    de: { label: 'NATURREIS', title: '½ Tasse gekochter, nicht angereicherter Naturreis hat 0,2 mg Thiamin.', detail: 'Thiamin steckt natürlich in Vollkorn und wird vielen angereicherten Getreideprodukten zugesetzt.' }
+    en: { label: 'BROWN RICE', title: 'Portion the cooked rice to pair with vegetables or beans', detail: 'NIH U.S. table avg.: 0.2 mg thiamin per ½ cup cooked unenriched brown rice.' },
+    de: { label: 'NATURREIS', title: 'Den gekochten Reis portionieren und mit Gemüse oder Bohnen servieren', detail: 'NIH-US-Tabellenmittel: 0,2 mg Thiamin je ½ Tasse gekochter, nicht angereicherter Naturreis.' }
   },
   {
     id: 'brown-rice-zinc', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Zinc-HealthProfessional/',
-    en: { label: 'BROWN RICE', title: '½ cup cooked long-grain brown rice provides 0.7 mg of zinc.', detail: 'Phytates in whole grains and legumes can reduce how much zinc the body absorbs.' },
-    de: { label: 'NATURREIS', title: '½ Tasse gekochter Langkorn-Naturreis liefert 0,7 mg Zink.', detail: 'Phytate in Vollkorn und Hülsenfrüchten können die Zinkaufnahme im Körper verringern.' }
+    en: { label: 'BROWN RICE', title: 'Add prepared vegetables and a sauce you have on hand', detail: 'NIH U.S. table avg.: 0.7 mg zinc per ½ cup cooked long-grain brown rice.' },
+    de: { label: 'NATURREIS', title: 'Vorbereitetes Gemüse und eine vorhandene Sauce dazugeben', detail: 'NIH-US-Tabellenmittel: 0,7 mg Zink je ½ Tasse gekochter Langkorn-Naturreis.' }
   },
   {
     id: 'whole-wheat-bread-magnesium', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/',
-    en: { label: 'WHOLE WHEAT BREAD', title: 'One slice of whole wheat bread provides 23 mg of magnesium.', detail: 'NIH notes that foods containing dietary fiber generally provide magnesium.' },
-    de: { label: 'VOLLKORNBROT', title: 'Eine Scheibe Vollkornbrot liefert 23 mg Magnesium.', detail: 'Laut NIH liefern ballaststoffhaltige Lebensmittel in der Regel auch Magnesium.' }
+    en: { label: 'WHOLE WHEAT BREAD', title: 'Use for an open sandwich with vegetables or savory spread', detail: 'NIH U.S. table avg.: 23 mg magnesium per 1 slice of whole wheat bread.' },
+    de: { label: 'VOLLKORNBROT', title: 'Mit Gemüse oder herzhaftem Aufstrich als belegtes Brot servieren', detail: 'NIH-US-Tabellenmittel: 23 mg Magnesium je 1 Scheibe Vollkornbrot.' }
   },
   {
     id: 'whole-wheat-bread-manganese', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Manganese-HealthProfessional/',
-    en: { label: 'WHOLE WHEAT BREAD', title: 'One slice of whole wheat bread provides 0.7 mg of manganese.', detail: 'That is 30% of the Daily Value; NIH lists whole grains among food sources of manganese.' },
-    de: { label: 'VOLLKORNBROT', title: 'Eine Scheibe Vollkornbrot liefert 0,7 mg Mangan.', detail: 'Das sind 30 % des US-Tageswerts; das NIH nennt Vollkorn unter den Manganquellen.' }
+    en: { label: 'WHOLE WHEAT BREAD', title: 'Top a slice with avocado, beans or another everyday favorite', detail: 'NIH U.S. table avg.: 0.7 mg manganese per 1 slice of whole wheat bread.' },
+    de: { label: 'VOLLKORNBROT', title: 'Eine Scheibe mit Avocado, Bohnen oder einem Alltagsbelag garnieren', detail: 'NIH-US-Tabellenmittel: 0,7 mg Mangan je 1 Scheibe Vollkornbrot.' }
   },
   {
     id: 'whole-wheat-bread-selenium', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Selenium-HealthProfessional/',
-    en: { label: 'WHOLE WHEAT BREAD', title: 'One slice of whole wheat bread provides 8 mcg of selenium.', detail: 'That is 15% of the 55 mcg Daily Value for selenium.' },
-    de: { label: 'VOLLKORNBROT', title: 'Eine Scheibe Vollkornbrot liefert 8 µg Selen.', detail: 'Das sind 15 % des US-Tageswerts von 55 µg Selen.' }
+    en: { label: 'WHOLE WHEAT BREAD', title: 'Add a filling and crunchy vegetables for an easy meal on the go', detail: 'NIH U.S. table avg.: 8 µg selenium per 1 slice of whole wheat bread.' },
+    de: { label: 'VOLLKORNBROT', title: 'Mit Füllung und knackigem Gemüse als einfache Mahlzeit belegen', detail: 'NIH-US-Tabellenmittel: 8 µg Selen je 1 Scheibe Vollkornbrot.' }
   },
   {
     id: 'oatmeal-manganese', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Manganese-HealthProfessional/',
-    en: { label: 'OATMEAL', title: '½ cup cooked oatmeal provides 0.7 mg of manganese.', detail: 'Manganese supports enzymes involved in cholesterol and carbohydrate metabolism.' },
-    de: { label: 'HAFERBREI', title: '½ Tasse gekochter Haferbrei liefert 0,7 mg Mangan.', detail: 'Mangan unterstützt Enzyme des Cholesterin- und Kohlenhydratstoffwechsels.' }
+    en: { label: 'OATMEAL', title: 'Stir in fruit or seeds just before serving', detail: 'NIH U.S. table avg.: 0.7 mg manganese per ½ cup cooked oatmeal.' },
+    de: { label: 'HAFERBREI', title: 'Kurz vor dem Servieren Obst oder Samen einrühren', detail: 'NIH-US-Tabellenmittel: 0,7 mg Mangan je ½ Tasse gekochter Haferbrei.' }
   },
   {
     id: 'oatmeal-selenium', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Selenium-HealthProfessional/',
-    en: { label: 'OATMEAL', title: '1 cup unenriched oatmeal cooked in water has 13 mcg of selenium.', detail: 'Selenium helps protect the body from oxidative damage.' },
-    de: { label: 'HAFERBREI', title: '1 Tasse in Wasser gekochter Haferbrei hat 13 µg Selen.', detail: 'Selen hilft, den Körper vor oxidativen Schäden zu schützen.' }
+    en: { label: 'OATMEAL', title: 'Add fruit or a little cinnamon at the table if you like', detail: 'NIH U.S. table avg.: 13 µg selenium per 1 cup unenriched oatmeal cooked in water.' },
+    de: { label: 'HAFERBREI', title: 'Nach Wunsch am Tisch mit Obst oder etwas Zimt ergänzen', detail: 'NIH-US-Tabellenmittel: 13 µg Selen je 1 Tasse in Wasser gekochter Haferbrei.' }
   },
   {
     id: 'oatmeal-magnesium', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/',
-    en: { label: 'OATMEAL', title: 'One packet of instant oatmeal provides 36 mg of magnesium.', detail: 'Whole grains are among the food groups NIH names as good magnesium sources.' },
-    de: { label: 'HAFERBREI', title: 'Ein Päckchen Instant-Haferbrei liefert 36 mg Magnesium.', detail: 'Vollkorn zählt laut NIH zu den Lebensmittelgruppen, die gut Magnesium liefern.' }
+    en: { label: 'OATMEAL', title: 'Prepare as directed on the pack and add your usual toppings', detail: 'NIH U.S. table avg.: 36 mg magnesium per 1 packet of instant oatmeal.' },
+    de: { label: 'HAFERBREI', title: 'Nach Packungsangabe zubereiten und mit den üblichen Zutaten garnieren', detail: 'NIH-US-Tabellenmittel: 36 mg Magnesium je 1 Päckchen Instant-Haferbrei.' }
   },
   {
     id: 'shredded-wheat-magnesium', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/',
-    en: { label: 'SHREDDED WHEAT', title: 'Two large shredded wheat biscuits provide 61 mg of magnesium.', detail: 'That is 15% of the 420 mg Daily Value for magnesium.' },
-    de: { label: 'WEIZENKISSEN', title: 'Zwei große Shredded-Wheat-Kissen liefern 61 mg Magnesium.', detail: 'Das sind 15 % des US-Tageswerts von 420 mg Magnesium.' }
+    en: { label: 'SHREDDED WHEAT', title: 'Add milk or an alternative and top with sliced fruit', detail: 'NIH U.S. table avg.: 61 mg magnesium per 2 large shredded wheat biscuits.' },
+    de: { label: 'WEIZENKISSEN', title: 'Mit Milch oder einer Alternative anrichten und mit Obst garnieren', detail: 'NIH-US-Tabellenmittel: 61 mg Magnesium je 2 große Shredded-Wheat-Kissen.' }
   },
   {
     id: 'whole-wheat-spaghetti-iron', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Iron-HealthProfessional/',
-    en: { label: 'WHOLE WHEAT SPAGHETTI', title: '1 cup cooked whole wheat spaghetti provides 1 mg of iron.', detail: 'Plant foods supply nonheme iron; vegetarians need almost twice the usual recommendation.' },
-    de: { label: 'VOLLKORNSPAGHETTI', title: '1 Tasse gekochte Vollkornspaghetti liefert 1 mg Eisen.', detail: 'Pflanzen liefern Nicht-Häm-Eisen; Vegetarier brauchen fast doppelt so viel wie sonst empfohlen.' }
+    en: { label: 'WHOLE WHEAT SPAGHETTI', title: 'Serve with your favorite vegetable sauce for an everyday meal', detail: 'NIH U.S. table avg.: 1 mg iron per 1 cup cooked whole wheat spaghetti.' },
+    de: { label: 'VOLLKORNSPAGHETTI', title: 'Mit einer Gemüsesauce nach Wahl als Alltagsmahlzeit servieren', detail: 'NIH-US-Tabellenmittel: 1 mg Eisen je 1 Tasse gekochte Vollkornspaghetti.' }
   },
   {
     id: 'whole-wheat-pasta-copper', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Copper-HealthProfessional/',
-    en: { label: 'WHOLE WHEAT PASTA', title: '1 cup cooked whole wheat pasta provides 263 mcg of copper.', detail: 'That is 29% of the Daily Value for copper.' },
-    de: { label: 'VOLLKORNNUDELN', title: '1 Tasse gekochte Vollkornnudeln liefert 263 µg Kupfer.', detail: 'Das sind 29 % des US-Tageswerts für Kupfer.' }
+    en: { label: 'WHOLE WHEAT PASTA', title: 'Toss with vegetables and a simple dressing or sauce', detail: 'NIH U.S. table avg.: 263 µg copper per 1 cup cooked whole wheat pasta.' },
+    de: { label: 'VOLLKORNNUDELN', title: 'Mit Gemüse und einem einfachen Dressing oder einer Sauce vermengen', detail: 'NIH-US-Tabellenmittel: 263 µg Kupfer je 1 Tasse gekochte Vollkornnudeln.' }
   },
   {
     id: 'whole-wheat-macaroni-thiamin', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Thiamin-HealthProfessional/',
-    en: { label: 'WHOLE WHEAT MACARONI', title: '1 cup cooked whole wheat macaroni provides 0.2 mg of thiamin.', detail: 'Thiamin plays a role in the growth, development, and function of cells.' },
-    de: { label: 'VOLLKORNMAKKARONI', title: '1 Tasse gekochte Vollkornmakkaroni liefert 0,2 mg Thiamin.', detail: 'Thiamin spielt eine Rolle für Wachstum, Entwicklung und Funktion der Zellen.' }
+    en: { label: 'WHOLE WHEAT MACARONI', title: 'Cook as directed on the pack and combine with sauce before baking', detail: 'NIH U.S. table avg.: 0.2 mg thiamin per 1 cup cooked whole wheat macaroni.' },
+    de: { label: 'VOLLKORNMAKKARONI', title: 'Nach Packungsangabe garen und vor dem Backen mit Sauce vermengen', detail: 'NIH-US-Tabellenmittel: 0,2 mg Thiamin je 1 Tasse gekochte Vollkornmakkaroni.' }
   },
   {
     id: 'millet-copper', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Copper-HealthProfessional/',
-    en: { label: 'MILLET', title: '1 cup cooked millet provides 280 mcg of copper.', detail: 'Copper is a cofactor for enzymes involved in energy production and iron metabolism.' },
-    de: { label: 'HIRSE', title: '1 Tasse gekochte Hirse liefert 280 µg Kupfer.', detail: 'Kupfer ist Cofaktor von Enzymen für Energiegewinnung und Eisenstoffwechsel.' }
+    en: { label: 'MILLET', title: 'Spoon beside vegetables or use as a warm bowl base', detail: 'NIH U.S. table avg.: 280 µg copper per 1 cup cooked millet.' },
+    de: { label: 'HIRSE', title: 'Zu Gemüse reichen oder als Grundlage für eine warme Bowl verwenden', detail: 'NIH-US-Tabellenmittel: 280 µg Kupfer je 1 Tasse gekochte Hirse.' }
   },
   {
     id: 'bulgur-vitamin-b6', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/VitaminB6-HealthProfessional/',
-    en: { label: 'BULGUR', title: '1 cup cooked bulgur provides 0.2 mg of vitamin B6.', detail: 'Vitamin B6 plays a role in brain development and immune function.' },
-    de: { label: 'BULGUR', title: '1 Tasse gekochter Bulgur liefert 0,2 mg Vitamin B6.', detail: 'Vitamin B6 spielt eine Rolle bei der Gehirnentwicklung und der Immunfunktion.' }
+    en: { label: 'BULGUR', title: 'Fluff the cooked grains and top with chopped vegetables and herbs', detail: 'NIH U.S. table avg.: 0.2 mg vitamin B6 per 1 cup cooked bulgur.' },
+    de: { label: 'BULGUR', title: 'Gegartes Getreide auflockern und mit Gemüse und Kräutern garnieren', detail: 'NIH-US-Tabellenmittel: 0,2 mg Vitamin B6 je 1 Tasse gekochter Bulgur.' }
   },
   {
     id: 'corn-tortilla-calcium', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Calcium-HealthProfessional/',
-    en: { label: 'CORN TORTILLA', title: 'One 6-inch corn tortilla provides 46 mg of calcium.', detail: 'Grains are eaten often, so their modest calcium contributions add up.' },
-    de: { label: 'MAISTORTILLA', title: 'Eine Maistortilla (15 cm) liefert 46 mg Calcium.', detail: 'Getreide wird häufig gegessen, daher summieren sich seine kleinen Calciumbeiträge.' }
+    en: { label: 'CORN TORTILLA', title: 'Fill with beans and chopped vegetables, fold and serve', detail: 'NIH U.S. table avg.: 46 mg calcium per 1 6-inch corn tortilla.' },
+    de: { label: 'MAISTORTILLA', title: 'Mit Bohnen und gehacktem Gemüse füllen, zusammenklappen und servieren', detail: 'NIH-US-Tabellenmittel: 46 mg Calcium je 1 Maistortilla (15 cm).' }
   },
   {
     id: 'wheat-germ-folate', category: 'grains',
     source: 'https://ods.od.nih.gov/factsheets/Folate-HealthProfessional/',
-    en: { label: 'WHEAT GERM', title: '2 tablespoons of wheat germ provides 40 mcg DFE of folate.', detail: 'That is 10% of the Daily Value for folate.' },
-    de: { label: 'WEIZENKEIME', title: '2 Esslöffel Weizenkeime liefern 40 µg DFE Folat.', detail: 'Das sind 10 % des US-Tageswerts für Folat.' }
+    en: { label: 'WHEAT GERM', title: 'Add a spoonful to cereal, porridge or yoghurt before eating', detail: 'NIH folate table lists: 2 tbsp wheat germ.' },
+    de: { label: 'WEIZENKEIME', title: 'Vor dem Essen einen Löffel ins Müsli, Porridge oder den Joghurt geben', detail: 'NIH-Tabelle Folat: 2 Esslöffel Weizenkeime.' }
   },
 
   // ---------- NUTS & SEEDS ----------
   {
     id: 'pumpkin-seeds-magnesium', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/',
-    en: { label: 'PUMPKIN SEEDS', title: '1 oz roasted pumpkin seeds provides 156 mg of magnesium.', detail: 'That is 37% of the 420 mg Daily Value for magnesium.' },
-    de: { label: 'KÜRBISKERNE', title: '28 g geröstete Kürbiskerne liefern 156 mg Magnesium.', detail: 'Das sind 37 % des US-Tageswerts von 420 mg Magnesium.' }
+    en: { label: 'PUMPKIN SEEDS', title: 'Sprinkle pumpkin seeds over soup for crunch.', detail: 'NIH U.S. table avg.: 156 mg magnesium per 1 oz roasted pumpkin seeds.' },
+    de: { label: 'KÜRBISKERNE', title: 'Kürbiskerne für mehr Biss über die Suppe streuen.', detail: 'NIH-US-Tabellenmittel: 156 mg Magnesium je 28 g geröstete Kürbiskerne.' }
   },
   {
     id: 'pumpkin-seeds-zinc', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/Zinc-HealthProfessional/',
-    en: { label: 'PUMPKIN SEEDS', title: '1 oz roasted pumpkin seeds provides 2.2 mg of zinc.', detail: 'Zinc is needed for a proper sense of taste and smell.' },
-    de: { label: 'KÜRBISKERNE', title: '28 g geröstete Kürbiskerne liefern 2,2 mg Zink.', detail: 'Zink wird für einen normalen Geschmacks- und Geruchssinn benötigt.' }
+    en: { label: 'PUMPKIN SEEDS', title: 'Portion the roasted seeds into a small container to take along', detail: 'NIH U.S. table avg.: 2.2 mg zinc per 1 oz roasted pumpkin seeds.' },
+    de: { label: 'KÜRBISKERNE', title: 'Geröstete Kerne in eine kleine Dose für unterwegs portionieren', detail: 'NIH-US-Tabellenmittel: 2,2 mg Zink je 28 g geröstete Kürbiskerne.' }
   },
   {
     id: 'chia-seeds-magnesium', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/',
-    en: { label: 'CHIA SEEDS', title: '1 oz chia seeds provides 111 mg of magnesium.', detail: 'That covers 26% of the Daily Value for magnesium.' },
-    de: { label: 'CHIASAMEN', title: '28 g Chiasamen liefern 111 mg Magnesium.', detail: 'Das deckt 26 % des US-Tageswerts für Magnesium.' }
+    en: { label: 'CHIA SEEDS', title: 'Mix in before eating and adjust the texture to your liking', detail: 'NIH U.S. table avg.: 111 mg magnesium per 1 oz chia seeds.' },
+    de: { label: 'CHIASAMEN', title: 'Vor dem Essen einrühren und die Konsistenz nach Wunsch anpassen', detail: 'NIH-US-Tabellenmittel: 111 mg Magnesium je 28 g Chiasamen.' }
   },
   {
     id: 'chia-seeds-ala', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/',
-    en: { label: 'CHIA SEEDS', title: '1 oz chia seeds provides 5.06 g of omega-3 ALA.', detail: 'ALA is an essential fatty acid, so it must come from foods and beverages.' },
-    de: { label: 'CHIASAMEN', title: '28 g Chiasamen liefern 5,06 g Omega-3-ALA.', detail: 'ALA ist eine essenzielle Fettsäure und muss daher über die Nahrung aufgenommen werden.' }
+    en: { label: 'CHIA SEEDS', title: 'Stir chia into oats and liquid; chill overnight.', detail: 'NIH U.S. table avg.: 5.06 g omega-3 ALA per 1 oz chia seeds.' },
+    de: { label: 'CHIASAMEN', title: 'Chia in Haferflocken und Flüssigkeit rühren, über Nacht kühlen.', detail: 'NIH-US-Tabellenmittel: 5,06 g Omega-3-ALA je 28 g Chiasamen.' }
   },
   {
     id: 'chia-seeds-calcium', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/Calcium-HealthProfessional/',
-    en: { label: 'CHIA SEEDS', title: '1 tablespoon of chia seeds provides 76 mg of calcium.', detail: 'Calcium is the most abundant mineral in the body.' },
-    de: { label: 'CHIASAMEN', title: '1 Esslöffel Chiasamen liefert 76 mg Calcium.', detail: 'Calcium ist der häufigste Mineralstoff im Körper.' }
+    en: { label: 'CHIA SEEDS', title: 'Scatter over fruit, yoghurt or porridge just before serving', detail: 'NIH U.S. table avg.: 76 mg calcium per 1 tbsp chia seeds.' },
+    de: { label: 'CHIASAMEN', title: 'Kurz vor dem Servieren über Obst, Joghurt oder Porridge streuen', detail: 'NIH-US-Tabellenmittel: 76 mg Calcium je 1 Esslöffel Chiasamen.' }
   },
   {
     id: 'almonds-magnesium', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/',
-    en: { label: 'ALMONDS', title: '1 oz dry-roasted almonds provides 80 mg of magnesium.', detail: 'Magnesium takes part in more than 300 enzyme systems in the body.' },
-    de: { label: 'MANDELN', title: '28 g trocken geröstete Mandeln liefern 80 mg Magnesium.', detail: 'Magnesium ist an über 300 Enzymsystemen im Körper beteiligt.' }
+    en: { label: 'ALMONDS', title: 'Pack almonds for a snack or chop over breakfast.', detail: 'NIH U.S. table avg.: 80 mg magnesium per 1 oz dry-roasted almonds.' },
+    de: { label: 'MANDELN', title: 'Mandeln als Snack einpacken oder gehackt ins Frühstück geben.', detail: 'NIH-US-Tabellenmittel: 80 mg Magnesium je 28 g trocken geröstete Mandeln.' }
   },
   {
     id: 'almonds-vitamin-e', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/VitaminE-HealthProfessional/',
-    en: { label: 'ALMONDS', title: '1 oz dry-roasted almonds provides 6.8 mg of vitamin E.', detail: 'That is 45% of the 15 mg Daily Value for vitamin E.' },
-    de: { label: 'MANDELN', title: '28 g trocken geröstete Mandeln liefern 6,8 mg Vitamin E.', detail: 'Das sind 45 % des US-Tageswerts von 15 mg Vitamin E.' }
+    en: { label: 'ALMONDS', title: 'Sprinkle almonds over oats or yoghurt.', detail: 'NIH U.S. table avg.: 6.8 mg vitamin E per 1 oz dry-roasted almonds.' },
+    de: { label: 'MANDELN', title: 'Mandeln über Haferflocken oder Joghurt streuen.', detail: 'NIH-US-Tabellenmittel: 6,8 mg Vitamin E je 28 g trocken geröstete Mandeln.' }
   },
   {
     id: 'cashews-magnesium', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/',
-    en: { label: 'CASHEWS', title: '1 oz dry-roasted cashews provides 74 mg of magnesium.', detail: 'Magnesium also contributes to the structural development of bone.' },
-    de: { label: 'CASHEWKERNE', title: '28 g trocken geröstete Cashewkerne liefern 74 mg Magnesium.', detail: 'Magnesium trägt auch zum strukturellen Aufbau der Knochen bei.' }
+    en: { label: 'CASHEWS', title: 'Chop a small portion and scatter over the finished dish', detail: 'NIH U.S. table avg.: 74 mg magnesium per 1 oz dry-roasted cashews.' },
+    de: { label: 'CASHEWKERNE', title: 'Eine kleine Portion hacken und über das fertige Gericht streuen', detail: 'NIH-US-Tabellenmittel: 74 mg Magnesium je 28 g trocken geröstete Cashewkerne.' }
   },
   {
     id: 'cashews-copper', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/Copper-HealthProfessional/',
-    en: { label: 'CASHEWS', title: '1 oz dry-roasted cashews provides 629 mcg of copper.', detail: 'That is 70% of the 900 mcg Daily Value for copper.' },
-    de: { label: 'CASHEWKERNE', title: '28 g trocken geröstete Cashewkerne liefern 629 µg Kupfer.', detail: 'Das sind 70 % des US-Tageswerts von 900 µg Kupfer.' }
+    en: { label: 'CASHEWS', title: 'Portion cashews into a small container to take along.', detail: 'NIH U.S. table avg.: 629 µg copper per 1 oz dry-roasted cashews.' },
+    de: { label: 'CASHEWKERNE', title: 'Cashewkerne für unterwegs in eine kleine Dose füllen.', detail: 'NIH-US-Tabellenmittel: 629 µg Kupfer je 28 g trocken geröstete Cashewkerne.' }
   },
   {
     id: 'cashews-iron', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/Iron-HealthProfessional/',
-    en: { label: 'CASHEWS', title: '1 oz (18) oil-roasted cashews provides 2 mg of iron.', detail: 'Iron is also needed to make some hormones.' },
-    de: { label: 'CASHEWKERNE', title: '28 g (18 Stück) in Öl geröstete Cashews liefern 2 mg Eisen.', detail: 'Eisen wird auch für die Bildung einiger Hormone benötigt.' }
+    en: { label: 'CASHEWS', title: 'Add near serving time for a crunchy contrast', detail: 'NIH U.S. table avg.: 2 mg iron per 1 oz (18) oil-roasted cashews.' },
+    de: { label: 'CASHEWKERNE', title: 'Kurz vor dem Servieren für einen knackigen Kontrast hinzufügen', detail: 'NIH-US-Tabellenmittel: 2 mg Eisen je 28 g (18 Stück) in Öl geröstete Cashews.' }
   },
   {
     id: 'sunflower-seeds-vitamin-e', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/VitaminE-HealthProfessional/',
-    en: { label: 'SUNFLOWER SEEDS', title: '1 oz dry-roasted sunflower seeds has 7.4 mg of vitamin E.', detail: 'Vitamin E helps the immune system fight off invading bacteria and viruses.' },
-    de: { label: 'SONNENBLUMENKERNE', title: '28 g trocken geröstete Sonnenblumenkerne haben 7,4 mg Vitamin E.', detail: 'Vitamin E hilft dem Immunsystem, eindringende Bakterien und Viren abzuwehren.' }
+    en: { label: 'SUNFLOWER SEEDS', title: 'Sprinkle over salad or portion separately for a crunchy snack', detail: 'NIH U.S. table avg.: 7.4 mg vitamin E per 1 oz dry-roasted sunflower seeds.' },
+    de: { label: 'SONNENBLUMENKERNE', title: 'Über Salat streuen oder separat als knackigen Snack portionieren', detail: 'NIH-US-Tabellenmittel: 7,4 mg Vitamin E je 28 g trocken geröstete Sonnenblumenkerne.' }
   },
   {
     id: 'sunflower-seeds-copper', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/Copper-HealthProfessional/',
-    en: { label: 'SUNFLOWER SEEDS', title: '¼ cup toasted sunflower seed kernels has 615 mcg of copper.', detail: 'Copper also plays a role in brain development.' },
-    de: { label: 'SONNENBLUMENKERNE', title: '¼ Tasse geröstete Sonnenblumenkerne hat 615 µg Kupfer.', detail: 'Kupfer spielt auch bei der Gehirnentwicklung eine Rolle.' }
+    en: { label: 'SUNFLOWER SEEDS', title: 'Add just before serving for a little crunch', detail: 'NIH U.S. table avg.: 615 µg copper per ¼ cup toasted sunflower seed kernels.' },
+    de: { label: 'SONNENBLUMENKERNE', title: 'Für etwas Biss erst kurz vor dem Servieren hinzufügen', detail: 'NIH-US-Tabellenmittel: 615 µg Kupfer je ¼ Tasse geröstete Sonnenblumenkerne.' }
   },
   {
     id: 'hazelnuts-vitamin-e', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/VitaminE-HealthProfessional/',
-    en: { label: 'HAZELNUTS', title: '1 oz dry-roasted hazelnuts provides 4.3 mg of vitamin E.', detail: 'Vitamin E helps widen blood vessels and keep blood from clotting within them.' },
-    de: { label: 'HASELNÜSSE', title: '28 g trocken geröstete Haselnüsse liefern 4,3 mg Vitamin E.', detail: 'Vitamin E hilft, Blutgefäße zu weiten und Gerinnsel darin zu verhindern.' }
+    en: { label: 'HAZELNUTS', title: 'Sprinkle over cereal or yoghurt for a quick nutty finish', detail: 'NIH U.S. table avg.: 4.3 mg vitamin E per 1 oz dry-roasted hazelnuts.' },
+    de: { label: 'HASELNÜSSE', title: 'Für eine schnelle nussige Note über Müsli oder Joghurt streuen', detail: 'NIH-US-Tabellenmittel: 4,3 mg Vitamin E je 28 g trocken geröstete Haselnüsse.' }
   },
   {
     id: 'hazelnuts-manganese', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/Manganese-HealthProfessional/',
-    en: { label: 'HAZELNUTS', title: '1 oz dry-roasted hazelnuts provides 1.6 mg of manganese.', detail: 'That is 70% of the 2.3 mg Daily Value for manganese.' },
-    de: { label: 'HASELNÜSSE', title: '28 g trocken geröstete Haselnüsse liefern 1,6 mg Mangan.', detail: 'Das sind 70 % des US-Tageswerts von 2,3 mg Mangan.' }
+    en: { label: 'HAZELNUTS', title: 'Serve a small portion with fruit for an easy bite', detail: 'NIH U.S. table avg.: 1.6 mg manganese per 1 oz dry-roasted hazelnuts.' },
+    de: { label: 'HASELNÜSSE', title: 'Eine kleine Portion mit Obst als unkomplizierten Snack reichen', detail: 'NIH-US-Tabellenmittel: 1,6 mg Mangan je 28 g trocken geröstete Haselnüsse.' }
   },
   {
     id: 'pecans-manganese', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/Manganese-HealthProfessional/',
-    en: { label: 'PECANS', title: '1 oz dry-roasted pecans provides 1.1 mg of manganese.', detail: 'Manganese is involved in immune response and blood clotting.' },
-    de: { label: 'PEKANNÜSSE', title: '28 g trocken geröstete Pekannüsse liefern 1,1 mg Mangan.', detail: 'Mangan ist an der Immunantwort und der Blutgerinnung beteiligt.' }
+    en: { label: 'PECANS', title: 'Chop and scatter over oats or fruit before serving', detail: 'NIH U.S. table avg.: 1.1 mg manganese per 1 oz dry-roasted pecans.' },
+    de: { label: 'PEKANNÜSSE', title: 'Vor dem Servieren hacken und über Haferflocken oder Obst streuen', detail: 'NIH-US-Tabellenmittel: 1,1 mg Mangan je 28 g trocken geröstete Pekannüsse.' }
   },
   {
     id: 'walnuts-ala', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/',
-    en: { label: 'WALNUTS', title: '1 oz English walnuts provides 2.57 g of omega-3 ALA.', detail: 'The daily ALA recommendation is 1.1 g for women and 1.6 g for men.' },
-    de: { label: 'WALNÜSSE', title: '28 g Walnüsse liefern 2,57 g Omega-3-ALA.', detail: 'Die tägliche ALA-Empfehlung liegt bei 1,1 g für Frauen und 1,6 g für Männer.' }
+    en: { label: 'WALNUTS', title: 'Keep pieces large enough to add a satisfying crunch', detail: 'NIH U.S. table avg.: 2.57 g omega-3 ALA per 1 oz English walnuts.' },
+    de: { label: 'WALNÜSSE', title: 'Die Stücke für angenehmen Biss groß genug lassen', detail: 'NIH-US-Tabellenmittel: 2,57 g Omega-3-ALA je 28 g Walnüsse.' }
   },
   {
     id: 'flaxseed-ala', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/Omega3FattyAcids-HealthProfessional/',
-    en: { label: 'FLAXSEED', title: '1 tablespoon of whole flaxseed provides 2.35 g of omega-3 ALA.', detail: 'Omega-3s are important components of the membranes that surround every cell.' },
-    de: { label: 'LEINSAMEN', title: '1 Esslöffel ganze Leinsamen liefert 2,35 g Omega-3-ALA.', detail: 'Omega-3-Fettsäuren sind wichtige Bestandteile der Membranen, die jede Zelle umgeben.' }
+    en: { label: 'FLAXSEED', title: 'Add to porridge or yoghurt for a simple change of texture', detail: 'NIH U.S. table avg.: 2.35 g omega-3 ALA per 1 tbsp whole flaxseed.' },
+    de: { label: 'LEINSAMEN', title: 'Für eine andere Konsistenz in Porridge oder Joghurt geben', detail: 'NIH-US-Tabellenmittel: 2,35 g Omega-3-ALA je 1 Esslöffel ganze Leinsamen.' }
   },
   {
     id: 'sesame-seeds-copper', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/Copper-HealthProfessional/',
-    en: { label: 'SESAME SEEDS', title: '¼ cup sesame seeds provides 147 mcg of copper.', detail: 'That is 16% of the Daily Value for copper.' },
-    de: { label: 'SESAM', title: '¼ Tasse Sesam liefert 147 µg Kupfer.', detail: 'Das sind 16 % des US-Tageswerts für Kupfer.' }
+    en: { label: 'SESAME SEEDS', title: 'Add a pinch to vegetables, noodles or rice before serving', detail: 'NIH U.S. table avg.: 147 µg copper per ¼ cup sesame seeds.' },
+    de: { label: 'SESAM', title: 'Vor dem Servieren eine Prise über Gemüse, Nudeln oder Reis geben', detail: 'NIH-US-Tabellenmittel: 147 µg Kupfer je ¼ Tasse Sesam.' }
   },
   {
     id: 'pine-nuts-vitamin-k', category: 'nuts-seeds',
     source: 'https://ods.od.nih.gov/factsheets/VitaminK-HealthProfessional/',
-    en: { label: 'PINE NUTS', title: '1 oz dried pine nuts provides 15 mcg of vitamin K.', detail: 'Vitamin K is fat-soluble and is needed to make proteins for blood clotting and bone.' },
-    de: { label: 'PINIENKERNE', title: '28 g getrocknete Pinienkerne liefern 15 µg Vitamin K.', detail: 'Vitamin K ist fettlöslich und wird für Proteine der Blutgerinnung und des Knochens gebraucht.' }
+    en: { label: 'PINE NUTS', title: 'Scatter over the assembled salad just before serving', detail: 'NIH U.S. table avg.: 15 µg vitamin K per 1 oz dried pine nuts.' },
+    de: { label: 'PINIENKERNE', title: 'Kurz vor dem Servieren über den angerichteten Salat streuen', detail: 'NIH-US-Tabellenmittel: 15 µg Vitamin K je 28 g getrocknete Pinienkerne.' }
   }
 ];
