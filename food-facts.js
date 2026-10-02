@@ -3,11 +3,74 @@ const factCanvas = document.querySelector('#fact-canvas');
 if (factCanvas) {
   const german = document.documentElement.lang === 'de';
   const facts = typeof foodFacts === 'undefined' ? [] : foodFacts;
-  const themes = {
-    produce: { background: ['#783f35', '#a7634c'], accent: '#f3be92', illustration: 'pepper' },
-    legumes: { background: ['#364735', '#607b58'], accent: '#d7dea9', illustration: 'walnuts' },
-    grains: { background: ['#60513a', '#89764e'], accent: '#e4d9a9', illustration: 'spinach' },
-    'nuts-seeds': { background: ['#4b3f32', '#756045'], accent: '#e4c49e', illustration: 'walnuts' }
+  const foodVisuals = {
+    'RED PEPPER': { icon: 'pepper', hue: 12 },
+    ORANGE: { icon: '🍊', hue: 27 },
+    KIWIFRUIT: { icon: '🥝', hue: 91 },
+    'GREEN PEPPER': { icon: 'green-pepper', hue: 133 },
+    BROCCOLI: { icon: '🥦', hue: 139 },
+    STRAWBERRIES: { icon: '🍓', hue: 352 },
+    'BRUSSELS SPROUTS': { icon: '🥬', hue: 111 },
+    GRAPEFRUIT: { icon: 'citrus', hue: 347 },
+    CANTALOUPE: { icon: 'melon', hue: 33 },
+    CAULIFLOWER: { icon: 'cauliflower', hue: 42 },
+    'SWEET POTATO': { icon: '🍠', hue: 24 },
+    CARROTS: { icon: '🥕', hue: 30 },
+    SPINACH: { icon: 'spinach', hue: 147 },
+    MANGO: { icon: '🥭', hue: 39 },
+    'DRIED APRICOTS': { icon: 'dried-fruit', hue: 22, color: '#df823d' },
+    'ACORN SQUASH': { icon: 'squash', hue: 40 },
+    PRUNES: { icon: 'dried-fruit', hue: 276, color: '#68456e' },
+    RAISINS: { icon: 'dried-fruit', hue: 288, color: '#82658b', small: true },
+    POTATO: { icon: '🥔', hue: 32 },
+    BANANA: { icon: '🍌', hue: 49 },
+    ASPARAGUS: { icon: 'asparagus', hue: 124 },
+    ROMAINE: { icon: '🥬', hue: 105 },
+    AVOCADO: { icon: '🥑', hue: 85 },
+    'MUSTARD GREENS': { icon: '🥬', hue: 66 },
+    'GREEN PEAS': { icon: '🫛', hue: 106 },
+    PAPAYA: { icon: 'papaya', hue: 16 },
+    COLLARDS: { icon: '🥬', hue: 135 },
+    'TURNIP GREENS': { icon: '🥬', hue: 159 },
+    KALE: { icon: '🥬', hue: 120 },
+    BLUEBERRIES: { icon: '🫐', hue: 227 },
+    'BOK CHOY': { icon: '🥬', hue: 171 },
+    PINEAPPLE: { icon: '🍍', hue: 53 },
+    LENTILS: { icon: 'beans', hue: 25, color: '#bd9365', small: true },
+    'WHITE BEANS': { icon: 'beans', hue: 45, color: '#efe2b8' },
+    'KIDNEY BEANS': { icon: 'beans', hue: 5, color: '#ad615a' },
+    'BLACK BEANS': { icon: 'beans', hue: 260, color: '#38303e' },
+    'BLACK-EYED PEAS': { icon: 'beans', hue: 51, color: '#e5d4a6' },
+    CHICKPEAS: { icon: 'beans', hue: 34, color: '#d8b77d' },
+    SOYBEANS: { icon: 'beans', hue: 72, color: '#d8cf91' },
+    TOFU: { icon: 'tofu', hue: 59 },
+    EDAMAME: { icon: '🫛', hue: 112 },
+    NATTO: { icon: 'beans', hue: 55, color: '#b88a54' },
+    PEANUTS: { icon: '🥜', hue: 28 },
+    'PINTO BEANS': { icon: 'beans', hue: 18, color: '#c89672' },
+    'BAKED BEANS': { icon: 'beans', hue: 9, color: '#c67249' },
+    'BROWN RICE': { icon: 'grains', hue: 36, color: '#ccb582' },
+    'WHOLE WHEAT BREAD': { icon: '🍞', hue: 31 },
+    OATMEAL: { icon: '🥣', hue: 44 },
+    'SHREDDED WHEAT': { icon: 'grains', hue: 48, color: '#cfb276' },
+    'WHOLE WHEAT SPAGHETTI': { icon: '🍝', hue: 19 },
+    'WHOLE WHEAT PASTA': { icon: '🍝', hue: 29 },
+    'WHOLE WHEAT MACARONI': { icon: '🍝', hue: 37 },
+    MILLET: { icon: 'grains', hue: 63, color: '#e6d4a0' },
+    BULGUR: { icon: 'grains', hue: 43, color: '#bbaa84' },
+    'CORN TORTILLA': { icon: '🫓', hue: 50 },
+    'WHEAT GERM': { icon: 'grains', hue: 35, color: '#b89561' },
+    'PUMPKIN SEEDS': { icon: 'seeds', hue: 70, color: '#9faf75' },
+    'CHIA SEEDS': { icon: 'seeds', hue: 115, color: '#484344', small: true },
+    ALMONDS: { icon: 'nuts', hue: 23, color: '#bf8454' },
+    CASHEWS: { icon: 'nuts', hue: 38, color: '#e0c596' },
+    'SUNFLOWER SEEDS': { icon: 'seeds', hue: 47, color: '#b4a187' },
+    HAZELNUTS: { icon: 'nuts', hue: 15, color: '#b77848' },
+    PECANS: { icon: 'nuts', hue: 8, color: '#a1694c' },
+    WALNUTS: { icon: 'walnuts', hue: 20 },
+    FLAXSEED: { icon: 'seeds', hue: 69, color: '#a88151', small: true },
+    'SESAME SEEDS': { icon: 'seeds', hue: 58, color: '#e8ddb4', small: true },
+    'PINE NUTS': { icon: 'seeds', hue: 82, color: '#e5d3a5' }
   };
 
   const context = factCanvas.getContext('2d');
@@ -51,14 +114,34 @@ if (factCanvas) {
     return lines;
   }
 
-  function drawFood(kind, accent) {
+  function drawPieces(visual) {
+    const count = visual.small ? 35 : visual.icon === 'grains' ? 27 : 11;
+    const size = visual.small ? 10 : visual.icon === 'seeds' || visual.icon === 'grains' ? 15 : 28;
+    for (let index = 0; index < count; index++) {
+      const angle = index * 2.4;
+      const radius = Math.sqrt(index / count) * 116;
+      context.save();
+      context.translate(Math.cos(angle) * radius, Math.sin(angle) * radius * .72);
+      context.rotate(angle);
+      context.fillStyle = visual.color;
+      context.strokeStyle = 'rgba(255, 248, 233, .38)';
+      context.lineWidth = 2;
+      context.beginPath();
+      context.ellipse(0, 0, size * (visual.icon === 'nuts' ? 1.1 : .65), size, 0, 0, Math.PI * 2);
+      context.fill();
+      context.stroke();
+      context.restore();
+    }
+  }
+
+  function drawFood(visual, label, accent) {
     context.save();
     context.translate(780, 300);
-    context.rotate(-0.17);
     context.lineJoin = 'round';
 
-    if (kind === 'pepper') {
-      context.fillStyle = '#d99876';
+    if (visual.icon === 'pepper' || visual.icon === 'green-pepper') {
+      context.rotate(-0.17);
+      context.fillStyle = visual.icon === 'green-pepper' ? '#a6c987' : '#d99876';
       context.beginPath();
       context.moveTo(-96, -53);
       context.bezierCurveTo(-174, -91, -194, 19, -127, 103);
@@ -67,7 +150,7 @@ if (factCanvas) {
       context.bezierCurveTo(166, -23, 121, -107, 43, -67);
       context.bezierCurveTo(2, -99, -50, -95, -96, -53);
       context.fill();
-      context.strokeStyle = '#f4c39e';
+      context.strokeStyle = visual.icon === 'green-pepper' ? '#d9e9ad' : '#f4c39e';
       context.lineWidth = 5;
       context.beginPath();
       context.moveTo(-58, -58);
@@ -81,7 +164,8 @@ if (factCanvas) {
       context.moveTo(-8, -68);
       context.quadraticCurveTo(-5, -120, 31, -131);
       context.stroke();
-    } else if (kind === 'spinach') {
+    } else if (visual.icon === 'spinach') {
+      context.rotate(-0.17);
       context.fillStyle = '#9dbf8c';
       context.beginPath();
       context.moveTo(-8, 135);
@@ -98,7 +182,8 @@ if (factCanvas) {
       context.moveTo(16, 2);
       context.lineTo(100, -47);
       context.stroke();
-    } else if (kind === 'walnuts') {
+    } else if (visual.icon === 'walnuts') {
+      context.rotate(-0.17);
       context.fillStyle = '#cfb889';
       context.beginPath();
       context.ellipse(0, 0, 140, 112, -0.1, 0, Math.PI * 2);
@@ -114,20 +199,95 @@ if (factCanvas) {
       context.moveTo(64, -59);
       context.bezierCurveTo(100, -11, 41, 21, 81, 54);
       context.stroke();
-    } else {
-      context.fillStyle = accent;
-      for (let petal = 0; petal < 7; petal++) {
-        context.save();
-        context.rotate((petal * Math.PI * 2) / 7);
-        context.beginPath();
-        context.ellipse(0, -75, 38, 82, 0, 0, Math.PI * 2);
-        context.fill();
-        context.restore();
-      }
-      context.fillStyle = '#fff8e9';
+    } else if (['beans', 'seeds', 'nuts', 'grains', 'dried-fruit'].includes(visual.icon)) {
+      drawPieces(visual);
+    } else if (visual.icon === 'citrus' || visual.icon === 'melon') {
+      const citrus = visual.icon === 'citrus';
+      context.fillStyle = citrus ? '#f0a899' : '#9dbb77';
       context.beginPath();
-      context.arc(0, 0, 32, 0, Math.PI * 2);
+      context.arc(0, 0, 115, 0, Math.PI * 2);
       context.fill();
+      context.fillStyle = citrus ? '#e87482' : '#efaa68';
+      context.beginPath();
+      context.arc(0, 0, 101, 0, Math.PI * 2);
+      context.fill();
+      context.strokeStyle = '#fff0d2';
+      context.lineWidth = 5;
+      for (let wedge = 0; wedge < 9; wedge++) {
+        const angle = wedge * Math.PI * 2 / 9;
+        context.beginPath();
+        context.moveTo(0, 0);
+        context.lineTo(Math.cos(angle) * 97, Math.sin(angle) * 97);
+        context.stroke();
+      }
+      context.fillStyle = '#fff0d2';
+      context.beginPath();
+      context.arc(0, 0, 12, 0, Math.PI * 2);
+      context.fill();
+    } else if (visual.icon === 'cauliflower') {
+      context.fillStyle = '#91b78b';
+      for (const side of [-1, 1]) {
+        context.beginPath();
+        context.ellipse(side * 72, 74, 60, 31, side * .6, 0, Math.PI * 2);
+        context.fill();
+      }
+      context.fillStyle = '#f5e9d0';
+      for (const [x, y, radius] of [[-65, 18, 49], [50, 11, 56], [0, -52, 62], [4, 31, 69]]) {
+        context.beginPath();
+        context.arc(x, y, radius, 0, Math.PI * 2);
+        context.fill();
+      }
+    } else if (visual.icon === 'asparagus') {
+      for (let spear = -2; spear <= 2; spear++) {
+        const x = spear * 36;
+        context.fillStyle = spear % 2 ? '#91ba79' : '#b0cd8e';
+        context.fillRect(x - 10, -35 - Math.abs(spear) * 9, 20, 170);
+        context.beginPath();
+        context.moveTo(x - 19, -35 - Math.abs(spear) * 9);
+        context.lineTo(x, -135 - Math.abs(spear) * 9);
+        context.lineTo(x + 19, -35 - Math.abs(spear) * 9);
+        context.fill();
+      }
+    } else if (visual.icon === 'papaya' || visual.icon === 'squash') {
+      context.rotate(-.35);
+      context.fillStyle = visual.icon === 'papaya' ? '#e6a154' : '#759866';
+      context.beginPath();
+      context.ellipse(0, 0, 143, 95, 0, 0, Math.PI * 2);
+      context.fill();
+      if (visual.icon === 'papaya') {
+        context.fillStyle = '#f4bd72';
+        context.beginPath();
+        context.ellipse(0, 0, 126, 81, 0, 0, Math.PI * 2);
+        context.fill();
+        context.fillStyle = '#382b2b';
+        for (let seed = 0; seed < 18; seed++) {
+          context.beginPath();
+          context.arc(Math.cos(seed * 2.4) * Math.sqrt(seed) * 10, Math.sin(seed * 2.4) * Math.sqrt(seed) * 6, 6, 0, Math.PI * 2);
+          context.fill();
+        }
+      } else {
+        context.strokeStyle = '#c8d39b';
+        context.lineWidth = 5;
+        for (const offset of [-65, -30, 30, 65]) {
+          context.beginPath();
+          context.moveTo(offset, -80);
+          context.quadraticCurveTo(offset * 1.3, 0, offset, 80);
+          context.stroke();
+        }
+      }
+    } else if (visual.icon === 'tofu') {
+      for (const [x, y] of [[-100, -80], [10, -25], [-80, 25]]) {
+        context.fillStyle = '#fff4dc';
+        context.fillRect(x, y, 96, 79);
+        context.strokeStyle = '#dccba9';
+        context.lineWidth = 4;
+        context.strokeRect(x, y, 96, 79);
+      }
+    } else {
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
+      context.font = '205px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif';
+      context.fillText(visual.icon, 0, -12, 285);
     }
     context.strokeStyle = accent;
     context.lineWidth = 2;
@@ -135,12 +295,23 @@ if (factCanvas) {
     context.arc(0, 0, 181, 0, Math.PI * 2);
     context.stroke();
     context.restore();
+
+    context.save();
+    context.textAlign = 'center';
+    context.fillStyle = '#fff8e9';
+    context.font = 'bold 21px "Avenir Next", "Segoe UI", sans-serif';
+    context.fillText(label, 780, 435, 310);
+    context.restore();
   }
 
   function render() {
     const fact = active;
     const copy = fact[german ? 'de' : 'en'];
-    const theme = themes[fact.category];
+    const visual = foodVisuals[fact.en.label];
+    const theme = {
+      background: [`hsl(${visual.hue} 29% 24%)`, `hsl(${visual.hue} 29% 39%)`],
+      accent: `hsl(${visual.hue} 66% 79%)`
+    };
     const gradient = context.createLinearGradient(0, 0, 1080, 1350);
     gradient.addColorStop(0, theme.background[0]);
     gradient.addColorStop(1, theme.background[1]);
@@ -156,10 +327,7 @@ if (factCanvas) {
     context.beginPath();
     context.arc(780, 300, 235, 0, Math.PI * 2);
     context.stroke();
-    const illustration = /pepper|paprika/.test(fact.id) ? 'pepper'
-      : /spinach|spinat/.test(fact.id) ? 'spinach'
-      : /walnut|walnuss/.test(fact.id) ? 'walnuts' : 'botanical';
-    drawFood(illustration, theme.accent);
+    drawFood(visual, copy.label, theme.accent);
 
     context.fillStyle = '#fff8e9';
     context.font = '42px Georgia, serif';
@@ -232,6 +400,10 @@ if (factCanvas) {
   function showShareHelp() {
     shareHelp.hidden = false;
     share.setAttribute('aria-expanded', 'true');
+  }
+
+  function getCaption() {
+    return `${title.textContent} ${description.textContent}\n\n${german ? 'Quelle' : 'Source'}: ${source.href}\nhttps://apopovski.github.io/jasmina/${german ? 'de/' : ''}`;
   }
 
   function prepareGraphicNow() {
@@ -341,11 +513,20 @@ if (factCanvas) {
   share.addEventListener('click', () => {
     if (!prepareGraphicNow()) return;
     const file = new File([exportBlob], `jasmina-klisch-${active.id}-${german ? 'de' : 'en'}.png`, { type: 'image/png' });
-    if (navigator.share && navigator.canShare?.({ files: [file] })) {
+    let canShareFile;
+    try {
+      canShareFile = navigator.share && navigator.canShare?.({ files: [file] });
+    } catch (error) {
+      showShareHelp();
+      status.textContent = german ? 'Direktes Teilen ist fehlgeschlagen. Lade die Grafik herunter und teile sie in deiner App.' : 'Direct sharing failed. Download the graphic and post it in your app.';
+      console.error('Could not check image sharing support:', error);
+      return;
+    }
+    if (canShareFile) {
       try {
-        const result = navigator.share({ files: [file], title: title.textContent });
+        const result = navigator.share({ files: [file], title: title.textContent, text: getCaption() });
         result.then(() => {
-          status.textContent = german ? 'Grafik geteilt.' : 'Graphic shared.';
+          status.textContent = german ? 'Grafik an die gewählte App übergeben.' : 'Graphic sent to the selected app.';
         }).catch((error) => {
           if (error.name !== 'AbortError') {
             showShareHelp();
@@ -366,9 +547,8 @@ if (factCanvas) {
   });
 
   copyCaption.addEventListener('click', async () => {
-    const caption = `${title.textContent} ${description.textContent}\n\n${german ? 'Quelle' : 'Source'}: ${source.href}\nhttps://apopovski.github.io/jasmina/${german ? 'de/' : ''}`;
     try {
-      await navigator.clipboard.writeText(caption);
+      await navigator.clipboard.writeText(getCaption());
       status.textContent = german ? 'Begleittext kopiert. Lade die Grafik herunter und teile beides in deiner App.' : 'Caption copied. Download the graphic and post both in your app.';
     } catch (error) {
       status.textContent = german ? 'Kopieren fehlgeschlagen. Du kannst den Text oben manuell markieren und kopieren.' : 'Could not copy the caption. You can select and copy the text above instead.';
@@ -391,7 +571,7 @@ if (factCanvas) {
   }
 
   if (context && facts.length === 100 && facts.every((fact) =>
-    fact.id && themes[fact.category] && fact.source && fact.en?.title && fact.de?.title
+    fact.id && foodVisuals[fact.en?.label] && fact.source && fact.en?.title && fact.de?.title
   )) {
     renderList();
     render();
