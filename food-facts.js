@@ -162,8 +162,10 @@ if (factCanvas) {
     drawFood(illustration, theme.accent);
 
     context.fillStyle = '#fff8e9';
-    context.font = 'bold 51px Georgia, serif';
-    context.fillText('✳ jasmina.', 105, 151);
+    context.font = '42px Georgia, serif';
+    context.fillText('✳', 105, 151);
+    context.font = '76px "Allura", "Brush Script MT", cursive';
+    context.fillText('Jasmina Klisch', 145, 161);
     context.font = 'bold 23px "Avenir Next", "Segoe UI", sans-serif';
     context.letterSpacing = '3px';
     context.fillStyle = theme.accent;
@@ -207,10 +209,10 @@ if (factCanvas) {
     const sourceName = fact.source.includes('ods.od.nih.gov') ? 'NIH OFFICE OF DIETARY SUPPLEMENTS' : 'USDA MYPLATE';
     context.fillText(`${german ? 'QUELLE' : 'SOURCE'}: ${sourceName}`, 105, 1211);
     context.fillStyle = theme.accent;
-    context.fillText('jasmina.  /  apopovski.github.io/jasmina', 105, 1260);
+    context.fillText('Jasmina Klisch  /  apopovski.github.io/jasmina', 105, 1260);
     factCanvas.setAttribute('aria-label', german
-      ? `Teilbare Jasmina-Ernährungsgrafik: ${copy.title}`
-      : `Shareable Jasmina nutrition graphic: ${copy.title}`);
+      ? `Teilbare Jasmina-Klisch-Ernährungsgrafik: ${copy.title}`
+      : `Shareable Jasmina Klisch nutrition graphic: ${copy.title}`);
 
     exportBlob = null;
     const revision = ++exportRevision;
@@ -327,7 +329,7 @@ if (factCanvas) {
     if (!prepareGraphicNow()) return;
     const url = URL.createObjectURL(exportBlob);
     const link = document.createElement('a');
-    link.download = `jasmina-${active.id}-${german ? 'de' : 'en'}.png`;
+    link.download = `jasmina-klisch-${active.id}-${german ? 'de' : 'en'}.png`;
     link.href = url;
     document.body.append(link);
     link.click();
@@ -338,7 +340,7 @@ if (factCanvas) {
 
   share.addEventListener('click', () => {
     if (!prepareGraphicNow()) return;
-    const file = new File([exportBlob], `jasmina-${active.id}-${german ? 'de' : 'en'}.png`, { type: 'image/png' });
+    const file = new File([exportBlob], `jasmina-klisch-${active.id}-${german ? 'de' : 'en'}.png`, { type: 'image/png' });
     if (navigator.share && navigator.canShare?.({ files: [file] })) {
       try {
         const result = navigator.share({ files: [file], title: title.textContent });
