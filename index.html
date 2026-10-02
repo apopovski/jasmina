@@ -127,6 +127,34 @@
         </div>
       </section>
 
+      <section class="food-facts-section" id="food-facts" aria-labelledby="facts-title">
+        <div class="section-shell facts-layout">
+          <div class="facts-copy">
+            <p class="eyebrow"><span class="eyebrow-line"></span> GOOD FOOD, GOOD TO KNOW</p>
+            <h2 id="facts-title">Little facts.<br><em>Big inspiration.</em></h2>
+            <p>Discover something new about everyday plant foods. Pick a fact, then save its ready-to-share graphic for your feed.</p>
+            <div class="fact-options" role="group" aria-label="Choose a plant food">
+              <button type="button" class="fact-option" data-fact="pepper" aria-pressed="true">01 <span>Red pepper</span></button>
+              <button type="button" class="fact-option" data-fact="spinach" aria-pressed="false">02 <span>Spinach</span></button>
+              <button type="button" class="fact-option" data-fact="walnuts" aria-pressed="false">03 <span>Walnuts</span></button>
+            </div>
+            <noscript><p>Enable JavaScript to preview and download these graphics.</p></noscript>
+            <div class="fact-explanation" aria-live="polite">
+              <h3 data-fact-title>Red bell peppers are rich in vitamin C.</h3>
+              <p data-fact-description>Vitamin C acts as an antioxidant and helps your body absorb iron from plant foods.</p>
+            </div>
+            <a class="fact-source" data-fact-source href="https://ods.od.nih.gov/factsheets/VitaminC-Consumer/" target="_blank" rel="noopener noreferrer">Source: NIH Office of Dietary Supplements <span aria-hidden="true">↗</span></a>
+            <button type="button" class="button button-dark fact-download">Download graphic (PNG) <span aria-hidden="true">↓</span></button>
+            <button type="button" class="button fact-share" hidden>Share graphic <span aria-hidden="true">↗</span></button>
+            <p class="fact-status" role="status" aria-live="polite"></p>
+          </div>
+          <div class="facts-preview">
+            <canvas id="fact-canvas" width="1080" height="1350" role="img" aria-label="Shareable Jasmina nutrition fact graphic about red bell peppers"></canvas>
+            <p>1080 × 1350 px · Ready for your feed</p>
+          </div>
+        </div>
+      </section>
+
       <section class="guide-section section-shell" aria-labelledby="guide-title">
         <div class="guide-card">
           <div class="guide-copy">
@@ -186,11 +214,12 @@
     <footer class="site-footer">
       <div class="section-shell footer-main">
         <div><a class="brand footer-brand" href="index.html"><span class="brand-icon" aria-hidden="true">✳</span> jasmina<span class="brand-dot">.</span></a><p>Simple habits. Lasting health.<br>Nutrition for a life well lived.</p></div>
-        <div class="footer-links"><span>EXPLORE</span><a href="index.html#services">Services</a><a href="about.html">About</a><a href="meal-plan.html">Free 7-day plan</a></div>
+        <div class="footer-links"><span>EXPLORE</span><a href="index.html#services">Services</a><a href="index.html#food-facts">Food facts</a><a href="about.html">About</a><a href="meal-plan.html">Free 7-day plan</a></div>
         <div class="footer-links"><span>GET STARTED</span><a href="index.html#contact">Free discovery call</a><a href="about.html#approach">My approach</a></div>
       </div>
       <div class="section-shell footer-bottom"><span>© <span data-year>2026</span> Jasmina. All rights reserved.</span><span>Made for a healthier everyday.</span></div>
     </footer>
     <script src="script.js" defer></script>
+    <script src="food-facts.js" defer></script>
   </body>
 </html>

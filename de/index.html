@@ -127,6 +127,34 @@
         </div>
       </section>
 
+      <section class="food-facts-section" id="food-facts" aria-labelledby="facts-title">
+        <div class="section-shell facts-layout">
+          <div class="facts-copy">
+            <p class="eyebrow"><span class="eyebrow-line"></span> GUTES ESSEN, GUT ZU WISSEN</p>
+            <h2 id="facts-title">Kleine Fakten.<br><em>Große Inspiration.</em></h2>
+            <p>Entdecke Wissenswertes über alltägliche pflanzliche Lebensmittel. Wähle einen Fakt und speichere die Grafik zum Teilen.</p>
+            <div class="fact-options" role="group" aria-label="Pflanzliches Lebensmittel auswählen">
+              <button type="button" class="fact-option" data-fact="pepper" aria-pressed="true">01 <span>Rote Paprika</span></button>
+              <button type="button" class="fact-option" data-fact="spinach" aria-pressed="false">02 <span>Spinat</span></button>
+              <button type="button" class="fact-option" data-fact="walnuts" aria-pressed="false">03 <span>Walnüsse</span></button>
+            </div>
+            <noscript><p>Aktiviere JavaScript, um die Grafiken anzusehen und herunterzuladen.</p></noscript>
+            <div class="fact-explanation" aria-live="polite">
+              <h3 data-fact-title>Rote Paprika enthält viel Vitamin C.</h3>
+              <p data-fact-description>Vitamin C wirkt als Antioxidans und verbessert die Aufnahme von Eisen aus pflanzlichen Lebensmitteln.</p>
+            </div>
+            <a class="fact-source" data-fact-source href="https://ods.od.nih.gov/factsheets/VitaminC-Consumer/" target="_blank" rel="noopener noreferrer">Quelle: NIH Office of Dietary Supplements <span aria-hidden="true">↗</span></a>
+            <button type="button" class="button button-dark fact-download">Grafik herunterladen (PNG) <span aria-hidden="true">↓</span></button>
+            <button type="button" class="button fact-share" hidden>Grafik teilen <span aria-hidden="true">↗</span></button>
+            <p class="fact-status" role="status" aria-live="polite"></p>
+          </div>
+          <div class="facts-preview">
+            <canvas id="fact-canvas" width="1080" height="1350" role="img" aria-label="Teilbare Jasmina-Ernährungsgrafik über rote Paprika"></canvas>
+            <p>1080 × 1350 px · Bereit zum Teilen</p>
+          </div>
+        </div>
+      </section>
+
       <section class="guide-section section-shell" aria-labelledby="guide-title">
         <div class="guide-card">
           <div class="guide-copy">
@@ -186,11 +214,12 @@
     <footer class="site-footer">
       <div class="section-shell footer-main">
         <div><a class="brand footer-brand" href="index.html"><span class="brand-icon" aria-hidden="true">✳</span> jasmina<span class="brand-dot">.</span></a><p>Einfache Gewohnheiten. Langfristiges Wohlbefinden.<br>Ernährung für ein gutes Leben.</p></div>
-        <div class="footer-links"><span>ENTDECKEN</span><a href="index.html#services">Angebote</a><a href="about.html">Über mich</a><a href="meal-plan.html">Kostenloser 7-Tage-Plan</a></div>
+        <div class="footer-links"><span>ENTDECKEN</span><a href="index.html#services">Angebote</a><a href="index.html#food-facts">Lebensmittel-Fakten</a><a href="about.html">Über mich</a><a href="meal-plan.html">Kostenloser 7-Tage-Plan</a></div>
         <div class="footer-links"><span>LOSLEGEN</span><a href="index.html#contact">Kostenloses Kennenlerngespräch</a><a href="about.html#approach">Meine Herangehensweise</a></div>
       </div>
       <div class="section-shell footer-bottom"><span>© <span data-year>2026</span> Jasmina. Alle Rechte vorbehalten.</span><span>Für einen gesünderen Alltag gemacht.</span></div>
     </footer>
     <script src="../script.js" defer></script>
+    <script src="../food-facts.js" defer></script>
   </body>
 </html>
